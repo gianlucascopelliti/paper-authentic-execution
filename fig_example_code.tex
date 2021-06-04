@@ -1,0 +1,27 @@
+\begin{figure}[ht]
+  \begin{centering}
+  \hfill
+  \subfloat[\appvio]{
+    \parbox{.4\linewidth}{\lstinputlisting[language=Reactive]{appflo.reactive}}
+    \label{code:appvio}
+    \vspace{-2mm}
+  }
+  \hfill
+  \subfloat[\appavl]{
+    \parbox{.4\linewidth}{\lstinputlisting[language=Reactive]{appagg.reactive}}
+    \label{code:appavl}
+    \vspace{-2mm}
+  }
+  \hfill\mbox{}
+    \vspace{-2mm}
+  \caption{ Pseudo-code of the applications from \cref{fig_model}. in a
+    Python-like syntax. Enclaved application components are declared using the
+    \code{module} keyword and span until the next \code{module} or the end of
+    the file. The \code{on} statement starts an event handler which can connect
+    to an output of another application component, or to a physical I/O channel.
+    Outputs are implicitly declared when invoked through a function call-like
+    syntax. }
+  \label{code:examples}
+  \end{centering}
+  \vspace{-3mm}
+\end{figure}

@@ -1,0 +1,31 @@
+\newcolumntype{x}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}p{#1}}
+
+\begin{table}
+  \centering
+  \scalebox{0.7}{
+  \setlength\extrarowheight{5pt}
+  \begin{tabular}{ | x{3cm} | x{3cm} | x{1.8cm} | x{1.8cm} | x{1.8cm} | x{1.8cm} | x{1.8cm} | }
+    \hline
+    Module        & TEE            & Build     & Deploy     & Attest     & Connect     & \textbf{Total}   \\
+    \hline 
+    \hline
+    \web          & Intel SGX      & 1.199     & 0.247      & 1.794      & 0.775       & \textbf{4.027}   \\
+    \hline
+    \tempsensor   & Sancus         & 0.443     & 2.510      & 2.576      & 0.251       & \textbf{5.833}   \\
+    \hline
+    \gateway      & TrustZone      & 0.976     & 0.438      & 0.329      & 1.277       & \textbf{3.063}   \\
+    \hline
+  \end{tabular}}
+  \vspace{0.2cm}
+  \caption{ Average time to perform a software update on different TEEs, all
+  measurements are in seconds. We carried out the experiments on the Smart Home
+  application, using the same setup described in \cref{fig:eval-setup}.
+  Build, deployment, and attestation times are highly application-specific; in
+  our case, all modules were re-deployed without code changes and no state
+  transfer between old and new instances was implemented.  }
+  \label{tbl:microb-update}
+  \vspace{-5mm}
+\end{table}
+%
+
+

@@ -1,0 +1,237 @@
+\begin{tikzpicture}
+  % styles
+  \tikzstyle{lifeline}=[thick, lightgray]
+  \tikzstyle{label}=[draw, fill=white, text depth=.5ex, text height=2ex]
+  \tikzstyle{box-untrusted}=[draw, fill=white]
+  \tikzstyle{box-enclave}=[draw, fill=color1!80]
+  \tikzstyle{box-regular}=[draw, fill=lightgray]
+  \tikzstyle{box-aes}=[draw, fill=color3]
+  \tikzstyle{box-spongent}=[draw, fill=color5]
+  \tikzstyle{box-mmio}=[draw, fill=color2]
+  \tikzstyle{domain-sgx}=[draw, fill=\colorsgx!20, opacity=.3, rounded corners]
+  \tikzstyle{domain-tz}=[draw, fill=\colortz!20, opacity=.3, rounded corners]
+  \tikzstyle{domain-sancus}=[draw, fill=\colorsancus!20, opacity=.3, rounded corners]
+  \tikzstyle{sync}=[draw, ->, arrows={-Triangle[angle=60:5pt, black, fill=black]}]
+  \tikzstyle{async}=[draw, ->, arrows={-Triangle[angle=60:5pt, black, fill=white]}]
+  \tikzstyle{external}=[draw, <->, arrows={Circle-Triangle[angle=60:5pt, black, fill=black]}]
+  \tikzstyle{ret}=[draw, ->, dashed]
+  \tikzstyle{packet}=[matrix of nodes, nodes in empty cells, every node/.style={draw, fill=white, text depth=.5ex, text height=2ex, inner sep=2pt}]
+  \tikzstyle{msglabel}=[inner sep=0, yshift=1pt, font=\small]
+  \tikzstyle{timelabel}=[inner sep=0, yshift=-3pt, font=\small]
+  \tikzstyle{smallsync}=[sync, text width=1cm]
+  \tikzstyle{rightshiftsync}=[sync, pos=0]
+  \def\boxwidth{0.4cm}
+
+  \newcommand{\packet}[1]{
+    \begin{tikzpicture}
+      \matrix[packet, ampersand replacement=\&] {
+        #1
+      };
+    \end{tikzpicture}
+  }
+
+  \let\c\coordinate
+  \matrix (diagram) [column sep=2.4cm, row sep=0.7cm, matrix of nodes] {
+  \c(sgx-top);&                    &                      & \c(tz-top);  &                      &                     &                      & \c(sancus-top); &                        &                         & \c(sancus-end); \\
+              & \c(sgxm-top);      & \c(sgx-EM-top);      &              & \c(tz-EM-1-top);     & \c(tzm-top);        & \c(tz-EM-2-top);     &                 & \c(sancus-EM-top);     & \c(sancusm-top);        &                 \\
+  \c(ar-bgn); & \c(sgxm-1-start);  &                      &              &                      &                     &                      &                 &                        &                         &                 \\
+              & \c(aes-1-start-c); &                      &              &                      &                     &                      &                 &                        &                         &                 \\
+              & \c(aes-1-end-c);   &                      &              &                      &                     &                      &                 &                        &                         &                 \\
+              & \c(sgxm-1-end);    &  \c(sgx-EM-1-start); &              &                      &                     &                      &                 &                        &                         &                 \\
+              &                    &  \c(sgx-EM-1-end);   &              & \c(tz-EM-1-1-start); &                     &                      &                 &                        &                         &                 \\
+              &                    &                      &              & \c(tz-EM-1-1-end);   & \c(tzm-1-start);    &                      &                 &                        &                         &                 \\
+              &                    &                      &              &                      & \c(aes-2-start-c);  &                      &                 &                        &                         &                 \\
+              &                    &                      &              &                      & \c(aes-2-end-c);    &                      &                 &                        &                         &                 \\
+              &                    &                      &              &                      & \c(spo-1-start-c);  &                      &                 &                        &                         &                 \\
+              &                    &                      &              &                      & \c(spo-1-end-c);    &                      &                 &                        &                         &                 \\
+              &                    &                      &              &                      & \c(tzm-1-end);      & \c(tz-EM-2-1-start); &                 &                        &                         &                 \\
+              & \c(legend);        &                      &              &                      &                     & \c(tz-EM-2-1-end);   &                 & \c(sancus-EM-1-start); &                         &                 \\
+              &                    &                      &              &                      &                     &                      &                 & \c(sancus-EM-1-end);   & \c(sancusm-1-start);    &                 \\
+              &                    &                      &              &                      &                     &                      &                 &                        & \c(spo-2-start-c);      &                 \\
+              &                    &                      &              &                      &                     &                      &                 &                        & \c(spo-2-end-c);        &                 \\
+              &                    &                      &              &                      &                     &                      &                 &                        & \c(mmio-start-c);       &                 \\
+              &                    &                      &              &                      &                     &                      &                 &                        & \c(mmio-end-c);         &                 \\
+              &                    &                      &              &                      &                     &                      &                 &                        & \c(spo-3-start-c);      &                 \\
+              &                    &                      &              &                      &                     &                      &                 &                        & \c(spo-3-end-c);        &                 \\
+              &                    &                      &              &                      &                     &                      &                 & \c(sancus-EM-2-start); & \c(sancusm-1-end);      &                 \\
+              &                    &                      &              &                      &                     & \c(tz-EM-2-2-start); &                 & \c(sancus-EM-2-end);   &                         &                 \\
+              &                    &                      &              &                      & \c(tzm-2-start);    & \c(tz-EM-2-2-end);   &                 &                        &                         &                 \\
+              &                    &                      &              &                      & \c(spo-4-start-c);  &                      &                 &                        &                         &                 \\
+              &                    &                      &              &                      & \c(spo-4-end-c);    &                      &                 &                        &                         &                 \\
+              &                    &                      &              &                      & \c(aes-3-start-c);  &                      &                 &                        &                         &                 \\
+              &                    &                      &              &                      & \c(aes-3-end-c);    &                      &                 &                        &                         &                 \\
+              &                    &                      &              & \c(tz-EM-1-2-start); & \c(tzm-2-end);      &                      &                 &                        &                         &                 \\
+              &                    & \c(sgx-EM-2-start);  &              & \c(tz-EM-1-2-end);   &                     &                      &                 &                        &                         &                 \\
+              & \c(sgxm-2-start);  & \c(sgx-EM-2-end);    &              &                      &                     &                      &                 &                        &                         &                 \\
+              & \c(aes-4-start-c); &                      &              &                      &                     &                      &                 &                        &                         &                 \\
+              & \c(aes-4-end-c);   &                      &              &                      &                     &                      &                 &                        &                         &                 \\
+  \c(ar-end); & \c(sgxm-2-end);    &                      &              &                      &                     &                      &                 &                        &                         &                 \\
+              & \c(sgxm-bot);      & \c(sgx-EM-bot);      & \c(sgx-bot); & \c(tz-EM-1-bot);     & \c(tzm-bot);        & \c(tz-EM-2-bot);     & \c(tz-bot);     & \c(sancus-EM-bot);     & \c(sancusm-bot);        & \c(sancus-bot); \\
+  };
+
+  % domains
+  \path[domain-sgx] (sgx-top) rectangle (sgx-bot);
+  \path[domain-tz] (tz-top) rectangle (tz-bot);
+  \path[domain-sancus] (sancus-top) rectangle (sancus-bot);
+  \draw[opacity=0]  (sgx-top) -- node [opacity=1, above, font=\Large] {Intel SGX node} (tz-top);
+  \draw[opacity=0]  (tz-top) -- node [opacity=1, above, font=\Large] {TrustZone node} (sancus-top);
+  \draw[opacity=0]  (sancus-top) -- node [opacity=1, above, font=\Large] {Sancus node} (sancus-end);
+
+  \def\coordnames{sgxm/enclave/\web, sgx-EM/untrusted/EM, tz-EM-1/untrusted/EM, tzm/enclave/\gateway, tz-EM-2/untrusted/EM, sancus-EM/untrusted/EM, sancusm/enclave/\light}
+
+  % labels
+  \foreach \coord/\style/\text in \coordnames {
+    \path (\coord-top) node[style=box-\style, font=\large] (\coord-label) {\text};
+  }
+
+  % vertical lifelines
+  \foreach \coord/\text in \coordnames {
+    \draw[lifeline] (\coord-label.south) -- (\coord-bot);
+  }
+
+  % boxes
+  % define coordinates for the overlapping boxes
+  \def\overlaps{aes-1, aes-2, aes-3, aes-4, spo-1, spo-2, spo-3, spo-4, mmio}
+  \foreach \coord in \overlaps {
+    \coordinate(\coord-start) at ($(\coord-start-c) + (\boxwidth/2, 0)$);
+    \coordinate(\coord-end) at ($(\coord-end-c) + (\boxwidth/2, 0)$);
+  }
+  
+  \def\boxes{%
+    % main boxes
+    sgxm-1/regular, 
+    sgx-EM-1/regular, 
+    tz-EM-1-1/regular, 
+    tzm-1/regular,
+    tz-EM-2-1/regular,
+    sancus-EM-1/regular,
+    sancusm-1/regular,
+    sancus-EM-2/regular,
+    tz-EM-2-2/regular,
+    tzm-2/regular,
+    tz-EM-1-2/regular,
+    sgx-EM-2/regular,
+    sgxm-2/regular,
+    % overlapping boxes
+    aes-1/aes,
+    aes-2/aes, 
+    aes-3/aes,
+    aes-4/aes,
+    spo-1/spongent,
+    spo-2/spongent,
+    spo-3/spongent,
+    spo-4/spongent,
+    mmio/mmio%
+    }
+  \foreach \thebox/\style in \boxes { % \box is defined
+    \path[box-\style] ($(\thebox-start) - (\boxwidth/2, 0)$) rectangle ($(\thebox-end) + (\boxwidth/2, 0)$);
+  }
+
+  % arrows
+  \def\arrows{
+    ar-bgn/sgxm-1-start/start/external/right//,%
+    sgxm-2-end/ar-end/end/external/left//,%
+    sgxm-1-end/sgx-EM-1-start/HLocalEvent/sync/right//2.05,%
+    sgx-EM-1-end/tz-EM-1-1-start/HandleRemoteEvent (25B)/async/right//1.35,%
+    tz-EM-1-1-end/tzm-1-start/HandleInput/sync/right//22.38,%
+    tzm-1-end/tz-EM-2-1-start/HLocalEvent/sync/right//11.53,%
+    tz-EM-2-1-end/sancus-EM-1-start/HandleRemoteEvent (25B)/async/right//14.36,%
+    sancus-EM-1-end/sancusm-1-start/HandleInput/sync/right//0.25,%
+    sancusm-1-end/sancus-EM-2-start/HLocalEvent/sync/left//0.25,%
+    sancus-EM-2-end/tz-EM-2-2-start/HandleRemoteEvent (25B)/async/left//14.36,%
+    tz-EM-2-2-end/tzm-2-start/HandleInput/sync/left//22.38,%
+    tzm-2-end/tz-EM-1-2-start/HLocalEvent/sync/left//11.53,%
+    tz-EM-1-2-end/sgx-EM-2-start/HandleRemoteEvent (120B)/async/left//1.33,%
+    sgx-EM-2-end/sgxm-2-start/HandleInput/sync/left//2.44%
+  }
+
+  \foreach \start/\dest/\name/\style/\direction/\pos/\time in \arrows {
+    \IfStrEq{\direction}{right}{
+      \def\sign{}
+    } {
+      \def\sign{-}
+    }
+
+    \IfStrEq{\name}{}{
+      \def\msgstyle{}
+    } {
+      \def\msgstyle{msglabel}
+    }
+
+    \IfStrEq{\pos}{}{
+      \def\pos{0.5}
+    }
+
+    \IfStrEq{\time}{}{
+      \def\msgtime{}
+    } {
+      \def\msgtime{\time ms}
+    }
+
+    \path[\style] ($(\start) + (\sign\boxwidth/2, 0)$) -- ($(\dest) - (\sign\boxwidth/2, 0)$) node[align=center, pos=\pos, above, \msgstyle] {\name} node[align=center, pos=\pos, below, timelabel] {\msgtime};
+  }
+
+    % timing information
+    \def\timings{
+      ar-bgn/ar-end/left/432.62//,%
+      aes-1-start/aes-1-end/right/1.10//2,%
+      aes-2-start/aes-2-end/right/25.00//2,%
+      aes-3-start/aes-3-end/right/30.90//97,%
+      aes-4-start/aes-4-end/right/10.03//97,%
+      spo-1-start/spo-1-end/right/103.98//2,%
+      spo-2-start/spo-2-end/right/0.17//2,%
+      spo-3-start/spo-3-end/right/0.17//2,%
+      spo-4-start/spo-4-end/right/104.64//2,%
+      mmio-start/mmio-end/right/12.35//%
+      %sancusm-1-start/sancusm-1-end/right/0.75/%
+    }
+  
+    \foreach \from/\to/\side/\sectime/\unsectime/\size in \timings {
+      \IfStrEq{\side}{left} {
+        \def\extrastyle{mirror}
+        \def\sign{-}
+      } {
+        \def\extrastyle{}
+        \def\sign{}
+      }
+  
+      \IfStrEq{\unsectime}{}{
+        \def\timing{\sectime ms}
+      } {
+        \def\timing{\sectime ms \\ \textcolor{gray}{(\unsectime ms)}}
+      }
+
+      \IfStrEq{\size}{}{
+        \def\plsize{}
+      } {
+        \def\plsize{ (\size{}B)}
+      }
+  
+      \draw[decorate, decoration={brace, amplitude=7pt, \extrastyle}] ([xshift=\sign\boxwidth/2+\sign5pt]\from) -- ([xshift=\sign\boxwidth/2+\sign5pt]\to) node[midway, \side, xshift=\sign10pt, text width=1.2cm, font=\small] {\timing\plsize};
+    }
+
+      % legend
+      \node[anchor=north] at (legend) {
+        \begin{tikzpicture}[anchor=center]
+          \def\arrowwidth{1cm}
+
+          \matrix[draw, fill=white, font=\footnotesize, column sep=.3cm, matrix of nodes] {
+            \node [style=box-enclave] {}; && \node[align=left]{Enclave}; \\
+            \node [style=box-untrusted] {}; && \node[align=left]{Event Manager}; \\
+            \node [style=box-regular] {}; && \node[align=left]{Application logic}; \\
+            \node [style=box-aes] {}; && \node[align=left]{\aes{} operation}; \\
+            \node [style=box-spongent] {}; && \node[align=left]{\spongent{} operation}; \\
+            \node [style=box-mmio] {}; && \node[align=left]{Secure I/O}; \\
+            \c(external-from); &[\arrowwidth] \c(external-to); & \node{External event}; \\
+            \c(boundary-from); &[\arrowwidth] \c(boundary-to); & \node{Host-enclave boundary}; \\
+            \c(remote-from); &[\arrowwidth] \c(remote-to); & \node{Node boundary}; \\
+          };
+
+          \draw[external]  (external-from)   -- (external-to);
+          \draw[sync]   (boundary-from)    -- (boundary-to);
+          \draw[async] (remote-from) -- (remote-to);
+        \end{tikzpicture}
+      };
+
+\end{tikzpicture}
+

@@ -1,0 +1,4 @@
+{
+    "TZ syscall_get_time overhead": 12.328606363636368,
+    "SGX time syscall overhead": 1.5362254545454335
+}

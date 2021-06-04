@@ -1,0 +1,586 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="261.42902mm"
+   height="99.600563mm"
+   viewBox="0 0 261.42902 99.600563"
+   version="1.1"
+   id="svg8"
+   inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)"
+   sodipodi:docname="20210604-scenario.svg">
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.98994949"
+     inkscape:cx="530.96329"
+     inkscape:cy="61.726424"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1908"
+     inkscape:window-height="1025"
+     inkscape:window-x="0"
+     inkscape:window-y="24"
+     inkscape:window-maximized="0" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-12.846207,-10.504335)">
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect815"
+       width="55.324791"
+       height="40.892239"
+       x="13.096207"
+       y="10.754335" />
+    <g
+       id="g900"
+       transform="translate(-10.583334)">
+      <rect
+         y="13.831604"
+         x="32.744183"
+         height="12.287059"
+         width="21.641493"
+         id="rect817"
+         style="fill:#90ff00;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <text
+         id="text831"
+         y="22.225437"
+         x="34.467026"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05555534px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         xml:space="preserve"><tspan
+           y="22.225437"
+           x="34.467026"
+           id="tspan885"
+           sodipodi:role="line">AppE</tspan></text>
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05555534px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="-50.289402"
+       y="19.978531"
+       id="text864"
+       transform="rotate(-90)"><tspan
+         sodipodi:role="line"
+         id="tspan891"
+         x="-50.289402"
+         y="19.978531">Sancus</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05555534px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="-108.81172"
+       y="98.996185"
+       id="text868"
+       transform="rotate(-90)"><tspan
+         sodipodi:role="line"
+         id="tspan889"
+         x="-108.81172"
+         y="98.996185">TrustZone</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05555534px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="-76.434662"
+       y="216.9668"
+       id="text872"
+       transform="rotate(-90)"><tspan
+         sodipodi:role="line"
+         id="tspan887"
+         x="-76.434662"
+         y="216.9668">SGX</tspan></text>
+    <g
+       id="g941"
+       transform="translate(-2.1166667)">
+      <rect
+         y="33.204975"
+         x="32.70496"
+         height="13.630746"
+         width="27.697948"
+         id="rect819"
+         style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <text
+         id="text876"
+         y="41.757599"
+         x="35.279579"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05555534px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         xml:space="preserve"><tspan
+           y="41.757599"
+           x="35.279579"
+           id="tspan893"
+           sodipodi:role="line">EvMan</tspan></text>
+    </g>
+    <g
+       id="g900-2"
+       transform="translate(12.700001,1.016276e-5)">
+      <rect
+         y="13.831604"
+         x="32.744183"
+         height="12.287059"
+         width="21.641493"
+         id="rect817-8"
+         style="fill:#90ff00;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <text
+         id="text831-8"
+         y="22.225437"
+         x="34.467026"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05555534px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         xml:space="preserve"><tspan
+           y="22.225437"
+           x="34.467026"
+           id="tspan885-9"
+           sodipodi:role="line">AppE</tspan></text>
+    </g>
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect815-2"
+       width="55.324791"
+       height="40.892239"
+       x="13.096207"
+       y="68.962662" />
+    <g
+       id="g900-8"
+       transform="translate(-10.583334,58.208325)">
+      <rect
+         y="13.831604"
+         x="32.744183"
+         height="12.287059"
+         width="21.641493"
+         id="rect817-88"
+         style="fill:#90ff00;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <text
+         id="text831-6"
+         y="22.225437"
+         x="34.467026"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05555534px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         xml:space="preserve"><tspan
+           y="22.225437"
+           x="34.467026"
+           id="tspan885-8"
+           sodipodi:role="line">AppE</tspan></text>
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05555534px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="-108.49771"
+       y="19.978531"
+       id="text864-3"
+       transform="rotate(-90)"><tspan
+         style="stroke-width:0.26458332"
+         sodipodi:role="line"
+         id="tspan891-8"
+         x="-108.49771"
+         y="19.978531">Sancus</tspan></text>
+    <g
+       id="g941-3"
+       transform="translate(-2.1166674,58.208325)">
+      <rect
+         y="33.204975"
+         x="32.70496"
+         height="13.630746"
+         width="27.697948"
+         id="rect819-3"
+         style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <text
+         id="text876-3"
+         y="41.757599"
+         x="35.279579"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05555534px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         xml:space="preserve"><tspan
+           y="41.757599"
+           x="35.279579"
+           id="tspan893-8"
+           sodipodi:role="line">EvMan</tspan></text>
+    </g>
+    <g
+       id="g900-2-0"
+       transform="translate(12.700001,58.208336)">
+      <rect
+         y="13.831604"
+         x="32.744183"
+         height="12.287059"
+         width="21.641493"
+         id="rect817-8-4"
+         style="fill:#90ff00;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <text
+         id="text831-8-7"
+         y="22.225437"
+         x="34.467026"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05555534px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         xml:space="preserve"><tspan
+           y="22.225437"
+           x="34.467026"
+           id="tspan885-9-6"
+           sodipodi:role="line">AppE</tspan></text>
+    </g>
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect815-8"
+       width="85.139618"
+       height="40.772881"
+       x="92.530876"
+       y="69.022339" />
+    <g
+       id="g900-9"
+       transform="translate(68.79167,58.208325)">
+      <rect
+         y="13.831604"
+         x="32.744183"
+         height="12.287059"
+         width="21.641493"
+         id="rect817-0"
+         style="fill:#90ff00;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <text
+         id="text831-68"
+         y="22.225437"
+         x="34.467026"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05555534px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         xml:space="preserve"><tspan
+           y="22.225437"
+           x="34.467026"
+           id="tspan885-7"
+           sodipodi:role="line">AppE</tspan></text>
+    </g>
+    <g
+       id="g941-33"
+       transform="translate(77.258337,58.208325)">
+      <rect
+         y="33.204975"
+         x="32.70496"
+         height="13.630746"
+         width="27.697948"
+         id="rect819-37"
+         style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <text
+         id="text876-32"
+         y="41.757599"
+         x="35.279579"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05555534px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         xml:space="preserve"><tspan
+           y="41.757599"
+           x="35.279579"
+           id="tspan893-6"
+           sodipodi:role="line">EvMan</tspan></text>
+    </g>
+    <g
+       id="g900-2-5"
+       transform="translate(92.075006,58.208336)">
+      <rect
+         y="13.831604"
+         x="32.744183"
+         height="12.287059"
+         width="21.641493"
+         id="rect817-8-2"
+         style="fill:#90ff00;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <text
+         id="text831-8-6"
+         y="22.225437"
+         x="34.467026"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05555534px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         xml:space="preserve"><tspan
+           y="22.225437"
+           x="34.467026"
+           id="tspan885-9-5"
+           sodipodi:role="line">AppE</tspan></text>
+    </g>
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect815-8-1"
+       width="85.139618"
+       height="40.772884"
+       x="210.05229"
+       y="37.40733" />
+    <g
+       id="g900-9-0"
+       transform="translate(186.31307,26.593319)">
+      <rect
+         y="13.831604"
+         x="32.744183"
+         height="12.287059"
+         width="21.641493"
+         id="rect817-0-4"
+         style="fill:#90ff00;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <text
+         id="text831-68-8"
+         y="22.225437"
+         x="34.467026"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05555534px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         xml:space="preserve"><tspan
+           y="22.225437"
+           x="34.467026"
+           id="tspan885-7-7"
+           sodipodi:role="line">AppE</tspan></text>
+    </g>
+    <g
+       id="g941-33-0"
+       transform="translate(194.77974,26.593319)">
+      <rect
+         y="33.204975"
+         x="32.70496"
+         height="13.630746"
+         width="27.697948"
+         id="rect819-37-8"
+         style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <text
+         id="text876-32-6"
+         y="41.757599"
+         x="35.279579"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05555534px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         xml:space="preserve"><tspan
+           y="41.757599"
+           x="35.279579"
+           id="tspan893-6-2"
+           sodipodi:role="line">EvMan</tspan></text>
+    </g>
+    <g
+       id="g900-2-5-4"
+       transform="translate(209.59641,26.593329)">
+      <rect
+         y="13.831604"
+         x="32.744183"
+         height="12.287059"
+         width="21.641493"
+         id="rect817-8-2-7"
+         style="fill:#90ff00;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <text
+         id="text831-8-6-9"
+         y="22.225437"
+         x="34.467026"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05555534px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         xml:space="preserve"><tspan
+           y="22.225437"
+           x="34.467026"
+           id="tspan885-9-5-3"
+           sodipodi:role="line">AppE</tspan></text>
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05555534px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="-50.411663"
+       y="99.416298"
+       id="text872-0"
+       transform="rotate(-90)"><tspan
+         style="stroke-width:0.26458332"
+         sodipodi:role="line"
+         id="tspan887-1"
+         x="-50.411663"
+         y="99.416298">SGX</tspan></text>
+    <rect
+       style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect815-8-1-7"
+       width="85.139618"
+       height="40.772888"
+       x="92.501778"
+       y="11.384319" />
+    <g
+       id="g900-9-0-8"
+       transform="translate(68.762573,0.57030613)">
+      <rect
+         y="13.831604"
+         x="32.744183"
+         height="12.287059"
+         width="21.641493"
+         id="rect817-0-4-9"
+         style="fill:#90ff00;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <text
+         id="text831-68-8-1"
+         y="22.225437"
+         x="34.467026"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05555534px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         xml:space="preserve"><tspan
+           y="22.225437"
+           x="34.467026"
+           id="tspan885-7-7-5"
+           sodipodi:role="line">AppE</tspan></text>
+    </g>
+    <g
+       id="g941-33-0-4"
+       transform="translate(77.229237,0.57030613)">
+      <rect
+         y="33.204975"
+         x="32.70496"
+         height="13.630746"
+         width="27.697948"
+         id="rect819-37-8-9"
+         style="fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <text
+         id="text876-32-6-2"
+         y="41.757599"
+         x="35.279579"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05555534px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         xml:space="preserve"><tspan
+           y="41.757599"
+           x="35.279579"
+           id="tspan893-6-2-5"
+           sodipodi:role="line">EvMan</tspan></text>
+    </g>
+    <g
+       id="g900-2-5-4-7"
+       transform="translate(92.045901,0.57031613)">
+      <rect
+         y="13.831604"
+         x="32.744183"
+         height="12.287059"
+         width="21.641493"
+         id="rect817-8-2-7-4"
+         style="fill:#90ff00;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <text
+         id="text831-8-6-9-9"
+         y="22.225437"
+         x="34.467026"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05555534px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         xml:space="preserve"><tspan
+           y="22.225437"
+           x="34.467026"
+           id="tspan885-9-5-3-9"
+           sodipodi:role="line">AppE</tspan></text>
+    </g>
+    <g
+       id="g1078-9-4"
+       transform="translate(-6.4435255,-95.378095)">
+      <rect
+         y="128.75383"
+         x="150.25452"
+         height="13.630746"
+         width="27.697948"
+         id="rect819-37-7-2-5"
+         style="fill:#00ff00;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <text
+         id="text876-32-9-8-9"
+         y="137.30646"
+         x="152.82913"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05555534px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         xml:space="preserve"><tspan
+           id="tspan1073-3-3"
+           sodipodi:role="line"
+           x="152.82913"
+           y="137.30646">AtMan</tspan></text>
+    </g>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 121.35763,45.960213 C 58.549297,57.720074 45.987629,44.623866 45.987629,44.623866"
+       id="path1220"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 126.97029,44.089328 C 65.538221,57.471847 121.6249,93.53419 121.6249,93.53419"
+       id="path1222"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 119.48675,102.35408 C 60.687453,52.641953 39.573158,94.068728 39.573158,94.068728"
+       id="path1224"
+       inkscape:connector-curvature="0" />
+    <rect
+       style="fill:#ff36ff;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect1226"
+       width="84.724442"
+       height="26.459681"
+       x="91.783134"
+       y="121.08606" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="104.61221"
+       y="135.74835"
+       id="text1230"><tspan
+         sodipodi:role="line"
+         id="tspan1228"
+         x="104.61221"
+         y="135.74835"
+         style="stroke-width:0.26458332">Deployer</tspan></text>
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.5;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect817-0-4-99"
+       width="21.641493"
+       height="12.287059"
+       x="75.884003"
+       y="130.71153" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05555534px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="77.606911"
+       y="139.10538"
+       id="text831-68-8-7"><tspan
+         sodipodi:role="line"
+         id="tspan885-7-7-8"
+         x="77.606911"
+         y="139.10538">AppE</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 88.306919,133.38001 C 132.40632,47.586652 132.40632,47.319383 132.40632,47.319383"
+       id="path1285"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 155.3915,41.973993 c 26.1924,38.754028 -2.40543,82.318847 -2.40543,82.318847"
+       id="path1287"
+       inkscape:connector-curvature="0" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="155.12611"
+       y="95.695229"
+       id="text1291"><tspan
+         sodipodi:role="line"
+         id="tspan1289"
+         x="155.12611"
+         y="95.695229"
+         style="stroke-width:0.26458332">AttResult</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 137.63214,47.406026 C 223.72186,88.1888 239.2235,71.885358 239.2235,71.885358"
+       id="path1293"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 239.2235,71.885358 C 163.31895,104.75951 137.66124,105.04404 137.66124,105.04404"
+       id="path1295"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 45.987629,44.623866 c 21.098044,27.416072 0,50.246671 0,50.246671"
+       id="path1297"
+       inkscape:connector-curvature="0" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;-inkscape-font-specification:'sans-serif, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-feature-settings:normal;text-align:start;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="88.041298"
+       y="157.93172"
+       id="text1301"><tspan
+         sodipodi:role="line"
+         id="tspan1303"
+         x="88.041298"
+         y="157.93172">K_N, K_N, SP, AppE</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.80000001;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:0.8, 1.6;stroke-dashoffset:0;stroke-opacity:1"
+       d="m 170.30554,60.125499 42.76312,-1.336347"
+       id="path1305"
+       inkscape:connector-curvature="0" />
+  </g>
+</svg>

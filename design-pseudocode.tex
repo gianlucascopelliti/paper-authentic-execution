@@ -1,0 +1,33 @@
+\sclist{0.5}{%
+  \lstinputlisting[language=Python]{setkey.py}}{}%
+  {Pseudocode of the \setkey{} entry point. Note that \unwrap{} uses the module
+  key to decrypt the payload and throws an exception if the operation failed
+  (i.e., the payload's \acs{MAC} is incorrect).\label{code:setkey}}%
+  {code:setkey}
+%
+%
+\sclist{0.5}{%
+  \lstinputlisting[language=Python]{handleinput.py}}{}%
+  {Pseudocode of the \handleinput{} entry point. Erroneous accesses to the
+  tables as well as errors during \unwrap{} cause exceptions. Thus, these
+  events, as well as those for which no input key has been set, are ignored.
+  \unwrap{} takes a key and the expected associated data as arguments.}%
+  {code:handleinput}
+%
+%
+\sclist{0.5}{%
+  \lstinputlisting[language=Python]{handleoutput.py}}{}%
+  {Pseudocode of the generated output wrapper. Since the compiler generates
+  calls to this function that cannot be called from outside the module, the
+  connection identifier is always valid and no error checking is
+  necessary.}%
+  {code:output} 
+%
+%
+\sclist{0.5}{%
+  \lstinputlisting[language=Python]{attest.py}}{}%
+  {Pseudocode of the \attest{} entry point. Since the attestation of an
+  \protmod{} is \ac{TEE}-specific, we use a high-level function \genattevid{} to
+  retrieve the attestation evidence. The actual implementation of this function
+  depends on the \ac{TEE} used.}%
+  {code:attest} 

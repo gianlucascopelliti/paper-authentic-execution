@@ -1,0 +1,27 @@
+This paper presents an approach to provide strong assurance of the secure
+execution of distributed event-driven applications on shared
+infrastructures, while relying on a small Trusted Computing Base. We build
+upon and extend security primitives provided by Trusted Execution
+Environments (TEEs) to guarantee authenticity and integrity properties of
+applications, and to secure control of input and output devices.  More
+specifically, we guarantee that if an output is produced by the
+application, it was allowed to be produced by the application's source code
+based on an authentic trace of inputs.
+
+We present an integrated open-source framework to develop, deploy, and use
+such applications across heterogeneous TEEs.  Beyond authenticity and
+integrity, our framework optionally provides confidentiality and a notion
+of availability, and facilitates software development at a high level of
+abstraction over the platform-specific TEE layer. We support event-driven
+programming to develop distributed enclave applications in Rust and C for
+heterogeneous TEE, including Intel SGX, ARM TrustZone and Sancus.
+
+In this article we discuss the workings of our approach, the extensions we made
+to the Sancus processor, and the integration of our development model with
+commercial TEEs. Our evaluation of security and performance aspects show that
+TEEs, together with our programming model, form a basis for powerful security
+architectures for dependable systems in domains such as Industrial Control
+Systems and the Internet of Things, illustrating our framework's unique
+suitability for a broad range of use cases which combine cloud processing,
+mobile and edge devices, and lightweight sensing and actuation.
+

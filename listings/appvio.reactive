@@ -1,0 +1,19 @@
+module VioP1
+on Button(pressed):
+  if pressed: taken = 1
+  else:
+    taken = 0
+    count = 0
+    Violation(0)
+on Tick():
+  if taken: count = count + 1
+  if count > MAX: Violation(1)
+module VioP2
+# Similar to VioP1
+module VioD
+on Violation1(violated)
+  v1 = violated
+  if v1: Display(1)
+  if v2: Display(2)
+on Violation2(violated):
+  # Similar to Violation1

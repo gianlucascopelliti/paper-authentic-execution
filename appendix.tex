@@ -1,0 +1,201 @@
+\section{List of Assumptions and Requirements}
+\label{app:assumptions}
+
+This work relies on a number of assumptions on hardware, software, and the
+environment. At the same time, we put specific requirements on the realization
+of concepts, entities, and mechanisms that we abstract from here, e.g., secure
+I/O, the infrastructure provider, and the deployment process. Below we list and
+justify these assumptions and requirements for easier reference.
+
+\subsection{Assumptions}
+\label{app:asm}
+
+\setcounter{table}{0}
+\renewcommand{\thetable}{\protect\NoHyper\ref{app:asm}.\arabic{table}\protect\endNoHyper}
+
+\begin{longtable}{|p{0.04\textwidth}|p{0.46\textwidth}|p{0.4\textwidth}|}
+\caption{Assumptions on Hardware}\\
+\hline
+Ref. & Reproduction & Comment \\
+\hline
+\hline
+
+\ref{sec:intro} & 
+\em The execution infrastructure offers specific security primitives -- standard enclaves plus support for secure I/O. &
+These hardware technologies are the base for authentic execution. \\
+\hline
+
+\ref{design:tee} &
+\em We assume the underlying architecture is a TEE. &
+TEEs allow us to isolate source modules from other code running on a node and to minimize the TCB. \\
+\hline
+
+\ref{design:tee} &
+\em The TEE provides an authenticated encryption primitive. &
+This cryptographic scheme allows for integrity-protected and confidential communication between a module and other modules or the deployer. \\
+\hline
+
+\ref{concept:protected-drivers} &
+\em The infrastructure offers physical input and output channels using protected driver modules that translate application events into physical events and vice versa. &
+Without a secure I/O mechanism, authentic execution is impossible. Here we assume hardware support for some form of protected driver modules. \\
+\hline
+
+\ref{impl:tz-attestation} &
+\em Our scheme assumes that each TrustZone device is equipped with a Hardware Unique Key (HUK). &
+A trust anchor is needed for any remote attestation scheme. For our TrustZone implementation of remote attestation we assume a HUK.\\
+\hline
+
+\end{longtable}
+
+\begin{longtable}{|p{0.04\textwidth}|p{0.46\textwidth}|p{0.4\textwidth}|}
+\caption{Assumptions on Attacker}\\
+\hline
+Ref. & Reproduction & Comment \\
+\hline
+\hline
+
+\ref{concept:attacker} & 
+\em Attackers can manipulate all the software on the nodes, including OS, and can deploy their own applications on the infrastructure. & 
+We assume a strong attacker that can mess with all software except what is protected by the hardware, e.g., TEEs and driver modules. \\
+\hline
+
+\ref{concept:attacker} & 
+\em Attackers can also control the communication network that nodes use to communicate with each other, can sniff the network, modify traffic, or mount man-in-the-middle attacks. With respect to the cryptographic capabilities of the attacker, we follow the Dolev-Yao model &
+This is a common assumption for a network-based attacker or an attacker that has complete control over at least one of the networking stacks of a connection. \\
+\hline
+
+\ref{concept:attacker} & 
+\em The attacker does not have physical access to the nodes. &
+Otherwise this would allow, e.g., for physical side channel and bit faulting attacks, which are out of scope here. \\
+\hline
+
+\ref{concept:attacker} & 
+\em Neither can they physically tamper with I/O devices. &
+Doing so would allow an attacker to mess with physical inputs or the connection of devices to I/O ports, undermining the requirements on secure I/O and the authentic execution guarantees. \\
+\hline
+
+\ref{concept:attacker} & 
+\em We also do not consider side-channel attacks against our implementation. &
+This could leak secrets such as a module key which would allow to bypass the authentic execution mechanism. Countermeasures against such attacks exist but are highly hardware-dependent.\\
+\hline
+
+\end{longtable}
+
+\begin{longtable}{|p{0.04\textwidth}|p{0.46\textwidth}|p{0.4\textwidth}|}
+\caption{Assumptions on Software}\\
+\hline
+Ref. & Reproduction & Comment \\
+\hline
+\hline
+
+\ref{design:tee} &
+\em Both a module’s code and data are located in contiguous memory areas called, respectively, its code section and its data section. &
+This is mainly a simplification to support TEEs that do not allow complex memory management, e.g., Sancus. \\
+\hline
+
+\ref{design:tee} &
+\em We assume a correct compiler. &
+Without this assumption one could not deduce that the measured binaries of secure modules implement the expected source code functionality. \\
+\hline
+
+\end{longtable}
+
+\begin{longtable}{|p{0.04\textwidth}|p{0.46\textwidth}|p{0.4\textwidth}|}
+\caption{Assumptions on Infrastructure and Credentials}\\
+\hline
+Ref. & Reproduction & Comment \\
+\hline
+\hline
+
+\ref{concept:goals} &
+\em The deployer’s computing infrastructure is assumed to be trusted. &
+While this can be alleviated by using TEEs, eventually a trusted system is needed to verify attestations on behalf of the deployer. \\
+\hline
+
+\ref{sec:relwork:mutual} &
+\em Connection keys are known only by the modules and their deployer. &
+Leaking Connection keys might allow an attacker to forge messages and bypass the authentic execution mechanism. \\
+\hline
+
+\ref{concept:protected-drivers} &
+\em Driver modules are part of the trusted infrastructure &
+As they take exclusive access of I/O devices to process physical inputs and outputs, they are controlled by the trusted infrastructure provider. \\ 
+\hline
+
+\ref{concept:protected-drivers} &
+\em Driver module keys are only known to the infrastructure provider. &
+Otherwise, attackers could take control of driver modules on their own. \\
+\hline
+
+\end{longtable}
+
+\pagebreak
+\subsection{Implementation Requirements}
+\label{app:req}
+
+\setcounter{table}{0}
+\renewcommand{\thetable}{\protect\NoHyper\ref{app:req}.\arabic{table}\protect\endNoHyper}
+
+\begin{longtable}{|p{0.04\textwidth}|p{0.46\textwidth}|p{0.4\textwidth}|}
+\caption{Requirements on Secure I/O and Driver Modules}\\
+\hline
+Ref. & Reproduction & Comment \\
+\hline
+\hline
+
+\ref{ass:phyconfig} &
+\em The infrastructure provider configures the physical I/O devices as expected, i.e., that the desired peripherals are connected to the right pins and thus mapped to the correct Memory-Mapped I/O (MMIO) addresses in the node. &
+If this was not the case, the inputs registered by the drivers would not correspond to the actual physical inputs, and vice versa for physical outputs.\\
+\hline
+
+\ref{ass:exclusive} & 
+\em The infrastructure must provide a way for the deployer of $M_A$ to attest that it has exclusive access to the driver module $M_D$ and that $M_D$ also has exclusive access to its I/O device $D$. & 
+Without these attestation and exclusive access capabilities, it could not be guaranteed that inputs registered and outputs produced by the drivers are genuine. \\
+\hline
+
+\ref{ass:startup} & 
+\em As soon as a microcontroller is turned on, driver modules take exclusive access to their I/O devices and never release it. &
+This prevents an attacker from taking control of I/O devices before the infrastructure provider after a node reset. \\
+\hline
+
+\ref{ass:io} &
+\em No outputs are produced by output driver modules unless requested by the application module. &
+Otherwise outputs could not be attributed to corresponding inputs up the chain. \\
+\hline
+
+\ref{ass:io} &
+\em Input driver modules do not generate outputs to application modules that do not correspond to physical inputs. & 
+Otherwise physical outputs may be generated that are not justified by any physical inputs. There is a caveat on automatic initialization messages and other meta-data outputs of the drivers.\\
+\hline
+
+\end{longtable}
+
+\begin{longtable}{|p{0.04\textwidth}|p{0.46\textwidth}|p{0.4\textwidth}|}
+\caption{Requirements on Infrastructure and Deployer}\\
+\hline
+Ref. & Reproduction & Comment \\
+\hline
+\hline
+
+\ref{ass:deploychan} & 
+\em The channel between deployer and infrastructure provider is assumed to be secure. &
+Without a secure channel between these entities, attackers could launch man in the middle attacks between drivers and the deployer's secure modules. \\
+\hline
+
+\ref{ass:attest} & 
+\em Before granting such access, the infrastructure provider needs to ensure the authenticity of the driver module controlling the I/O device, e.g., via attestation &
+As driver modules are part of the TCB, it has to be ensured that the correct, trusted driver module is running on the node where exclusive access to a device driver has been requested. \\
+\hline
+
+\ref{ass:driverkeys} & 
+\em It is assumed that the provider does not leak the driver module keys and that exclusive access to a device is reserved for the deployer until they request to release it or an agreed-upon time $T$ has passed. & 
+If the keys are leaked, an attacker may take control of said device driver at will. Releasing exclusive access prematurely is more of an availability problem as connection keys distributed to the driver module are never leaked, i.e., attackers could in that case take over a device driver but not insert themselves into a previous communication session with that driver.\\
+\hline
+
+\ref{ass:driverreplay} & 
+\em The infrastructure must provide replay protection for messages exchanged with the driver module in the protocol to establish exclusive driver access. &
+Otherwise an attacker may repeatedly obtain exclusive access to a driver module without involving the infrastructure provider.\\
+\hline
+
+\end{longtable}
+

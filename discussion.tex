@@ -1,0 +1,102 @@
+\section{Discussion}
+\label{sec:discussion}
+
+\subsection{Integrity versus Confidentiality}
+\label{sec:discussion:confidentiality}
+%
+We have focused our security objective on integrity and authenticity, and
+an interesting question is to what extent we can also provide
+confidentiality guarantees. It is clear that, thanks to the isolation
+properties of protected modules and  to the confidentiality properties of
+authenticated encryption, our prototype already provides substantial
+protection of the confidentiality of both the state of the application as
+well as the information contained in events. However, providing a formal
+statement of the confidentiality guarantees offered by our approach is
+non-trivial: some information leaks to the attacker, such as for instance
+when (and how often) modules send events to each other.  This in turn can
+leak information about the internal state of modules or about the content
+of events. The ultimate goal would be to make compilation and deployment
+fully abstract \cite{abadi} (indicating roughly that the compiled system
+leaks no more information than can be understood from the source code), but
+our current approach is clearly not fully abstract yet.
+Hence, we decided
+to focus on strong integrity first, and leave confidentiality guarantees
+for future work.
+
+There is also a wealth of orthogonal research aiming to protect network
+information flows from being used by attackers to learn the system state by
+means of, e.g, covert channels or routing protocols for mix networks
+(cf.~\cite{shirazi2019anonymous} for an overview). The applicability of these
+approaches depends on application configuration and available system resources
+and may heavily impact availability guarantees. On light-weight \acp{TEE} such
+as Sancus, and specifically in the presence of constraints on system resources
+and power consumption, these additional protections are not applicable.
+
+\subsection{Availability}
+\label{sec:discussion:availability}
+
+Our authentic execution framework focuses on the notion that if a valid input to
+a module is received, we can deduce that it must have originated from an
+authentic event at the source. By definition, this notion does \emph{not} give
+any availability guarantees: only if we receive such a valid input can we make
+claims about the authentic event, whereas nothing can be claimed otherwise.
+
+However, there has been recent work on enforcing availability guarantees for
+TEEs, specifically for Sancus~\cite{alder_2021_aion}. At its core, this related
+work enables strict availability guarantees to enclaves on Sancus, such as that
+an enclave will be executed periodically or be enabled to serve an interrupt
+within a predictable time frame. This allows to make claims about how specific
+enclaves will behave and \emph{when} these enclaves will react upon events they
+receive. At the same time, it is still not possible to make any availability
+claims about events that exceed the device boundary, i.e., events that cross
+beyond the device itself and that are communicated over a shared untrusted
+medium such as a network. Overall, it may be possible to make strong claims
+about when and how fast a received event will be processed by an enclave, but it
+is not possible to guarantee that an event will necessarily arrive over the
+untrusted network.
+
+Thus, we see availability as a complementary guarantee for authentic execution:
+If an event arrives at the device boundary, earlier work such as
+Aion~\cite{alder_2021_aion} can guarantee that this event can be handled within
+a strict time frame, depending on the scenario's needs. Furthermore, the same
+work can guarantee that if \emph{no} event is received within the expected time,
+the enclave will also be able to react within a guaranteed time window. This may
+be useful for a specific set of scenarios where disrupted availability could
+lead to unwanted or dangerous outcomes. By employing availability as a
+safeguard, the absence of events could, e.g., be used to trigger mode change and
+activate a local control loop to emergency-shutoff equipment until an authentic
+event is received.
+
+While we do believe that this complementary notion of availability can have a
+benefit to certain scenarios that utilize authentic execution, we leave the
+combination of these two orthogonal research directions for future work.
+
+\subsection{Hardware Attacks and Side-Channels}
+%
+Although hardware attacks and side-channels are explicitly ruled out by our
+attacker model (\cref{concept:attacker}), it is necessary to discuss the impact
+in case an attacker would have given access to such techniques. We leave an
+analysis of our implementation for side-channels for future work.
+
+An attacker that successfully circumvents the hardware protections on a node
+would be able to manipulate and impersonate all modules running on \emph{that
+node}.  That is, the attacker would be able to inject events into an application
+but only for those connections that originate from the compromised node.  The
+impact on the application obviously depends on the kind of modules that run on
+the node.  If it is an output module, the application is completely compromised
+since the attacker can now produce any output they want.  If, on the other hand,
+it is one among many sensor nodes, that get aggregated on another node, the
+impact may be minor.
+
+Depending on the node type different attack vectors apply. A wealth of
+literature targets Intel processors and SGX enclaves~\cite{brasser2017software,
+gotzfried2017cache, weisse2018foreshadow, van2018foreshadow, van2020sgaxe} that
+enable the extraction of cryptographic keys or other application secrets. On
+embedded \ac{TEE} processors such as Sancus, many side-channels such as cache
+timing attacks~\cite{cache-side-channels-practical,
+practical-timing-side-channel-aslr} or page fault
+channels~\cite{controlled-channel-attacks} are not applicable. Interrupt-based
+side channels~\cite{van2018nemesis} do pose a challenge and have been mitigated
+in orthogonal research in hardware~\cite{busi_2021securing} and in
+software~\cite{winderix_2021_nemesis_def}.
+

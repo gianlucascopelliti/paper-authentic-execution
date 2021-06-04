@@ -1,0 +1,471 @@
+
+\newcounter{lemma}
+\setcounter{lemma}{0}
+
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+\subsection{Formal Definition of our Security Properties}
+\label{sec:secprops}
+% -----------------------------------------------------------------------------
+
+% -----------------------------------------------------------------------------
+\subsubsection{Programs.}
+\label{language}
+% -----------------------------------------------------------------------------
+%
+For the purpose of this paper, we consider event-driven programs. To
+precisely define our security property, we define a simple formal reactive
+programming language, the syntax of which shown in
+Figure~\ref{fig:syntaxmodellang}. We emphasize that our implementation
+supports the full C language for writing event handlers.
+
+\begin{figure}
+  \begin{tabular}{p{0.5\textwidth} p{0.5\textwidth}}
+    \begin{minipage}{0.5\textwidth}
+      \centering
+      \begin{tabular}{rrl}
+        $m$ & $\Coloneqq$ & $\textrm{module\ }id( id*;id*);  h*$ \\
+        $h$ & $\Coloneqq$ & $\textrm{on } id(x) \: \{c\}$ \\
+        $c$ & $\Coloneqq$ & $\textrm{skip}$ \\
+        & $\mid$ & $c; c$ \\
+        & $\mid$ & $g\coloneqq e$ \\
+        % & $\mid$ & $r\coloneqq \textrm{declassify } e$ \\
+        & $\mid$ & $\textrm{if } e \textrm{ then } \{ c_1 \} \textrm{ else } \{ c_2 \}$ \\
+        & $\mid$ & $\textrm{while } e \: \{c\}$ \\
+        & $\mid$ & $id(e)$ \\
+      \end{tabular}
+    \end{minipage} &
+    \begin{minipage}{0.5\textwidth}
+      \centering
+      \begin{tabular}{rrl}
+        $e$ & $\Coloneqq$ & $x \mid n \mid g \mid e \odot e$ \\
+        $\odot$ & $\Coloneqq$ & $+ \mid - \mid \; = \; \mid \; <$ \\
+        $cn$ & $\Coloneqq$ & $id \to id $ \\
+        $p$ & $\Coloneqq$ & $m* ; cn* ;$ \\
+        $o$ & $\Coloneqq$ & $ !id(n) \mid \cdot $ \\
+        $i$ & $\Coloneqq$ & $  ?id(n) $ \\
+        $\alpha$ & $\Coloneqq$ & $ o \mid i$
+      \end{tabular}
+    \end{minipage} \\
+  \end{tabular}
+  \caption{Syntax of our event-driven language.}
+  \label{fig:syntaxmodellang}
+\end{figure}
+
+A \emph{\reactmod} $m$ declares a name,  zero or more identifiers for input
+channels, and zero or more identifiers for output channels.  For each
+declared input channel, it then defines exactly one event handler ($h$)
+which  handles events arriving on that input channel.  Events carry data
+(in our simple language only integers), and on arrival of the event, the
+received integer is bound to the formal parameter $x$. The handler then
+executes its body, a command $c$. Commands are standard and can use
+assignment to module global variables $g$ to share information between the
+handlers in the same module. Module global variables do not need to be
+declared and are initialized to~0.
+
+A program ($p$) consists of zero or more modules, and zero or more
+connections ($cn$), where a connection $id_1 \to id_2$ specifies that the
+outputs sent on output channel $id_1$ should be delivered to input channel
+$id_2$. For simplicity, we assume that all input and output channels have
+unique names in the entire program (in practice, one would want to have
+module-scoped namespaces). Each output channel is connected to at most one
+input channel, and each input channel is connected to at most one output
+channel. The input and output channels that are not connected to anything
+are the {\em primitive} input and output channels of the application. We
+write $p(\overline{in};\overline{out})$ to say that $p$ is a program with
+primitive input channels $\overline{in}$ and primitive output channels
+$\overline{out}$.
+
+\Cref{fig_model} shows (parts of) the code of the $\app{Vio}$ application
+described in~\cite{noorman:authentic-execution}.  The
+code implementing the event handler for the parking sensor on $\node{P1}$ stores in the global
+variable \verb+taken+ whether there is currently a car on the parking spot.
+If so, the event handler for a clock tick on $\node{P1}$ will increase a counter. If
+that counter exceeds MAX, it sends a violation event. To define the input
+and output channels of the \app{Vio} program, we write
+$\app{Vio}(P1,T1,P2,T2;Display)$.
+
+The semantics of programs is as expected: execution is triggered
+by an event on a primitive input channel. We write such input events ($i$)
+as $ ?id(n) $.  This leads to the execution of the corresponding handler
+for that event. Execution of this handler generates  output events $o$.
+These can be internal (unobservable, silent) events that we write as
+$\cdot$, or primitive output events that we write as  $ !id(n) $. 
+
+Below we specify the formal semantics for programs as a labelled transition system, where labels are events $\alpha$, thus defining exactly what traces $\overline{\alpha}$ of events a program allows.
+The following is a trace of the $\app{Vio}$ program (with \texttt{MAX == 2}, showing only primitive events):
+%
+\[
+   ?P1(1), ?T1(0), ?T1(0),
+   ?T1(0), !Display(1)
+\]
+%
+After the third  input event on $clock_{NP1}$, the \module{\textit{VioP1}}
+module will send a $Violation(1)$ output that generates a $Violation1(1)$ input event on
+\module{\textit{VioD}}, which then displays that parking spot~1 has been
+taken for too long.  Note that the events on $Violation$ and $Violation1$ are internal events and do not show up in the trace.
+%
+Note that in general, execution of programs is non-deterministic -- when one handler generates output events connected to different input channels, the semantics does not impose an order in
+which the resulting input events must be handled. 
+
+We introduce the following notation for traces: given a trace $\overline{\alpha}$, we write $\alpha\downarrow_{\overline{id}}$ for the trace obtained from $\alpha$ but keeping only 
+the events $?id_i(n)$ and $!id_i(n)$ with $id_i \in \overline{id}$.
+
+
+% -----------------------------------------------------------------------------
+\subsubsection{Security Properties of Modules.}
+% -----------------------------------------------------------------------------
+%
+%\todo{Reviewer 1: I appreciate the attention to replay and reordering
+%attacks.}
+The compilation and deployment scheme for our event-driven distributed
+applications is described in detail in~\cite{noorman:authentic-execution}.
+We now discuss the security guarantees that this compilation and deployment of modules gives us.
+Consider a source module $m(\overline{in},\overline{out})$, and the
+corresponding \protmod{}  $\compiled{m}$.
+The operational semantics of $m$ defines what traces of source level events of the form $?id(n)$ and $!id(n)$ this module has.
+At run-time, $\compiled{m}$ will only perform the following two kinds of events:
+\begin{itemize}
+  \item  Output events, where the module hands a new output to the event manager.
+         We use the notation $!(id,nc,n)$ for  an event where the module calls \handleoutput{} on the connection $id$ with nonce $nc$ and payload $n$.
+  \item Input events, where the event handler hands an event to \handleinput{} and this event passes the authenticity check.
+        We use the notation $?(id,nc,n)$ for an event where \handleinput{} successfully accepts an event on connection $id$ with nonce $nc$ and payload $n$.
+\end{itemize}
+
+We use the notation $\uncompiled{ }$ to relate run-time events to corresponding source-level events, i.e. $\uncompiled{!(id,nc,n) } = !id(n)$  and $\uncompiled{?(id,nc,n)} = ?id(n)$ .
+
+The security guarantee that we obtain is the following. Assume that $m$ has been correctly compiled, deployed and initialized (i.e. SetKey has been called by the deployer for
+every connection), resulting in $\compiled{m}$.
+%
+\begin{lemma} \label{lem:mod}
+If $\compiled{m}$ has at run-time a trace $\rho$ of run-time events, then $m$ has trace $\uncompiled{\rho}$ of source-level events.
+\end{lemma}
+%
+The lemma is proven in the Section~\ref{sec:proofs}, but the intuition is the following.
+After initialization is completed, the isolation properties of the TEE ensure that the only
+interactions that are possible with $\compiled{m}$ are in-calls to its entry points (\handleinput{} and \setkey), and out-calls from within the module itself. From the construction of $\compiled{m}$ as described above, it follows that both entry points drop anything that does not pass the authenticity check,
+and that the only out-call the module ever performs is to \handlelocalevent{} with a correctly constructed output message.
+So $\compiled{m}$ has no other interactions with its environment than the two types of events defined above.
+That these events correspond to a trace of source-level events allowed by the operational semantics of the module then follows from our assumption that the $\compiled{m}$ is created from the $m$ using a correct compiler.
+
+% -----------------------------------------------------------------------------
+\subsubsection{Security Properties of Programs.}
+\label{formal-security-properties}
+% -----------------------------------------------------------------------------
+%
+Now, consider a program $p(\overline{in},\overline{out})$, and the deployed program $\compiled{p}$ at the end of phase 1 of deployment.
+Any further execution of $\compiled{p}$ (independent of whether deployment proceeds with phase 2) satisfies the following.
+%
+\begin{lemma}\label{lem:prog}
+If $\compiled{p}$ has a run-time trace $\rho$, then $p$ has a trace $\uncompiled{\rho}$.
+\end{lemma}
+%
+The proof is again in Section~\ref{sec:proofs}, but the intuition is the following: according to \cref{lem:mod} each individual module behaves as its source counterpart. For the
+connections between modules, we know that there is a unique key unknown to the attacker per connection, and the use of nonces (sequence numbers) and authenticated encryption
+with this key is sufficient to turn the untrusted network in a queue: only the module that outputs on the connection can put the appropriate cryptographic messages on the 
+network, and the module reading from the connection is assured of authenticity and correct order of receipt.
+
+%\todo{Reviewer 1: it is not clear
+%whether physical compromise of a single device is tolerable}
+%We are now ready to state the main security theorem.
+%
+Let $p(\overline{in},\overline{out})$ be a program with primitive inputs $\overline{in}$ and primitive outputs $\overline{out}$. 
+Deployment connects $in_i$ to physical
+input channels $pi_i$ and
+$out_j$ to physical output channels $po_j$. 
+%
+We use the notation $?pi(n)$ for the occurrence of a physical input event on $pi$, and $!po(n)$ for the
+occurrence of a physical output event on $po$. These physical events are
+the events we care about, and that can be observed or that will have effects in the
+real world at run-time. We extend the notation $\uncompiled{ }$  in the obvious way (e.g. $\uncompiled{?pi(n)} = ?id(n)$ when deployment connects $id$ to $pi$).
+
+Consider the time frame starting at the end of phase 2a of deployment, and ending at a point where the deployer starts a new attestation of the protected driver module
+for $po_j$. Suppose that  this attestation eventually succeeds, and that the deployer has observed a sequence $\rho_{out_j}$ of outputs on $po_j$. Then the following holds.
+% 
+\begin{theorem}
+$p$ has a trace $\overline{\alpha}$ such that (1) $\overline{\alpha}\downarrow_{out_j} = \uncompiled{\rho_{out_j}}$,
+and (2) for each primitive input channel $in_i \in \overline{in}$, there has been a contiguous sequence of inputs $\rho_{in_i}$ on $pi_i$ with  $\overline{\alpha}\downarrow_{in_i} = \uncompiled{\rho_{in_i}}$.
+\end{theorem}
+% 
+The proof is given in the Section~\ref{sec:proofs}, but the intuition is: since $\rho_{out_j}$ is observed on an output device that was attested to only accept authenticated output events from $p$,
+there must have been an execution and hence a trace $\rho$ of $p$ with
+these output events. Lemma~\ref{lem:prog} allows us lift this to a trace of the source program.
+Since $\compiled{p}$ will only respond to authenticated sequences of inputs from the $pi_i$, there must have been such contiguous sequences of inputs.
+
+
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+\subsection{Formal Semantics for our Model Language}
+\label{sec:semantics}
+% -----------------------------------------------------------------------------
+
+In Section~\ref{language}, we introduced a simple reactive programming,
+the syntax of which is shown in Figure~\ref{fig:syntaxmodellang}.  This
+section defines the operational semantics of this language using standard
+techniques.
+
+% -----------------------------------------------------------------------------
+\subsubsection{Modules.}
+% -----------------------------------------------------------------------------
+%
+We first define how modules are executed.
+A module configuration $(\mu, c)$ consists of a  (module-private) store $\mu$,  and the currently executing command~$c$.
+%
+We use the following semantic judgements:
+
+\begin{itemize}
+\item $\mu \vdash e \Downarrow n$ says that the ground expression $e$ evaluates under the variable store $\mu$ to the integer $n$. A {\em ground} expression does not contain
+any parameters $x$, but it can contain global variables $g$. A store $\mu$ is a mapping from global variable names $g$ to integers $n$.
+The definition of this judgement is completely standard and hence omitted.
+\item $(\mu,c) \argtrans{\alpha}(\mu',c')$ says that module configuration $(\mu,c)$ can step to $(\mu',c')$ by performing transition $\alpha$.
+A transition $\alpha$ can be an output $!id(n)$, or it can be an input $?id(n)$, i.e. the occurrence of an  event on input channel $id$.
+A transition $\alpha$ can also be an unobservable (silent, module-internal) action denoted by $\cdot$. For technical reasons, we use the metavariable $o$ for outputs and silent
+transitions, and $i$ for inputs.
+
+
+The definition of this judgment for a specified module $m$ is given in Figure~\ref{fig:semhandler}, where the function $\LOOKUP(m,id)$ looks up the body of the handler for $id$ in the module $m$.
+We use the notation $\mu[g \mapsto n]$ for an update of the store $\mu$ that sets global variable $g$ to $n$, and the notation $c[x\leftarrow n]$ for
+the substitution of  integer $n$ for formal parameter $x$ in command $c$.
+\end{itemize}
+
+\begin{figure}[h]
+	\begin{equation}
+	\frac{}{(\mu, \textrm{skip}; c) \silenttrans (\mu, c)}
+	\end{equation}
+	\begin{equation}
+	\frac{(\mu, c_1) \argtrans{o} (\mu', c_1')}{(\mu, c_1; c_2) \argtrans{o} (\mu', c_1'; c_2)}
+	\end{equation}
+	\begin{equation}
+	\frac{\mu \vdash e \Downarrow n}{(\mu, g \coloneqq e) \silenttrans (\mu[g \mapsto n], \textrm{skip})}
+	\end{equation}
+	\begin{equation}
+	\frac{c = \textrm{if } e \textrm{ then } \{c_1\} \textrm{ else } \{c_2\} \quad \mu \vdash e \Downarrow n \quad n \neq 0}{(\mu, c) \silenttrans (\mu, c_1)}
+	\end{equation}
+	\begin{equation}
+	\frac{c = \textrm{if } e \textrm{ then } \{c_1\} \textrm{ else } \{c_2\} \quad \mu \vdash e \Downarrow 0}{(\mu, c) \silenttrans (\mu, c_2)}
+	\end{equation}
+	\begin{equation}
+	\frac{c = \textrm{while } e \: \{ c_{\textrm{loop}} \} \quad \mu \vdash e \Downarrow 0}{(\mu, c) \silenttrans (\mu, \textrm{skip})}
+	\end{equation}
+	\begin{equation}
+	\frac{c = \textrm{while } e \: \{ c_{\textrm{loop}} \} \quad \mu \vdash e \Downarrow n \quad n \neq 0}{(\mu, c) \silenttrans (\mu, c_{\textrm{loop}}; c)}
+	\end{equation}
+	\begin{equation}
+	\frac{\mu \vdash e \Downarrow n}{(\mu, id(e)) \argtrans{!id(n)} (\mu, \mathrm{skip})}
+	\end{equation}
+	\begin{equation}
+	\frac
+		{\LOOKUP(m,id) = c}
+		{(\mu, \textrm{skip}) \argtrans{?id(n)} (\mu, c[x \leftarrow n])}
+	\end{equation}
+	\caption{Small-step semantics for modules.}
+	\label{fig:semhandler}
+\end{figure}
+
+
+The {\em initial state} of a module is $(\mu_0, \textrm{skip})$ where $\mu_0$ maps every global variable to the integer $0$.
+%
+We say a module $m$ has a trace $\overline{\alpha}$ if, starting from its initial state, it can do all the transitions in $\overline{\alpha}$.
+
+% -----------------------------------------------------------------------------
+\subsubsection{Programs.}
+% -----------------------------------------------------------------------------
+%
+We can now turn to the definition of the semantics of programs.
+A program configuration $\overline{(\mu,c)} ; \overline{in : q}$ consists of a sequence of module configurations $\overline{(\mu,c)}$ (discussed above),
+and a sequence of connection queues $\overline{in : q}$ that associate a queue of natural numbers with each input channel (this queue
+contains the messages that have already been sent to this input channel but not yet received from that channel).
+
+The initial state of a program is the state: $\overline{(\mu_0,\mathrm{skip})}, \overline{in : []}$  (i.e. an initial module state for each module in the program, and
+all input channels start with the empty queue).
+%
+The rules in Figure~\ref{fig:semprogram} define the semantics of programs.
+
+\begin{figure*}[htbp]
+	\begin{equation} \tag{E-RECV}
+	\frac
+		{ (\mu_i, c_i) \argtrans{?in_j(n)}(\mu_i',c_i' ) }
+		{\overline{(\mu,c)}, (\mu_i, c_i); \overline{in : q}, in_j: q_j :: n \silenttrans \overline{(\mu,c)},(\mu_i',c_i' ); \overline{ in : q}, in_j:q_j }
+	\end{equation}
+	\begin{equation} \tag{E-SILENT}
+	\frac
+		{ (\mu_i, c_i) \silenttrans (\mu_i',c_i' ) }
+		{\overline{(\mu,c)}, (\mu_i, c_i); \overline{in : q} \silenttrans \overline{(\mu,c)},(\mu_i',c_i' ); \overline{ in : q} }
+	\end{equation}
+	\begin{equation} \tag{E-SEND}
+	\frac
+		{ (\mu_i, c_i) \argtrans{!id(n)}(\mu_i',c_i' ) \quad id \to in_j }
+		{\overline{(\mu,c)}, (\mu_i, c_i); \overline{in : q}, in_j: q_j \silenttrans \overline{(\mu,c)},(\mu_i',c_i' ); \overline{ in : q}, in_j: n::q_j }
+	\end{equation}
+	\begin{equation} \tag{E-INPUT}
+	\frac
+		{  \not\to in_i }
+		{\overline{(\mu,c)}; \overline{in : q}, in_i: q_i \argtrans{?in_i(n)} \overline{(\mu,c)}; \overline{ in : q}, in_i: n::q_i }
+	\end{equation}
+	\begin{equation} \tag{E-OUTPUT}
+	\frac
+		{ (\mu_i, c_i) \argtrans{!id(n)}(\mu_i',c_i' ) \qquad id \not\to}
+		{\overline{(\mu,c)}, (\mu_i, c_i); \overline{in : q} \argtrans{!id(n)} \overline{(\mu,c)},(\mu_i',c_i' ) ; \overline{ in : q} }
+	\end{equation}
+	\caption{Small-step semantics for programs.}
+	\label{fig:semprogram}
+\end{figure*}
+
+Rule (E-RECV) describes the case where one of the modules consumes an event from its (non-empty) input queue. Rule (E-SILENT) describes the case where one of the modules
+does an internal computation step. Rule (E-SEND) describes the case where one of the modules performs an output, and the output channel is connected to input channel $in_j$.
+Hence, the output value is put in the queue corresponding to $in_i$. Rule (E-INPUT) describes an input on a primitive input channel $in_i$ (i.e. $in_i$ is not connected to any
+output channel of the program). Such an input is just buffered in the appropriate queue, and no modules change state. The input will at a later point in time be removed from the
+queue by rule (E-RECV). Finally, rule (E-OUTPUT) describes the occurrence of a primitive output event.
+
+We say a program $p$ has a trace $\overline{\alpha}$ if, starting from its initial state, it can do all the transitions in $\overline{\alpha}$.
+
+
+% -----------------------------------------------------------------------------
+% -----------------------------------------------------------------------------
+\subsection{Proofs of Lemmas and Theorem 1.}
+\label{sec:proofs}
+% -----------------------------------------------------------------------------
+
+We model \protmods{} at run-time as states in a labeled transition system. We call the set of states $S$, and we denote the transition relation as
+$s_1 \argtrans{\beta} s_2$, with $\beta$ a run-time event. Given the
+isolation properties of \protmods{}, the only run-time interactions that are possible
+with a \protmod{} are (1) calls into an entry-point, and (2) out-calls from within the module to code outside.
+
+For the \protmods{} that we construct in the paper, there are only two entry points: \setkey{} and \handleinput. \setkey{} is only called once by
+the deployer during initialization, and has no effect on later calls. Hence, for the \protmods{},
+it suffices to consider the following run-time events:
+\begin{itemize}
+\item Output events, where the \protmod{} hands a new output to the event manager. We use the notation $!(id,nc,n)$ for  an event where the module calls \handleoutput{} on
+the connection $id$ with nonce $nc$ and payload $n$.
+\item Input events, where the event handler hands an event to \handleinput{} and where this event passes the authenticity check. We use the notation $?(id,nc,n)$ for an event where
+\handleinput{} successfully accepts an event on connection $id$ with nonce $nc$ and payload $n$.
+\item Internal computation within the \protmod{}. We use the notation $\cdot$ for these silent steps.
+\end{itemize}
+
+Let $\compiled{m}$ be the initial state of the \protmod{} after compilation and deployment (including the appropriate calls to \setkey) of source module $m$.
+We relate run-time events to corresponding source-level events using the notation $\uncompiled{!(id,nc,n) } = !id(n)$  and $\uncompiled{?(id,nc,n)} = ?id(n)$ ,
+and we use the same notation on traces $\uncompiled{\overline{\beta}} = \overline{\alpha}$ which maps the $\uncompiled{}$ function over the elements of the trace.
+
+\begin{lemma} \label{lem:mod2}
+If $\compiled{m}$ has at run-time a trace $\overline{\beta}$ of run-time events, then $m$ has trace $\uncompiled{\overline{\beta}}$ of source-level events.
+\end{lemma}
+
+Proof:
+We model the fact that $\compiled{m}$ is created by a functionally correct and trusted compiler, by assuming that there exists a function (also denoted $\uncompiled{}$), that
+relates a run-time module state $s$ to a source module configuration $\uncompiled{s} = (\mu,c)$, and by assuming that this function is a backward simulation.
+I.e. we assume that (1)  $\uncompiled{\compiled{m}} = (\mu_0,\mathrm{skip})$ (initial state of the compiled module maps to an initial source module configuration), and (2) if
+$s \argtrans{\overline{\beta}} s'$, then$\uncompiled{s} \argtrans{\overline{\alpha}} \uncompiled{s'}$ with $\uncompiled{\overline{\beta}} \downarrow_{\overline{in},\overline{out}}
+= \overline{\alpha}  \downarrow_{\overline{in},\overline{out}}$ ( if a run-time state $s$ can make a number of steps to state $s'$, then the corresponding source module configuration can
+also make a number of steps with corresponding observable transitions, and ending in a source module configuration corresponding to $s'$).
+From this formalization of the assumption of a correct module compiler, and
+from the observation that the state of \protmods{} can not be affected in any other way than
+by the run-time events $\beta$ (thanks to the \ac{SM}), the lemma follows directly. \hfill $\square$
+
+Next let $p(\overline{in},\overline{out})$ be a source program. We assume all input and output channels used in the program have different identifiers, and use $mod(id)$ to
+denote the module that has channel $id$. We also assume
+that the deployer has chosen connection identifiers $cn$ for each connection in the program, and we define $in(cn)$ to be the input channel identifier and $out(cn)$ to be
+the output channel identifier associated to connection $cn$. 
+
+For channels $\overline{in}$ and $\overline{out}$ that are not connected in the program (and hence that will be connected to physical inputs and outputs in the deployment descriptor), we assume that the
+deployer configures them with a key $K_{in_i}$ (respectively $K_{out_j}$)
+that authenticates messages from (respectively to) a driver
+\protmod{}.
+
+We model the untrusted network at run-time as two sets of messages $(M,M_{all})$, where $M$ are the message currently still available on the network, and $M_{all}$ is the set of
+all messages that have ever been put on the network. The attacker can remove messages from $M$, and can add messages to $M$ (and hence to $M_{all}$) under the
+constraints of the Dolev-Yao model (i.e. he can not forge cryptographic messages for which he does not have the key).
+For the execution of $p$, we only care about the valid cryptographic messages on the network, i.e. all messages of the form $K_{cn}(nc,n)$  created with connection key $K_{cn}$  (or keys $K_{in_i}$ or $K_{out_j}$)
+and with nonce $nc$ and payload $n$. Hence, we restrict the $M$ and $M_{all}$ to just these messages (any other messages the attacker might put on the network can not
+influence the execution of $p$).
+
+Now, the run-time state of a program $p$ consists of:
+
+\begin{itemize}
+  \item The run-time states for all of its modules; and
+  \item The state of the network.
+\end{itemize}
+
+The initial state is $\compiled{p} =
+(\overline{\compiled{m}},(\{\},\{\}))$, and run-time events are the
+run-time events $\beta$ of each of the \protmods{}, interleaved with attacker
+steps where the attacker manipulates the network as discussed above.
+
+Given a run-time state $s$ of one of the modules $m$ in $p$, we use the notation $nonce(cn,s)$ for the value of the nonce associated with connection id $cn$ in $s$.
+
+\begin{lemma}\label{lem:prog2}
+If $\compiled{p}$ has a run-time trace $\overline{\beta}$, then $p$ has a trace $\uncompiled{\overline{\beta}}$.
+\end{lemma}
+Proof: We construct a backward simulation from run-time program states to program configurations in the source level semantics.
+We define $\uncompiled{(\overline{s},(M,M_{all}))}$ to be the program configuration $(\overline{\uncompiled{s}}; \overline{id:q})$ where (1) run-time module
+states $s$ are mapped on $\uncompiled{s}$ using the backward simulation on module states that we get from the correct-compiler-assumption, and (2) 
+the $q_i$ are defined as follows: (keep in mind that these are queues in the source level program configuration that contain the values that have been sent to some input channel $in$ but
+not yet received from that input channel): 
+\begin{itemize}
+\item if $in$ is connected with connection identifier $cn$ (i.e. there exists a $cn$ such that $in(cn) = in$), then
+let $nc$ be $nonce(cn,s)$ where $s$ is the run-time state of $mod(in)$. Hence $nc$ tells us how many events have already been received from that input channel. Now, construct the largest sequence of messages in $M_{all}$ that
+has the following form:
+$$
+K_{cn}(nc,n_0), K_{cn}(nc+1,n_1), K_{cn}(nc+2,n_2), \ldots
+$$
+Then queue $q_i = n_0::n_1::n_2::\ldots$.
+\item if $in$ is not connected in $p$ then it will later be connected to physical input channel, and the deployer configures it with a key $K_{in}$. 
+$q_i$ is constructed in a similar way, but using $K_{in}$ instead of $K_{cn}$.
+\end{itemize}
+For the remainder of the proof, we have to show that $\uncompiled{}$ is a backward simulation. This is proven  by considering all possible run-time steps. We go over some
+of the interesting cases:
+\begin{itemize}
+\item If the attacker does a step, this only impacts $M$, and hence the source program configuration can stay constant to match this. (The backward simulation does not depend on $M$)
+\item Any silent step by any of the modules can be matched with zero or
+more (E-SILENT) steps at source level. This follows directly from the fact
+that $\uncompiled{}$ on \protmod{} states is a backward simulation (\cref{lem:mod2}).
+\item If one of the run-time modules performs a $!(id,nc,n)$ event, where $id $ is connected in the program, then a new valid cryptographic message appears on the network (in $M$ and in $M_{all}$). It is easy to check that the source program can match this with an (E-SEND) step.
+\item If a driver \protmod{} connected to $in$ during deployment sends a new physical input,  then a new valid cryptographic message appears on the network (in $M$ and in $M_{all}$). It is easy to check that the source program can match this with an (E-INPUT) step.
+\item If one of the run-time modules performs a $?(id,nc,n)$ event, where $id $ is connected in the program, then the nonce in the runtime state of the receiving module will go up with 1.
+This will remove an element from the corresponding queue in the backward simulation.
+It is easy to check that the source program can match this with an (E-RECV) step. 
+\item If one of the run-time modules performs a $!(id,nc,n)$ event, where
+$id $ is not connected in the program, then a new valid cryptographic
+message appears on the network (in $M$ and in $M_{all}$) constructed with
+the key $K_{out}$ that authenticates this message to a driver \protmod{} for a physical output device.  It is easy to check that the source program can match this with an (E-OUTPUT) step.
+\end{itemize}
+This completes the proof. \hfill $\square$
+
+Finally, we turn to the security theorem.
+Let $p(\overline{in},\overline{out})$ be a program with primitive inputs $\overline{in}$ and primitive outputs $\overline{out}$. 
+Deployment connects $in_i$ to physical
+input channels $pi_i$ and
+$out_j$ to physical output channels $po_j$. 
+
+We use the notation $?pi(n)$ for the occurrence of a physical input event on $pi$, and $!po(n)$ for the
+occurrence of a physical output event on $po$. We extend the notation $\uncompiled{ }$  in the obvious way (e.g. $\uncompiled{?pi(n)} = ?id(n)$ when deployment connects $id$ to $pi$).
+
+Consider the time frame starting at the end of phase 2a of deployment, and
+ending at a point where the deployer starts a new attestation of the driver
+\protmod{} 
+for $po_j$. Suppose that  this attestation eventually succeeds, and that the deployer has observed a sequence $\rho_{out_j}$ of outputs on $po_j$. Then the following holds.
+% 
+\begin{theorem}
+$p$ has a trace $\overline{\alpha}$ such that (1) $\overline{\alpha}\downarrow_{out_j} = \uncompiled{\rho_{out_j}}$,
+and (2) for each primitive input channel $in_i \in \overline{in}$, there has been a contiguous sequence of inputs $\rho_{in_i}$ on $pi_i$ with  $\overline{\alpha}\downarrow_{in_i} = \uncompiled{\rho_{in_i}}$.
+\end{theorem}
+Proof:
+The driver \protmod{} for $po_j$ was correctly deployed at the start of the time-frame, and is verified to still be correctly deployed at the end of the time-frame.
+It follows that it was deployed correctly for the entire time-frame, as an
+attacker can only destroy the state of a \protmod{} (for instance by rebooting the system),
+but can not redeploy the \protmod{} again afterwards.
+
+Since $po_j$ was in a good state the entire time-frame, the physical outputs observed on $po_j$ must have been caused by by run-time events $!(out_j,nc,n)$ of the program.
+Now consider the entire trace $\overline{\beta}$ of run-time events of the program up to and including the last of these $!(out_j,nc,n)$ events.
+
+For this trace $\overline{\beta}$, we know from \cref{lem:prog2} that $p$ has $\overline{\alpha} = \uncompiled{\overline{\beta}}$. 
+From the construction of $\overline{\alpha}$, it follows that $\overline{\alpha}\downarrow_{out_j} = \uncompiled{\rho_{out_j}}$.
+
+Now, for each $in_i$, the corresponding \protmod{} $\compiled{mod(in_i)}$ will have performed zero or more $?(in_i,nc,n)$ events. From (1) the construction of that module,
+and (2) from the fact that the deployer connects it to a driver \protmod{}
+using a key $K_{in_i}$ that is shared only between $mod(in_i)$ and the
+driver \protmod{} 
+of $pi_i$, and (3) the assumption that driver \protmods{} reliably turn $po_i$ events into authenticated messages to $in_i$, we can conclude that there must have been
+a contiguous sequence of  of inputs $\rho_{in_i}$ on $pi_i$  with  $\overline{\alpha}\downarrow_{in_i} = \uncompiled{\rho_{in_i}}$.
+
+\hfill $\square$
+

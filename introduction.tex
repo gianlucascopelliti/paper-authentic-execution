@@ -1,0 +1,115 @@
+\section{Introduction}
+\label{sec:intro}
+
+\acp{TEE} allow an application to execute in a hardware-protected environment,
+often called \emph{enclave}. Enclaves are isolated and protected from the rest
+of the system, ensuring strong confidentiality and integrity guarantees.
+Cryptographic primitives and credential management, with keys that are unique
+per enclave and that can only be used by that enclave, enable secure
+communication and remote attestation; the latter is a mechanism to obtain
+cryptographic proof that an application is running under enclave protection on a
+specific processor.
+%
+Several \acp{TEE} are available in industry and research. Open-source \acp{TEE}
+include Sancus and Keystone; proprietary options are, e.g., \ac{SGX} for Intel
+processors, \ac{SEV} for AMD, TrustZone for ARM, and
+others~\cite{maene:hardware}. Developing applications that execute on
+heterogeneous \acp{TEE} is difficult, in particular for scenarios that combine
+Internet-of-Things, Edge, and cloud hardware: each \ac{TEE} requires a
+platform-specific software implementation, comes with different approaches to
+key management and attestation, a different \ac{TCB} footprint, and provides
+different hardware features and security guarantees.
+
+The development of a distributed application composed of multiple modules
+running on heterogeneous hardware is non-trivial by itself, but becomes an even
+bigger challenge when the application has stringent security requirements that
+demand the use of \ac{TEE} architectures. A developer needs to make choices as
+to which security features are required for which components, adapt the code of
+each component to multiple specific platforms, arrange for different deployment
+and attestation strategies, and implement secure interaction between the
+components. Open-source projects such as Open Enclave SDK and Google Asylo aim
+to bridge the development gap between different \acp{TEE}.  However, software
+engineers still need to account for the communication between different modules,
+which has to be properly secured with cryptographic operations for data
+encryption and authentication.  In particular, the responsibility for deploying
+the distributed application, loading and attesting each enclave, establishing
+session keys and secure connections between distributed components, is still
+left to the application developer and operator. Overall, ensuring strong
+security guarantees in distributed scenarios poses a challenge to the adoption
+of \ac{TEE} technology.
+
+This paper studies the problem of securely executing distributed applications on
+such a shared, heterogeneous \ac{TEE}-infrastructure, while relying on  a small
+run-time \ac{TCB}.  We want to provide the owner of such an application with
+strong assurance that their application is executing securely.  We focus on
+%
+\begin{paraenum}
+%
+  \item \emph{authenticity} and \emph{integrity} properties of
+%
+  \item \emph{event-driven} distributed applications.
+%
+\end{paraenum}
+%
+For this selection of security property and class of applications, we specify
+the exact security guarantees offered by our approach. We believe our approach
+to be valuable for any kind of distributed application (event-driven or not). In
+particular, our prototype supports arbitrary C and Rust code.
+
+We distinguish physical events, such as sensor inputs or actuation, from logical
+events that are generated and consumed by application components.
+%
+Roughly speaking, our notion of \emph{authentic execution} is the
+following: if the application produces a physical output event (e.g., turns
+on an LED), then there must have happened a sequence of physical input
+events such that that sequence, when processed by the application (as
+specified in the high-level source code), produces that output event.
+%
+This
+notion of security is roughly equivalent to the concept of \emph{robust
+safety} in later literature~\cite{abate2019journey}.
+%
+Our approach has been experimented with in previous work,
+where we secure smart distributed applications in the context of smart
+metering infrastructures~\cite{muehlber_smart_meter}, automotive
+computing~\cite{vanbulck_2017vulcan}, and precision
+agriculture~\cite{scopelliti2020thesis}, which we generalize and partly
+formalize under the name \enquote{authentic execution}
+in~\cite{noorman:authentic-execution}, and use as a training and tutorial
+scenario to explain attestation and secure communication with heterogeneous
+\acp{TEE}~\cite{muehlber_2018tutorial_enclaves}. 
+
+The main contributions of this paper are:
+%
+\begin{itemize}
+%
+  \item We reflect on the design and implementation of an approach for authentic
+execution of event-driven programs on heterogeneous distributed systems, under
+the assumption that the execution infrastructure offers specific security
+primitives -- standard enclaves~\cite{pma} plus support for secure
+I/O~\cite{noorman_sancus2} (\cref{sec:design}); we comprehensively discuss
+corner cases and hurdles regarding the use of secure I/O in distributed enclave
+applications;
+%
+  \item We provide a revised open-source implementation of the approach for
+Intel SGX, ARM TrustZone and Sancus, which supports software development in Rust
+and C (\cref{sec:implementation}); we elaborate on implementation challenges
+towards achieving comparable security guarantees in heterogeneous TEE
+deployments;
+%
+  \item We conduct an end-to-end evaluation of a concrete application scenario,
+considering the performance and security aspects of our framework
+(\cref{sec:evaluation}), that considers dynamic system updates, and showing that
+our approach allows for the deployment of complex distributed software systems
+with a very small run-time application \ac{TCB};
+%
+  \item We design and implement a light-weight symmetric attestation scheme for
+ARM TrustZone, inspired by and providing security guarantees comparable to
+Sancus.
+%
+\end{itemize}
+
+Our complete implementation of the authentic execution framework and the
+evaluation use case are available at \implurl{}, a formalization and proof
+sketch of our security guarantees is also available there.
+

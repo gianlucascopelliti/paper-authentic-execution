@@ -1,0 +1,102 @@
+\documentclass[format=acmsmall, screen=true, nonacm]{acmart}
+\input{header.tex}
+\input{defs.tex}
+\input{acros.tex}
+
+\newcommand{\implurl}{\url{https://github.com/AuthenticExecution/main}}
+
+\begin{document}
+
+\title{End-to-End Security for Distributed Event-Driven Enclave Applications
+  on Heterogeneous TEEs}
+
+\newcommand{\affiliationkul}{
+  \affiliation{
+  \department{imec-DistriNet}
+  \institution{KU Leuven}
+  \city{Leuven}
+  \country{Belgium}
+  \postcode{3001}
+  }
+}
+\newcommand{\affiliationeab}{
+  \affiliation{
+  \institution{Ericsson AB}
+  \city{Stockholm}
+  \country{Sweden}
+  }
+}
+\newcommand{\affiliationulb}{
+  \affiliation{
+  \department{Ecole Polytechnique, BEAMS \& Cybersecurity Research Center}
+  \institution{Universit\'e Libre de Bruxelles}
+  \city{Brussels}
+  \country{Belgium}
+  \postcode{1050}
+  }
+}
+
+\author{Gianluca Scopelliti}
+\email{gianluca.scopelliti@ericsson.com}
+\affiliationeab
+\affiliationkul
+
+\author{Sepideh Pouyanrad}
+\email{sepideh.pouyanrad@kuleuven.be}
+\affiliationkul
+
+\author{Job Noorman}
+\email{job@noorman.info}
+\affiliationkul
+
+\author{Fritz Alder}
+\email{fritz.alder@acm.org}
+\affiliationkul
+
+\author{Christoph Baumann}
+\email{christoph.baumann@ericsson.com}
+\affiliationeab
+
+\author{Frank Piessens}
+\email{frank.piessens@kuleuven.be}
+\affiliationkul
+
+\author{Jan Tobias M\"{u}hlberg}
+\email{jan.tobias.muehlberg@ulb.be}
+\affiliationkul
+\affiliationulb
+
+%\setcopyright{acmlicensed}
+%\acmJournal{TOPS}
+%\acmYear{2023} \acmVolume{26} \acmNumber{3} \acmArticle{39} \acmMonth{6} \acmPrice{15.00}\acmDOI{10.1145/3592607}
+
+\input{ccs.xml}
+
+\begin{abstract}
+\input{abstract.tex}
+\end{abstract}
+
+\keywords{Trusted Execution, Software Development Kit, IoT Security, Distributed Systems Security}
+
+\maketitle
+\renewcommand{\shortauthors}{Scopelliti and Pouyanrad et al.}
+
+\acresetall
+\input{introduction.tex}
+\input{system-model.tex}
+\input{authentic-execution.tex}
+\input{implementation.tex}
+\input{evaluation.tex}
+\input{discussion.tex}
+\input{related.tex}
+\input{conclusions.tex}
+\input{acks.tex}
+
+\bibliographystyle{ACM-Reference-Format}
+\bibliography{bibliography}
+
+\clearpage
+\appendix
+\input{appendix.tex}
+
+\end{document}

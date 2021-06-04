@@ -1,0 +1,31 @@
+
+\begin{CCSXML}
+<ccs2012>
+<concept>
+<concept_id>10010520.10010553.10010559</concept_id>
+<concept_desc>Computer systems organization~Sensors and actuators</concept_desc>
+<concept_significance>500</concept_significance>
+</concept>
+<concept>
+<concept_id>10002978.10003006.10003013</concept_id>
+<concept_desc>Security and privacy~Distributed systems security</concept_desc>
+<concept_significance>500</concept_significance>
+</concept>
+<concept>
+<concept_id>10002978.10003001.10003003</concept_id>
+<concept_desc>Security and privacy~Embedded systems security</concept_desc>
+<concept_significance>300</concept_significance>
+</concept>
+<concept>
+<concept_id>10002978.10003022.10003028</concept_id>
+<concept_desc>Security and privacy~Domain-specific security and privacy architectures</concept_desc>
+<concept_significance>300</concept_significance>
+</concept>
+</ccs2012>
+\end{CCSXML}
+
+\ccsdesc[500]{Computer systems organization~Sensors and actuators}
+\ccsdesc[500]{Security and privacy~Distributed systems security}
+\ccsdesc[300]{Security and privacy~Embedded systems security}
+\ccsdesc[300]{Security and privacy~Domain-specific security and privacy architectures}
+

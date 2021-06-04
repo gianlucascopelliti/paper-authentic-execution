@@ -1,0 +1,416 @@
+\section{Evaluation}
+\label{sec:evaluation}
+
+To evaluate our framework, we developed a prototype for a Smart Home application
+that combines together Intel \ac{SGX}, ARM TrustZone and Sancus. In this
+chapter, we  introduce our Smart Home environment and motivate security
+requirements (\cref{eval:intro}); then, we describe the hardware and software
+setup of our evaluation (\cref{eval:test-env}). After that, we provide a
+detailed performance analysis of our application (\cref{eval:microb}), and
+finally discuss \ac{TCB} size and development effort (\cref{eval:macrob}).
+
+\subsection{Smart Homes}
+\label{eval:intro}
+
+A smart home is a residential property integrated with technology to remotely
+control appliances and systems, such as lighting, heating and cooling, and
+entertainment. The adoption of smart home devices has increased rapidly, with an
+estimated 250 million smart homes worldwide in 2021, expected to reach 350
+million by
+2023\footnote{\url{https://www.statista.com/topics/2430/smart-homes}}. Despite
+the benefits such as enhanced comfort and energy efficiency, security concerns
+arise from inadequate security measures in many smart home devices. Studies like
+\cite{davis2020vulnerability} have shown that many vulnerabilities come from
+poor authentication, missing encryption, insecure software updates, and
+insufficient access control, leading to potential privacy violations and
+unauthorized access to personal information and control of home devices.
+
+Thus, our framework can be utilized in the context of smart homes to provide
+robust security guarantees. Through the use of \acp{TEE}, both code and data are
+protected in use, and attestation ensures code integrity. Additionally, our
+deployment approach supports secure software updates and guarantees that all
+connections are encrypted and mutually authenticated. This eliminates a broad
+range of attacks while minimizing the development and deployment effort.
+
+\subsection{Testing environment}
+\label{eval:test-env}
+
+\begin{figure}[t]
+  \hspace*{-0.3cm}
+  \includegraphics[width=0.7\columnwidth]{graphics/smart-home.drawio.pdf}
+
+  \caption{Setup of our \emph{smart home} application. Each \ac{SM} is deployed
+  on a different node, either running Intel \ac{SGX}, TrustZone or Sancus. All
+  communication between modules is encrypted and authenticated by our framework,
+  while the communication between \web{} and users relies on HTTPS and mutually
+  authenticated. Sancus nodes are connected via UART to a passive bridge, which
+  converts between UART streams and TCP/IP.}
+  \label{fig:eval-setup}
+\end{figure}
+
+To evaluate our framework, we developed a prototype for a small smart home
+application consisting of three simulated IoT devices: a temperature sensor, a
+smart thermostat and a light switch. A smart home gateway, similar to existing
+projects such as Home Assistant\footnote{\url{https://www.home-assistant.io/}},
+manages the IoT devices and enforces some custom-defined logic, e.g., to
+automatically turn on or off the heating if the temperature goes below or above
+predefined thresholds. Furthermore, a web application is made available to local
+and remote users, to monitor the house and perform some operations on demand,
+e.g., to switch the lights on or off. Both smart thermostat and light switch are
+connected via Secure I/O to an LED, indicating whether heating and lights are on
+or off at a certain time. The source code of our prototype is publicly available
+on
+Github\footnote{\url{https://github.com/AuthenticExecution/examples/tree/main/smart-home}}.
+
+We implemented an application such as described above using five \acp{SM}:
+\begin{itemize}
+  \item \web: Exposes a web application to allow external users to interact with
+  the smart home;
+  \item \gateway: Manages all the IoT devices and enforces a user-defined logic,
+  while at the same time interacting with \web{} to send status data and receive
+  commands from external users;
+  \item \tempsensor: Simulates a sensor that provides the current temperature in
+  the house;
+  \item \thermostat: Simulates a smart thermostat, to enable or disable the
+  heating system;
+  \item \light: Simulates a smart light switch, to enable or disable the lights.
+\end{itemize}
+
+As depicted in \cref{fig:eval-setup}, we deployed our smart home application as
+follows:
+%
+\begin{itemize}
+  \item \web{} as an Intel \ac{SGX} \ac{SM}, on an Intel NUC7i3BNHXF with Intel
+  Core i3-7100U;
+  \item \gateway{} as a TrustZone \ac{SM}, on a BD-SL-i.MX6 board with ARM
+  Cortex-A9 running at 1GHz;
+  \item \tempsensor, \thermostat{} and \light{} as Sancus \acp{SM}, on three
+  different 16-bit OpenMSP430 microcontrollers running at 8MHz.
+\end{itemize}
+%
+In our setup, all nodes communicate over TCP/IP in the same local network;
+However, multiple deployment strategies may be adopted, e.g., deploying \web{}
+in a public cloud. Since our Sancus microcontrollers can only communicate
+through UART, we wrote a Python script that acts as a passive bridge, converting
+UART streams to TCP/IP packets and vice versa without being able to decrypt or
+manipulate the content of events. 
+
+All communication is end-to-end protected from the user to the IoT devices. As
+shown in the figure, communication between \acp{SM} is carried over encrypted
+and authenticated \emph{events}, leveraging our framework (\cref{sec:design}).
+Instead, the communication channel between \web{} and the user is encrypted
+using HTTPS. User and \web{} mutually authenticate each other: \web{} is
+authenticated by the user during the TLS handshake, during which \web{} presents
+an ephemeral X.509 certificate generated after successful attestation; the user,
+instead, authenticates by providing a \emph{secret token}, similarly to session
+cookies or \acp{JWT}.
+
+\subsection{Performance Benchmarks}
+\label{eval:microb}
+
+We analyzed the performance of the Smart Home application introduced above.
+Cryptographic overhead was assessed per node and an end-to-end evaluation was
+conducted by measuring the round-trip time of an event sent from \web{} to
+\light{} and return. The impact of a module update was evaluated by measuring
+application downtime during the update.
+
+\subsubsection{Cryptographic operations}
+\label{eval:microb-crypto}
+
+\begin{figure*}[t]
+  \hspace*{-0.3cm}
+  \begin{subfigure}{.48\linewidth}
+    \centering
+    \resizebox{.9\linewidth}{!} {
+      \input{aes.tex}
+    }
+    \caption{\aes-128}
+    \label{fig:eval-crypto-aes}
+  \end{subfigure}
+  \begin{subfigure}{.48\linewidth}
+    \centering
+    \resizebox{.9\linewidth}{!} {
+      \input{spongent.tex}
+    }
+    \caption{\spongent-128}
+    \label{fig:eval-crypto-spongent}
+  \end{subfigure}
+  \caption{Average timings to perform encryption using \aes-128 and
+  \spongent-128 on different \acp{TEE}. As a reference, we also measured the
+  average time spent on a Linux x86 process without \ac{TEE} protection (i.e.,
+  the \emph{Native x86} line). All measurements are in milliseconds.}
+  \label{fig:eval-crypto}
+\end{figure*}
+
+\cref{fig:eval-crypto} shows the average time calculated on each \acp{TEE} to
+perform crypto operations using either \aesgcm{} or \spongent{} as authenticated
+encryption library, with 128 bits of security. We used different sizes for the
+data to encrypt, ranging from 8 to 4096 bytes. To provide a reference, we also
+carried out the same experiments on a simple Linux x86 process without \ac{TEE}
+protection, running on the Intel \ac{SGX} node, whose results are depicted in
+the third column (\emph{Native x86}). The plots show average timings computed
+over 110 iterations, except that Sancus values have been extrapolated from
+previous experiments~\cite{noorman_sancus2}.
+
+Modern x86 and ARM processors include \aes{} instructions in their instruction
+set, allowing them to perform cryptographic operations in hardware for improved
+performance and security. As shown in \cref{fig:eval-crypto-aes}, a single
+\aes{} encryption is extremely fast natively, taking around 878 $\mu s$ to
+encrypt 4096 bytes of data. The overhead caused by the enclaved execution in
+Intel \ac{SGX} significantly slows down the execution of these functions with a
+factor that increases linearly with the size of the data: encrypting 4096 bytes
+takes up to 31 times more than natively. Regarding TrustZone, instead, it can be
+observed from \cref{fig:eval-crypto-aes} that the payload size had little impact
+on the encryption time, with values between 30 and 31 ms and standard deviation
+of 0.3 ms. We noticed that TrustZone has a fixed overhead due to some system
+calls that need to be called to initialize each cryptographic operation. In our
+case, the TA has to call \texttt{TEE\_ResetOperation}, \texttt{TEE\_AEInit} and
+\texttt{TEE\_AEUpdateAAD}\footnote{\url{https://optee.readthedocs.io/en/latest/architecture/crypto.html}}.
+Instead, we could not provide any data for Sancus, as it does not include an
+\aes{} module in its architecture.
+
+The lack of an \aes{} engine in Sancus is a serious issue for our framework, as
+it prevents Sancus modules to communicate securely with modules of other
+\acp{TEE} and the deployer. To circumvent this problem, a software
+implementation of the \spongent{} crypto library was implemented in previous
+work, in both C/C++ and Rust. Thus, both Intel \ac{SGX} and TrustZone modules
+can leverage such library to exchange protected events with Sancus modules.
+However, the overhead for performing such operations in software is significant:
+as shown in \cref{fig:eval-crypto-spongent}, while for small amount of data the
+difference is less prominent, the performance heavily degrades for bigger data.
+Compared to \aes{} and for payloads ranging between 8 and 4096 bytes,
+\spongent{} is up to 3026 times slower on native x86, up to 99 times slower in
+Intel \ac{SGX}, and up to 395 times slower in TrustZone. Instead, experiments
+show that \spongent{} is significantly faster in hardware\footnote{The
+\spongent{}~\cite{spongent} family of light-weight hash functions are optimized
+for hardware implementation. We have confirmed in independent experiments that
+the implementation in Sancus indeed outperforms a software implementation on
+other architectures by several orders of magnitude.}. Unfortunately, this poor
+performance may completely compromise the real-time requirements of certain use
+cases, and replacing \spongent{} with \aes{} might be appropriate, depending on
+the acceptable processing time and power consumption on Sancus nodes for a
+specific use case.
+
+\subsubsection{End-to-end measurements and RTT}
+\label{eval:microb-rtt}
+
+\newcommand{\seqboxtext}{}
+\begin{figure*}
+  \resizebox{.9 \linewidth}{!}{\input{microb_sequence.tex}} \caption{Sequence
+  diagram showing the control flow and timings of the Smart Home application in
+  \cref{fig:eval-setup}. The diagram illustrates a scenario where the user
+  manually switches the lights; bar lengths are \emph{not} to scale. }
+  \label{flt:sequence}
+  \vspace{-3mm}
+\end{figure*}
+
+\input{microb_rtt.tex}
+
+We performed end-to-end experiments on our Smart Home application to measure
+execution times and \ac{RTT}. In particular, we evaluated the scenario where an
+external user manually enables the lights by sending an HTTP request to \web.
+This event triggers the following flow:
+%
+\begin{enumerate}
+  \item \web{} sends an event to \gateway{} containing 2 bytes of payload that
+  encodes the desired action (i.e., enable the lights);
+  \item \gateway{} decrypts the event and generates a new one for \light, using
+  the same payload;
+  \item \light{} receives and decrypts the event, then dispatches an internal
+  event to turn the LED on. After that, it sends an event back to \gateway{} as
+  a notification that the lights have been turned on, using the same 2 bytes of
+  payload as before;
+  \item \gateway{} receives the event and updates its internal state. Then, it
+  generates an event for \web{} containing the current status of the smart home
+  in JSON format, whose size is 97 bytes;
+  \item Finally, \web{} receives the updated status. Starting from this moment,
+    the user will be able to see in the web application that the lights have
+    been successfully turned on.
+\end{enumerate}
+%
+\cref{flt:sequence} shows the sequence diagram of the flow just described. Time
+was recorded to measure the performance impact of the most important steps:
+encryptions/decryptions, host-enclave boundary crosses, Secure I/O, and
+transmission times. We also measured the end-to-end \ac{RTT}, consisting of the
+difference in time between the \emph{start} and \emph{end} points in \web. The
+sequence diagram shows average timings over 110 iterations. The average \ac{RTT}
+was 432.62 milliseconds, which includes 8 encryptions/decryptions (4 using
+\aes{} and 4 using \spongent), 8 host-enclave boundary crosses and 4 network
+transmissions between nodes. To better understand the performance impact of each
+operation, timing values have been aggregated and shown in
+\cref{tbl:microb-rtt}.
+
+Around 64\% of the \ac{RTT} was spent on encrypting/decrypting events: On the
+one hand, cryptographic operations performed in hardware were generally fast,
+taking a total of 67.03 ms for \aes{} and 336 $\mu$s for \spongent. The former,
+however, was heavily affected by the fixed TrustZone overhead for initializing
+cryptographic operations (\cref{eval:microb-crypto}), which may be optimized in
+future releases of OP-TEE. On the other hand, \spongent{} operations performed
+in software caused huge performance penalties on the application, taking a total
+of 208.62 ms ($\sim$48.2\% of the \ac{RTT}).
+
+Crossing the boundary between host and enclave accounted for the 16.83\% of the
+\ac{RTT} (72.81 ms); in particular, we observed that the slowest transitions
+between untrusted and trusted domains were registered in the TrustZone node,
+with an average of 17 ms for each transition. Domain transitions in Sancus
+proved to be extremely fast, each of them requiring only around 250 $\mu$s. In
+Intel \ac{SGX}, instead, it took roughly 2.2 ms to enter/exit the enclave.
+
+Poor network performance in Sancus had a non-negligible impact on our
+measurements. In fact, the average total transmission time was 31.40 ms, the
+91\% of which spent on the transmission of events to and from Sancus
+microcontrollers. As described in \cref{eval:test-env}, this is due to the low
+baud rate (57600 bps) of the UART interface and the overhead caused by the
+passive device used to communicate with the Sancus microcontrollers.
+
+From our experiments, we observed that the Secure I/O overhead was on average
+12.35 ms which, according to \cref{concept:secure-io-sancus}, includes:
+%
+\begin{paraenum}
+  \item sending an event from \light{} to the LED driver module
+  (\modname{driver});
+  \item sending an event from the LED driver module to the LED \ac{MMIO} module
+  (\modname{mmio});
+  \item executing the logic to enable the LED.
+\end{paraenum}
+%
+We did not measure such steps independently in this evaluation, since the main
+objective of our evaluation was to assess and evaluate the inter-operation
+between different \acp{TEE} and measure the communication overhead across
+different implementations. However, we extensively evaluated Sancus in our
+previous work \cite{noorman:authentic-execution}.
+
+Finally, an average of 40.07 ms ($\sim$9.26\% of the \ac{RTT}) was due to other
+application logic that was not measured during the experiments. In the sequence
+diagram, this consists of the grey rectangles minus the time spent for
+performing cryptographic operations and Secure I/O. For example, this logic
+includes the time spent for the look up of a \conn{} structure given a specific
+connection ID, or for finding the correct \protmod{} to which deliver an event.
+The performance of such operations is implementation-specific, and may be
+improved by using more efficient logic and data structures.
+
+In summary, our experiments demonstrate that the overhead of our framework does
+not affect user experience for near real-time applications such as Smart Home.
+Considering our setup, after sending out a command, the user receives a feedback
+in less than 500 milliseconds. Our micro-benchmarks also show that the \ac{RTT}
+can be further improved by adopting different deployment strategies, e.g., by
+merging \web{} and \gateway{} together in a single \ac{SM}. For real-time
+applications, however, this may not be sufficient and additional capabilities
+might be needed, such as hardware acceleration for all cryptographic operations.
+We also note that all experiments were performed on a prototype that is not
+fully optimized, and all modules were built in debug mode; Thus, we expect that
+the overall performance would improve in a production environment.
+
+\subsubsection{Module update}
+\label{eval:microb-update}
+
+\input{microb_update.tex}
+
+Real-world applications require changes at runtime, e.g., software updates or
+module migration from one node to another. This process impacts on the
+availability of the whole application, because updating the application
+unavoidably results in temporary loss of connectivity. Therefore, we evaluated
+the overhead of a software update in our framework, for all our supported
+\acp{TEE}. Again, we carried out our experiments on the Smart Home application
+(Figure~\ref{fig:eval-setup}); results are shown in \cref{tbl:microb-update},
+each value representing the average over 10 iterations.
+
+In our experiments, we re-deployed the original \acp{SM} without any code
+changes. As shown in \cref{tbl:microb-update}, the build time was rather small
+for all \acp{TEE}, ranging from nearly 450 ms for Sancus to around 1.2 seconds
+for Intel \ac{SGX}. However, building times highly depend on the amount of
+changes made to the original code, and whether the compiler's cache was used or
+not. Hence, these measurements are not really interesting because highly
+variable. Similarly, deploying the new \ac{SM} on the infrastructure depends on
+the size of the \ac{SM} itself and the bandwidth of the communication medium.
+The table shows that the deployment of a Sancus module is a slow process, taking
+an average of 2.510 seconds; this can be explained by the slow communication
+channel between the Sancus node and the deployer, as explained in
+\cref{eval:microb-rtt}. The deployment process for Intel \ac{SGX} and TrustZone
+takes only 247 ms and 438 ms, respectively; Binary sizes are shown in
+\cref{tbl:scenario_tcb}.
+
+Our experiments show that the attestation time greatly varies according to the
+\ac{TEE} used. Attesting an Intel \ac{SGX} enclave took an average of
+1.794 s; in fact, the modified sigma protocol used in our framework
+consists of several steps, including the involvement of the \ac{IAS} to decrypt
+the quote (\cref{impl:sgx-attestation}). For TrustZone, instead, we use a simple
+challenge-response protocol, as described in \cref{impl:tz-attestation}. Thus,
+attesting a TrustZone module is very fast and takes an average of 329
+ms. Sancus uses a similar mechanism, though its attestation takes much longer,
+i.e, 2.576 s on average. However, we observed that the majority of this
+time was actually spent on the deployer's side to compute the module key from
+the module's binary; the actual challenge-response protocol only took less than
+100 milliseconds.
+
+Finally, after the new module is ready (i.e., deployed and attested), all
+connections need to be redirected from the old to the new instance. Following
+the update strategy illustrated in \cref{concept:updates}, this is the time in
+which the application would suffer from temporary connectivity loss. However,
+our experiments show that this process only takes a very short amount of time,
+ranging from 251 ms for Sancus to 1277 ms for TrustZone. It has to be noted,
+though, that these values only represent the time to \emph{deliver} all the
+events to the \acp{SM} and event managers (\setkey{} and \addconnection{}
+events, respectively), and do not include the processing time in the nodes.
+Hence, the effective time would be a bit higher. Besides, this time is linearly
+dependent on the number of connections to re-establish; in our case, we had five
+connections for \web, nine for \gateway, and two for \tempsensor.
+
+In conclusion, the overall time for a software update is highly variable and
+application-dependent. Nevertheless, the connectivity loss is only perceived
+during the Connect phase, which roughly takes around 150 milliseconds for each
+connection to re-establish.
+
+\subsection{Adapting Burden}
+\label{eval:macrob}
+
+\input{scenario_tcb.tex}
+
+We performed a code evaluation of our Smart Home application, results of which
+are shown in \cref{tbl:scenario_tcb}. Our analysis focuses on two main aspects:
+first, the \ac{TCB} size in relation to the whole software stack; second, an
+estimation of the developer's effort. Concerning the \ac{TCB}, we calculated
+both lines of code and binary sizes, while for the developer's effort we only
+focused on the code. We note that application modules were built in debug mode,
+which may have caused slightly bigger binaries.
+
+One of the most important benefits of process-based \acp{TEE} is a substantial
+reduction of the \ac{TCB}, leading to a considerably reduced attack surface on
+each node. \cref{tbl:scenario_tcb} shows that the reduction in Sancus is 92.9\%
+in \acp{LOC} and 56.4\% in binary size, while on \ac{SGX} this reduction is more
+prominent with 99.9\% reduction in code and 98.7\% in binary size.
+Interestingly, TrustZone achieves a 99.9\% reduction in both, which means that
+OP-TEE is only a thin software layer compared to a classic operating system. It
+has to be noted that the code reduction in \ac{SGX} and TrustZone is enhanced by
+the fact that our reference host OS (Debian 11) consists of more than 700
+million C/C++ \acp{LOC}, and more than one billion \acp{LOC} overall
+\cite{debian-stats}.
+
+Our framework strives to simplify the development of distributed enclave
+applications. As shown in \cref{sec:design,sec:implementation}, our API allows a
+developer to only specify the core logic of a software module, while the rest of
+the code is added at compile time by the framework. Our evaluation of the
+developer's effort consists of the ratio between the \acp{LOC} written by the
+developer and the total \acp{LOC} of a module, including stub code but excluding
+third party libraries. Results show that the amount of code written by the
+developer is minimal: only 4.9\% for Sancus, 9.8\% for SGX and 6.6\% for
+TrustZone. However, these numbers may greatly vary: our evaluation was carried
+on a simple prototype with a few modules; More complex applications would
+require higher effort.
+
+The above evaluation can only provide  rough estimates of the benefits of our
+framework: Performing a precise code evaluation is not a trivial task. Kernels
+and operating systems typically make extensive use of conditional compilation to
+enable/disable specific features or to target different hardware architectures.
+Thus, even though an operating system may have millions or more \acp{LOC}, most
+of them are not used during compilation. Besides, the number of \acp{LOC} is
+often magnified by auxiliary files such as build scripts, Makefiles, etc. It is
+debatable whether these files should be included in the calculation or not: they
+are not part of the core logic of a software, but they can nevertheless
+introduce vulnerabilities at compile time. Applications, instead, may include
+several third-party libraries which size might not be easy to calculate:
+examples are closed-source and dynamic libraries. Finally, our evaluation did
+not consider software components such as bootloaders, firmware/BIOS,
+hypervisors, compilers, standard libraries, etc. While some of these are
+untrusted, others are part of the \ac{TCB} and must be taken into account for a
+complete evaluation.

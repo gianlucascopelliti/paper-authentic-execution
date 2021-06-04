@@ -1,0 +1,14 @@
+*.bak
+*.aux
+*.bbl
+*.blg
+*.ent
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+paper.pdf
+template.pdf
+*.tar.gz
+*.synctex.gz
+*.cut

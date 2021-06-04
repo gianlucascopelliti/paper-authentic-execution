@@ -1,0 +1,2623 @@
+D/TC:? 0 tee_ta_close_session:512 csess 0x4e081c10 id 1
+D/TC:? 0 tee_ta_close_session:531 Destroy session
+D/TC:? 0 destroy_context:308 Destroy TA ctx (0x4e081bd0)
+D/TC:? 0 tee_ta_close_session:512 csess 0x4e080c28 id 2
+D/TC:? 0 tee_ta_close_session:531 Destroy session
+D/TC:0   imx_wdog_restart:75 val 24þ
+
+U-Boot 2020.10-52836-g8805bc3bc0 (May 07 2021 - 17:39:55 -0700), Build: jenkins-uboot_v2020.10-97
+
+CPU:   i.MX6Q rev1.2 at 792 MHz
+Reset cause: WDOG
+Model: Boundary Devices i.MX6 Quad Nitrogen6x Board
+Board: sabrelite
+I2C:   ready
+DRAM:  1 GiB
+MMC:   FSL_SDHC: 0, FSL_SDHC: 1
+Loading Environment from SPIFlash...
+SF: Detected gd25q16 with page size 256 Bytes, erase size 4 KiB, total 2 MiB
+OK
+Display: hdmi:1280x720M@60 (1280x720)
+In:    serial
+Out:   serial
+Err:   serial
+Net:   Micrel ksz9021 at 7
+FEC [PRIME], usb_ether
+Hit any key to stop autoboot:  3  2  1  0 
+MMC: no card present
+mmc_init: -123, time 2
+switch to partitions #0, OK
+mmc1 is current device
+Scanning mmc 1:1...
+Found U-Boot script /boot/boot.scr
+1998 bytes read in 16 ms (121.1 KiB/s)
+## Executing script at 10008000
+42719 bytes read in 17 ms (2.4 MiB/s)
+9705008 bytes read in 467 ms (19.8 MiB/s)
+bootscript-optee: zImage loaded
+391652 bytes read in 33 ms (11.3 MiB/s)
+bootscript-optee: uTee loaded
+Configuring TZASC to allow non-secure access
+bootm command
+## Booting kernel from Legacy Image at 20000000 ...
+   Image Name:   
+   Image Type:   ARM Linux Kernel Image (uncompressed)
+   Data Size:    391588 Bytes = 382.4 KiB
+   Load Address: 4dffffe4
+   Entry Point:  4e000000
+   Verifying Checksum ... OK
+## Flattened Device Tree blob at 18000000
+   Booting using the fdt blob at 0x18000000
+   Loading Kernel Image
+   Using Device Tree in place at 18000000, end 1800dfff
+
+Starting kernel ...
+
+D/TC:0   get_aslr_seed:1379 Cannot find valid kaslr-seed
+D/TC:0   plat_get_aslr_seed:109 Warning: no ASLR seed
+D/TC:0   add_phys_mem:570 TEE_SHMEM_START type NSEC_SHM 0x4fe00000 size 0x00200000
+D/TC:0   add_phys_mem:570 TA_RAM_START type TA_RAM 0x4e100000 size 0x01d00000
+D/TC:0   add_phys_mem:570 VCORE_UNPG_RW_PA type TEE_RAM_RW 0x4e05d000 size 0x000a3000
+D/TC:0   add_phys_mem:570 VCORE_UNPG_RX_PA type TEE_RAM_RX 0x4e000000 size 0x0005d000
+D/TC:0   add_phys_mem:570 ROUNDDOWN(((0x00A02000) & ~((__typeof__(0x00A02000))((1U << (20U))) - 1)), CORE_MMU_PGDIR_SIZE) type IO_SEC 0x00a00000 size 0x00100000
+D/TC:0   add_phys_mem:570 ROUNDDOWN(IRAM_BASE, CORE_MMU_PGDIR_SIZE) type TEE_COHERENT 0x00900000 size 0x00100000
+D/TC:0   add_phys_mem:570 ROUNDDOWN(0x02200000, CORE_MMU_PGDIR_SIZE) type IO_SEC 0x02200000 size 0x00100000
+D/TC:0   add_phys_mem:570 ROUNDDOWN(0x02100000, CORE_MMU_PGDIR_SIZE) type IO_SEC 0x02100000 size 0x00100000
+D/TC:0   add_phys_mem:570 ROUNDDOWN(0x02000000, CORE_MMU_PGDIR_SIZE) type IO_SEC 0x02000000 size 0x00100000
+D/TC:0   add_phys_mem:570 ROUNDDOWN(0x020C8000, CORE_MMU_PGDIR_SIZE) type IO_SEC 0x02000000 size 0x00200000
+D/TC:0   add_phys_mem:584 Physical mem map overlaps 0x2000000
+D/TC:0   add_phys_mem:570 ROUNDDOWN(0x00A00000, CORE_MMU_PGDIR_SIZE) type IO_SEC 0x00a00000 size 0x00100000
+D/TC:0   add_phys_mem:584 Physical mem map overlaps 0xa00000
+D/TC:0   add_phys_mem:570 ROUNDDOWN((0x021E8000), CORE_MMU_PGDIR_SIZE) type IO_NSEC 0x02100000 size 0x00200000
+D/TC:0   add_phys_mem:570 ROUNDDOWN(0x00A02000, CORE_MMU_PGDIR_SIZE) type IO_SEC 0x00a00000 size 0x00200000
+D/TC:0   add_phys_mem:584 Physical mem map overlaps 0xa00000
+D/TC:0   add_phys_mem:570 ROUNDDOWN(0x02100000, CORE_MMU_PGDIR_SIZE) type IO_SEC 0x02100000 size 0x00100000
+D/TC:0   add_phys_mem:584 Physical mem map overlaps 0x2100000
+D/TC:0   add_va_space:610 type RES_VASPACE size 0x00a00000
+D/TC:0   add_va_space:610 type SHM_VASPACE size 0x02000000
+D/TC:0   dump_mmap_table:723 type TEE_RAM_RX   va 0x4e000000..0x4e05cfff pa 0x4e000000..0x4e05cfff size 0x0005d000 (smallpg)
+D/TC:0   dump_mmap_table:723 type TEE_RAM_RW   va 0x4e05d000..0x4e0fffff pa 0x4e05d000..0x4e0fffff size 0x000a3000 (smallpg)
+D/TC:0   dump_mmap_table:723 type SHM_VASPACE  va 0x4e100000..0x500fffff pa 0x00000000..0x01ffffff size 0x02000000 (pgdir)
+D/TC:0   dump_mmap_table:723 type RES_VASPACE  va 0x50100000..0x50afffff pa 0x00000000..0x009fffff size 0x00a00000 (pgdir)
+D/TC:0   dump_mmap_table:723 type TEE_COHERENT va 0x50b00000..0x50bfffff pa 0x00900000..0x009fffff size 0x00100000 (pgdir)
+D/TC:0   dump_mmap_table:723 type IO_SEC       va 0x50c00000..0x50dfffff pa 0x00a00000..0x00bfffff size 0x00200000 (pgdir)
+D/TC:0   dump_mmap_table:723 type IO_SEC       va 0x50e00000..0x50ffffff pa 0x02000000..0x021fffff size 0x00200000 (pgdir)
+D/TC:0   dump_mmap_table:723 type IO_NSEC      va 0x51000000..0x511fffff pa 0x02100000..0x022fffff size 0x00200000 (pgdir)
+D/TC:0   dump_mmap_table:723 type IO_SEC       va 0x51200000..0x512fffff pa 0x02100000..0x021fffff size 0x00100000 (pgdir)
+D/TC:0   dump_mmap_table:723 type IO_SEC       va 0x51300000..0x513fffff pa 0x02200000..0x022fffff size 0x00100000 (pgdir)
+D/TC:0   dump_mmap_table:723 type TA_RAM       va 0x51400000..0x530fffff pa 0x4e100000..0x4fdfffff size 0x01d00000 (pgdir)
+D/TC:0   dump_mmap_table:723 type NSEC_SHM     va 0x53100000..0x532fffff pa 0x4fe00000..0x4fffffff size 0x00200000 (pgdir)
+D/TC:0   core_mmu_alloc_l2:272 L2 table used: 1/6
+I/TC: 
+I/TC: Non-secure external DT found
+I/TC: Switching console to device: /soc/bus@2100000/serial@21e8000
+I/TC: OP-TEE version: Unknown_3.14 (gcc version 10.2.1 20201103 (GNU Toolchain for the A-profile Architecture 10.2-2020.11 (arm-10.16))) #1 ma 09 jan 2023 15:22:58 UTC arm
+I/TC: Primary CPU initializing
+D/TC:0 0 boot_init_primary_late:1247 Executing at offset 0 with virtual load address 0x4e000000
+D/TC:0 0 call_initcalls:21 level 1 register_time_source()
+D/TC:0 0 call_initcalls:21 level 1 teecore_init_pub_ram()
+D/TC:0 0 call_initcalls:21 level 3 mobj_mapped_shm_init()
+D/TC:0 0 mobj_mapped_shm_init:439 Shared memory address range: 4e100000, 50100000
+D/TC:0 0 call_initcalls:21 level 3 check_ta_store()
+D/TC:0 0 check_ta_store:408 TA store: "Secure Storage TA"
+D/TC:0 0 check_ta_store:408 TA store: "REE"
+D/TC:0 0 call_initcalls:21 level 3 verify_pseudo_tas_conformance()
+D/TC:0 0 call_initcalls:21 level 3 tee_cryp_init()
+E/TC:0 0 plat_rng_init:190 Warning: seeding RNG with zeroes
+D/TC:0 0 call_initcalls:21 level 4 tee_fs_init_key_manager()
+D/TC:0 0 call_initcalls:21 level 5 imx_configure_tzasc()
+D/TC:0 0 tzc_dump_state:336 TZC380 configuration:
+D/TC:0 0 tzc_dump_state:337 security_inversion_en 0
+D/TC:0 0 tzc_dump_state:344 
+D/TC:0 0 tzc_dump_state:345 region 1
+D/TC:0 0 tzc_dump_state:348 region_base: 0x0000000000000000
+D/TC:0 0 tzc_dump_state:350 region sp: f
+D/TC:0 0 tzc_dump_state:351 region size: 1e
+D/TC:0 0 tzc_dump_state:344 
+D/TC:0 0 tzc_dump_state:345 region 2
+D/TC:0 0 tzc_dump_state:348 region_base: 0x000000004c000000
+D/TC:0 0 tzc_dump_state:350 region sp: c
+D/TC:0 0 tzc_dump_state:351 region size: 19
+D/TC:0 0 tzc_dump_state:344 
+D/TC:0 0 tzc_dump_state:345 region 3
+D/TC:0 0 tzc_dump_state:348 region_base: 0x000000004f000000
+D/TC:0 0 tzc_dump_state:350 region sp: c
+D/TC:0 0 tzc_dump_state:351 region size: 17
+D/TC:0 0 tzc_dump_state:344 
+D/TC:0 0 tzc_dump_state:345 region 4
+D/TC:0 0 tzc_dump_state:348 region_base: 0x000000004fc00000
+D/TC:0 0 tzc_dump_state:350 region sp: f
+D/TC:0 0 tzc_dump_state:351 region size: 15
+D/TC:0 0 tzc_dump_state:354 Lockdown select: 0
+D/TC:0 0 tzc_dump_state:356 Lockdown range: 0
+D/TC:0 0 tzc_dump_state:358 Action register: 1
+D/TC:0 0 tzc_dump_state:359 exit
+D/TC:0 0 tzc_dump_state:336 TZC380 configuration:
+D/TC:0 0 tzc_dump_state:337 security_inversion_en 0
+D/TC:0 0 tzc_dump_state:344 
+D/TC:0 0 tzc_dump_state:345 region 1
+D/TC:0 0 tzc_dump_state:348 region_base: 0x0000000000000000
+D/TC:0 0 tzc_dump_state:350 region sp: f
+D/TC:0 0 tzc_dump_state:351 region size: 1e
+D/TC:0 0 tzc_dump_state:344 
+D/TC:0 0 tzc_dump_state:345 region 2
+D/TC:0 0 tzc_dump_state:348 region_base: 0x000000004c000000
+D/TC:0 0 tzc_dump_state:350 region sp: c
+D/TC:0 0 tzc_dump_state:351 region size: 19
+D/TC:0 0 tzc_dump_state:344 
+D/TC:0 0 tzc_dump_state:345 region 3
+D/TC:0 0 tzc_dump_state:348 region_base: 0x000000004f000000
+D/TC:0 0 tzc_dump_state:350 region sp: c
+D/TC:0 0 tzc_dump_state:351 region size: 17
+D/TC:0 0 tzc_dump_state:344 
+D/TC:0 0 tzc_dump_state:345 region 4
+D/TC:0 0 tzc_dump_state:348 region_base: 0x000000004fc00000
+D/TC:0 0 tzc_dump_state:350 region sp: f
+D/TC:0 0 tzc_dump_state:351 region size: 15
+D/TC:0 0 tzc_dump_state:354 Lockdown select: 0
+D/TC:0 0 tzc_dump_state:356 Lockdown range: 0
+D/TC:0 0 tzc_dump_state:358 Action register: 1
+D/TC:0 0 tzc_dump_state:359 exit
+D/TC:0 0 call_initcalls:21 level 5 init_caam()
+D/TC:0 0 call_initcalls:21 level 5 csu_init()
+D/TC:0 0 call_initcalls:21 level 5 scu_init()
+D/TC:0 0 call_initcalls:21 level 5 imx_wdog_init()
+D/TC:0 0 imx_wdog_base:121 Wdog found at 15188
+D/TC:0 0 call_initcalls:21 level 6 mobj_init()
+D/TC:0 0 call_initcalls:21 level 6 default_mobj_init()
+D/TC:0 0 call_finalcalls:40 level 1 release_external_dt()
+D/TC:0 0 call_finalcalls:40 level 1 scheduler_init()
+D/TC:0 0 gic_it_set_cpu_mask:325 cpu_mask: writing 0xff to 0x50c01858
+D/TC:0 0 gic_it_set_cpu_mask:327 cpu_mask: 0xf
+D/TC:0 0 gic_it_set_prio:340 prio: writing 0x1 to 0x50c01458
+D/TC:0 0 gic_it_set_cpu_mask:325 cpu_mask: writing 0x1 to 0x50c01858
+D/TC:0 0 gic_it_set_cpu_mask:327 cpu_mask: 0x1
+D/TC:0 0 gic_it_set_prio:340 prio: writing 0x0 to 0x50c01458
+I/TC: Enable FreeRTOS
+I/TC: Starting FreeRTOS scheduler
+I/TC: Invoking print function at gic.c:75ca77
+I/TC: Invoking print function at gic.c:06c46a
+I/TC: Invoking print function at gic.c:29a7c1
+I/TC: Primary CPU switching to normal world boot
+I/TC: Secondary CPU 1 initializing
+I/TC: Secondary CPU 1 switching to normal world boot
+I/TC: Secondary CPU 2 initializing
+I/TC: Secondary CPU 2 switching to normal world boot
+I/TC: Secondary CPU 3 initializing
+I/TC: Secondary CPU 3 switching to normal world boot
+D/TC:1   tee_entry_exchange_capabilities:102 Asynchronous notifications are enabled
+D/TC:1   tee_entry_exchange_capabilities:111 Dynamic shared memory is enabled
+D/TC:1 0 core_mmu_alloc_l2:272 L2 table used: 2/6
+D/TC:? 0 tee_ta_init_pseudo_ta_session:299 Lookup pseudo TA 7011a688-ddde-4053-a5a9-7b3c4ddf13b8
+D/TC:? 0 tee_ta_init_pseudo_ta_session:312 Open device.pta
+D/TC:? 0 tee_ta_init_pseudo_ta_session:329 device.pta : 7011a688-ddde-4053-a5a9-7b3c4ddf13b8
+D/TC:? 0 tee_ta_close_session:512 csess 0x4e081d70 id 1
+D/TC:? 0 tee_ta_close_session:531 Destroy session
+D/TC:? 0 tee_ta_init_session_with_context:607 Re-open TA 7011a688-ddde-4053-a5a9-7b3c4ddf13b8
+D/TC:? 0 tee_ta_close_session:512 csess 0x4e081c10 id 1
+D/TC:? 0 tee_ta_close_session:531 Destroy session
+D/TC:? 0 tee_ta_init_pseudo_ta_session:299 Lookup pseudo TA 2ea7ebde-3051-4e30-bd8b-da54b3a5d110
+D/TC:? 0 ldelf_load_ldelf:91 ldelf load address 0x104000
+D/LD:  ldelf:134 Loading TS 2ea7ebde-3051-4e30-bd8b-da54b3a5d110
+F/TC:? 0 trace_syscall:151 syscall #3 (syscall_get_property)
+F/TC:? 0 trace_syscall:151 syscall #5 (syscall_open_ta_session)
+D/TC:? 0 ldelf_syscall_open_bin:142 Lookup user TA ELF 2ea7ebde-3051-4e30-bd8b-da54b3a5d110 (Secure Storage TA)
+D/TC:? 0 ldelf_syscall_open_bin:146 res=0xffff0008
+D/TC:? 0 ldelf_syscall_open_bin:142 Lookup user TA ELF 2ea7ebde-3051-4e30-bd8b-da54b3a5d110 (REE)
+D/TC:? 0 ldelf_syscall_open_bin:146 res=0
+F/TC:? 0 trace_syscall:151 syscall #7 (syscall_invoke_ta_command)
+F/TC:? 0 trace_syscall:151 syscall #11 (syscall_mask_cancellation)
+F/TC:? 0 trace_syscall:151 syscall #7 (syscall_invoke_ta_command)
+F/TC:? 0 trace_syscall:151 syscall #3 (syscall_get_property)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #6 (syscall_close_ta_session)
+F/TC:? 0 trace_syscall:151 syscall #3 (syscall_get_property)
+D/LD:  ldelf:168 ELF (2ea7ebde-3051-4e30-bd8b-da54b3a5d110) at 0x15c000
+D/TA:  TA_InvokeCommandEntryPoint:573 Calling attest
+D/TA:  attest:254 Retrieving module key from PTA
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #5 (syscall_open_ta_session)
+D/TC:? 0 tee_ta_init_pseudo_ta_session:299 Lookup pseudo TA a2b0b139-82dc-4ffc-a8a8-7d7c6366e984
+D/TC:? 0 tee_ta_init_pseudo_ta_session:312 Open attestation.pta
+D/TC:? 0 tee_ta_init_pseudo_ta_session:329 attestation.pta : a2b0b139-82dc-4ffc-a8a8-7d7c6366e984
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #5 (syscall_open_ta_session)
+D/TC:? 0 tee_ta_init_pseudo_ta_session:299 Lookup pseudo TA 3a2f8978-5dc0-11e8-9c2d-fa7ae01bbebc
+D/TC:? 0 tee_ta_init_pseudo_ta_session:312 Open system.pta
+D/TC:? 0 tee_ta_init_pseudo_ta_session:329 system.pta : 3a2f8978-5dc0-11e8-9c2d-fa7ae01bbebc
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #7 (syscall_invoke_ta_command)
+F/TC:? 0 trace_syscall:151 syscall #7 (syscall_invoke_ta_command)
+D/TC:? 0 invoke_command:115 Attestation-PTA got called (cmd): 0
+D/TC:? 0 invoke_command:118  ATTESTATION_CMD_GET_MODULE_KEY has been called
+D/TC:? 0 attestation:106 ---- module key was issued! ----
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #7 (syscall_invoke_ta_command)
+F/TC:? 0 trace_syscall:151 syscall #6 (syscall_close_ta_session)
+D/TC:? 0 tee_ta_close_session:512 csess 0x4e080d50 id 1
+D/TC:? 0 tee_ta_close_session:531 Destroy session
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #27 (syscall_cryp_obj_alloc)
+F/TC:? 0 trace_syscall:151 syscall #15 (syscall_cryp_state_alloc)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #27 (syscall_cryp_obj_alloc)
+F/TC:? 0 trace_syscall:151 syscall #15 (syscall_cryp_state_alloc)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #27 (syscall_cryp_obj_alloc)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #30 (syscall_cryp_obj_populate)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #29 (syscall_cryp_obj_reset)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #31 (syscall_cryp_obj_copy)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #29 (syscall_cryp_obj_reset)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #31 (syscall_cryp_obj_copy)
+D/TA:  attest:261 Generating response to the challenge
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+D/TA:  TA_InvokeCommandEntryPoint:570 Calling set_key
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  set_key:153 Adding connection
+D/TA:  TA_InvokeCommandEntryPoint:570 Calling set_key
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  set_key:153 Adding connection
+D/TA:  TA_InvokeCommandEntryPoint:570 Calling set_key
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  set_key:153 Adding connection
+D/TA:  TA_InvokeCommandEntryPoint:570 Calling set_key
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  set_key:153 Adding connection
+D/TA:  TA_InvokeCommandEntryPoint:570 Calling set_key
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  set_key:153 Adding connection
+D/TA:  TA_InvokeCommandEntryPoint:570 Calling set_key
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #27 (syscall_cryp_obj_alloc)
+F/TC:? 0 trace_syscall:151 syscall #15 (syscall_cryp_state_alloc)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #27 (syscall_cryp_obj_alloc)
+F/TC:? 0 trace_syscall:151 syscall #15 (syscall_cryp_state_alloc)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #27 (syscall_cryp_obj_alloc)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #30 (syscall_cryp_obj_populate)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #29 (syscall_cryp_obj_reset)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #31 (syscall_cryp_obj_copy)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #29 (syscall_cryp_obj_reset)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #31 (syscall_cryp_obj_copy)
+D/TA:  set_key:153 Adding connection
+D/TA:  TA_InvokeCommandEntryPoint:570 Calling set_key
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #27 (syscall_cryp_obj_alloc)
+F/TC:? 0 trace_syscall:151 syscall #15 (syscall_cryp_state_alloc)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #27 (syscall_cryp_obj_alloc)
+F/TC:? 0 trace_syscall:151 syscall #15 (syscall_cryp_state_alloc)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #27 (syscall_cryp_obj_alloc)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #30 (syscall_cryp_obj_populate)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #29 (syscall_cryp_obj_reset)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #31 (syscall_cryp_obj_copy)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #29 (syscall_cryp_obj_reset)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #31 (syscall_cryp_obj_copy)
+D/TA:  set_key:153 Adding connection
+D/TA:  TA_InvokeCommandEntryPoint:570 Calling set_key
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #27 (syscall_cryp_obj_alloc)
+F/TC:? 0 trace_syscall:151 syscall #15 (syscall_cryp_state_alloc)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #27 (syscall_cryp_obj_alloc)
+F/TC:? 0 trace_syscall:151 syscall #15 (syscall_cryp_state_alloc)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #27 (syscall_cryp_obj_alloc)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #30 (syscall_cryp_obj_populate)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #29 (syscall_cryp_obj_reset)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #31 (syscall_cryp_obj_copy)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #29 (syscall_cryp_obj_reset)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #31 (syscall_cryp_obj_copy)
+D/TA:  set_key:153 Adding connection
+D/TA:  TA_InvokeCommandEntryPoint:570 Calling set_key
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #27 (syscall_cryp_obj_alloc)
+F/TC:? 0 trace_syscall:151 syscall #15 (syscall_cryp_state_alloc)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #27 (syscall_cryp_obj_alloc)
+F/TC:? 0 trace_syscall:151 syscall #15 (syscall_cryp_state_alloc)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #27 (syscall_cryp_obj_alloc)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #30 (syscall_cryp_obj_populate)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #29 (syscall_cryp_obj_reset)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #31 (syscall_cryp_obj_copy)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #29 (syscall_cryp_obj_reset)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #24 (syscall_cryp_obj_get_info)
+F/TC:? 0 trace_syscall:151 syscall #31 (syscall_cryp_obj_copy)
+D/TA:  set_key:153 Adding connection
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 13
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  handle_output:292 Handling output ID 16385. Data size: 2
+D/TA:  handle_output:319 Computing payload for connection 8
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 9
+D/TA:  send_status_info:132 JSON status size: 97
+D/TA:  handle_output:292 Handling output ID 16386. Data size: 97
+D/TA:  handle_output:319 Computing payload for connection 14
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 13
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  handle_output:292 Handling output ID 16385. Data size: 2
+D/TA:  handle_output:319 Computing payload for connection 8
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 9
+D/TA:  send_status_info:132 JSON status size: 97
+D/TA:  handle_output:292 Handling output ID 16386. Data size: 97
+D/TA:  handle_output:319 Computing payload for connection 14
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 13
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  handle_output:292 Handling output ID 16385. Data size: 2
+D/TA:  handle_output:319 Computing payload for connection 8
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 9
+D/TA:  send_status_info:132 JSON status size: 97
+D/TA:  handle_output:292 Handling output ID 16386. Data size: 97
+D/TA:  handle_output:319 Computing payload for connection 14
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 13
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  handle_output:292 Handling output ID 16385. Data size: 2
+D/TA:  handle_output:319 Computing payload for connection 8
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 9
+D/TA:  send_status_info:132 JSON status size: 97
+D/TA:  handle_output:292 Handling output ID 16386. Data size: 97
+D/TA:  handle_output:319 Computing payload for connection 14
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 13
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  handle_output:292 Handling output ID 16385. Data size: 2
+D/TA:  handle_output:319 Computing payload for connection 8
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 9
+D/TA:  send_status_info:132 JSON status size: 97
+D/TA:  handle_output:292 Handling output ID 16386. Data size: 97
+D/TA:  handle_output:319 Computing payload for connection 14
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 13
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  handle_output:292 Handling output ID 16385. Data size: 2
+D/TA:  handle_output:319 Computing payload for connection 8
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 9
+D/TA:  send_status_info:132 JSON status size: 97
+D/TA:  handle_output:292 Handling output ID 16386. Data size: 97
+D/TA:  handle_output:319 Computing payload for connection 14
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 13
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  handle_output:292 Handling output ID 16385. Data size: 2
+D/TA:  handle_output:319 Computing payload for connection 8
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 9
+D/TA:  send_status_info:132 JSON status size: 97
+D/TA:  handle_output:292 Handling output ID 16386. Data size: 97
+D/TA:  handle_output:319 Computing payload for connection 14
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 13
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  handle_output:292 Handling output ID 16385. Data size: 2
+D/TA:  handle_output:319 Computing payload for connection 8
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 9
+D/TA:  send_status_info:132 JSON status size: 97
+D/TA:  handle_output:292 Handling output ID 16386. Data size: 97
+D/TA:  handle_output:319 Computing payload for connection 14
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 13
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  handle_output:292 Handling output ID 16385. Data size: 2
+D/TA:  handle_output:319 Computing payload for connection 8
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 9
+D/TA:  send_status_info:132 JSON status size: 97
+D/TA:  handle_output:292 Handling output ID 16386. Data size: 97
+D/TA:  handle_output:319 Computing payload for connection 14
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 13
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  handle_output:292 Handling output ID 16385. Data size: 2
+D/TA:  handle_output:319 Computing payload for connection 8
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 9
+D/TA:  send_status_info:132 JSON status size: 97
+D/TA:  handle_output:292 Handling output ID 16386. Data size: 97
+D/TA:  handle_output:319 Computing payload for connection 14
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 13
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  handle_output:292 Handling output ID 16385. Data size: 2
+D/TA:  handle_output:319 Computing payload for connection 8
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 9
+D/TA:  send_status_info:132 JSON status size: 97
+D/TA:  handle_output:292 Handling output ID 16386. Data size: 97
+D/TA:  handle_output:319 Computing payload for connection 14
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 13
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  handle_output:292 Handling output ID 16385. Data size: 2
+D/TA:  handle_output:319 Computing payload for connection 8
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 9
+D/TA:  send_status_info:132 JSON status size: 97
+D/TA:  handle_output:292 Handling output ID 16386. Data size: 97
+D/TA:  handle_output:319 Computing payload for connection 14
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 13
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  handle_output:292 Handling output ID 16385. Data size: 2
+D/TA:  handle_output:319 Computing payload for connection 8
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 9
+D/TA:  send_status_info:132 JSON status size: 97
+D/TA:  handle_output:292 Handling output ID 16386. Data size: 97
+D/TA:  handle_output:319 Computing payload for connection 14
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 13
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  handle_output:292 Handling output ID 16385. Data size: 2
+D/TA:  handle_output:319 Computing payload for connection 8
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 9
+D/TA:  send_status_info:132 JSON status size: 97
+D/TA:  handle_output:292 Handling output ID 16386. Data size: 97
+D/TA:  handle_output:319 Computing payload for connection 14
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 13
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  handle_output:292 Handling output ID 16385. Data size: 2
+D/TA:  handle_output:319 Computing payload for connection 8
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 9
+D/TA:  send_status_info:132 JSON status size: 97
+D/TA:  handle_output:292 Handling output ID 16386. Data size: 97
+D/TA:  handle_output:319 Computing payload for connection 14
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 13
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  handle_output:292 Handling output ID 16385. Data size: 2
+D/TA:  handle_output:319 Computing payload for connection 8
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 9
+D/TA:  send_status_info:132 JSON status size: 97
+D/TA:  handle_output:292 Handling output ID 16386. Data size: 97
+D/TA:  handle_output:319 Computing payload for connection 14
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 13
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  handle_output:292 Handling output ID 16385. Data size: 2
+D/TA:  handle_output:319 Computing payload for connection 8
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 9
+D/TA:  send_status_info:132 JSON status size: 97
+D/TA:  handle_output:292 Handling output ID 16386. Data size: 97
+D/TA:  handle_output:319 Computing payload for connection 14
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 13
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  handle_output:292 Handling output ID 16385. Data size: 2
+D/TA:  handle_output:319 Computing payload for connection 8
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 9
+D/TA:  send_status_info:132 JSON status size: 97
+D/TA:  handle_output:292 Handling output ID 16386. Data size: 97
+D/TA:  handle_output:319 Computing payload for connection 14
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 13
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  handle_output:292 Handling output ID 16385. Data size: 2
+D/TA:  handle_output:319 Computing payload for connection 8
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 9
+D/TA:  send_status_info:132 JSON status size: 97
+D/TA:  handle_output:292 Handling output ID 16386. Data size: 97
+D/TA:  handle_output:319 Computing payload for connection 14
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 13
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  handle_output:292 Handling output ID 16385. Data size: 2
+D/TA:  handle_output:319 Computing payload for connection 8
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 9
+D/TA:  send_status_info:132 JSON status size: 97
+D/TA:  handle_output:292 Handling output ID 16386. Data size: 97
+D/TA:  handle_output:319 Computing payload for connection 14
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 13
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  handle_output:292 Handling output ID 16385. Data size: 2
+D/TA:  handle_output:319 Computing payload for connection 8
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 9
+D/TA:  send_status_info:132 JSON status size: 97
+D/TA:  handle_output:292 Handling output ID 16386. Data size: 97
+D/TA:  handle_output:319 Computing payload for connection 14
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 13
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  handle_output:292 Handling output ID 16385. Data size: 2
+D/TA:  handle_output:319 Computing payload for connection 8
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 9
+D/TA:  send_status_info:132 JSON status size: 97
+D/TA:  handle_output:292 Handling output ID 16386. Data size: 97
+D/TA:  handle_output:319 Computing payload for connection 14
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 13
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  handle_output:292 Handling output ID 16385. Data size: 2
+D/TA:  handle_output:319 Computing payload for connection 8
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 9
+D/TA:  send_status_info:132 JSON status size: 97
+D/TA:  handle_output:292 Handling output ID 16386. Data size: 97
+D/TA:  handle_output:319 Computing payload for connection 14
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 13
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  handle_output:292 Handling output ID 16385. Data size: 2
+D/TA:  handle_output:319 Computing payload for connection 8
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 9
+D/TA:  send_status_info:132 JSON status size: 97
+D/TA:  handle_output:292 Handling output ID 16386. Data size: 97
+D/TA:  handle_output:319 Computing payload for connection 14
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 13
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  handle_output:292 Handling output ID 16385. Data size: 2
+D/TA:  handle_output:319 Computing payload for connection 8
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 9
+D/TA:  send_status_info:132 JSON status size: 97
+D/TA:  handle_output:292 Handling output ID 16386. Data size: 97
+D/TA:  handle_output:319 Computing payload for connection 14
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 13
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  handle_output:292 Handling output ID 16385. Data size: 2
+D/TA:  handle_output:319 Computing payload for connection 8
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 9
+D/TA:  send_status_info:132 JSON status size: 97
+D/TA:  handle_output:292 Handling output ID 16386. Data size: 97
+D/TA:  handle_output:319 Computing payload for connection 14
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 13
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  handle_output:292 Handling output ID 16385. Data size: 2
+D/TA:  handle_output:319 Computing payload for connection 8
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 9
+D/TA:  send_status_info:132 JSON status size: 97
+D/TA:  handle_output:292 Handling output ID 16386. Data size: 97
+D/TA:  handle_output:319 Computing payload for connection 14
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 13
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  handle_output:292 Handling output ID 16385. Data size: 2
+D/TA:  handle_output:319 Computing payload for connection 8
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 9
+D/TA:  send_status_info:132 JSON status size: 97
+D/TA:  handle_output:292 Handling output ID 16386. Data size: 97
+D/TA:  handle_output:319 Computing payload for connection 14
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 13
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  handle_output:292 Handling output ID 16385. Data size: 2
+D/TA:  handle_output:319 Computing payload for connection 8
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 9
+D/TA:  send_status_info:132 JSON status size: 97
+D/TA:  handle_output:292 Handling output ID 16386. Data size: 97
+D/TA:  handle_output:319 Computing payload for connection 14
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 13
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  handle_output:292 Handling output ID 16385. Data size: 2
+D/TA:  handle_output:319 Computing payload for connection 8
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 9
+D/TA:  send_status_info:132 JSON status size: 97
+D/TA:  handle_output:292 Handling output ID 16386. Data size: 97
+D/TA:  handle_output:319 Computing payload for connection 14
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 13
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  handle_output:292 Handling output ID 16385. Data size: 2
+D/TA:  handle_output:319 Computing payload for connection 8
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 9
+D/TA:  send_status_info:132 JSON status size: 97
+D/TA:  handle_output:292 Handling output ID 16386. Data size: 97
+D/TA:  handle_output:319 Computing payload for connection 14
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 13
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  handle_output:292 Handling output ID 16385. Data size: 2
+D/TA:  handle_output:319 Computing payload for connection 8
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 9
+D/TA:  send_status_info:132 JSON status size: 97
+D/TA:  handle_output:292 Handling output ID 16386. Data size: 97
+D/TA:  handle_output:319 Computing payload for connection 14
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 13
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  handle_output:292 Handling output ID 16385. Data size: 2
+D/TA:  handle_output:319 Computing payload for connection 8
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 9
+D/TA:  send_status_info:132 JSON status size: 97
+D/TA:  handle_output:292 Handling output ID 16386. Data size: 97
+D/TA:  handle_output:319 Computing payload for connection 14
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 13
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  handle_output:292 Handling output ID 16385. Data size: 2
+D/TA:  handle_output:319 Computing payload for connection 8
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 9
+D/TA:  send_status_info:132 JSON status size: 97
+D/TA:  handle_output:292 Handling output ID 16386. Data size: 97
+D/TA:  handle_output:319 Computing payload for connection 14
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 13
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  handle_output:292 Handling output ID 16385. Data size: 2
+D/TA:  handle_output:319 Computing payload for connection 8
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 9
+D/TA:  send_status_info:132 JSON status size: 97
+D/TA:  handle_output:292 Handling output ID 16386. Data size: 97
+D/TA:  handle_output:319 Computing payload for connection 14
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 13
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  handle_output:292 Handling output ID 16385. Data size: 2
+D/TA:  handle_output:319 Computing payload for connection 8
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 9
+D/TA:  send_status_info:132 JSON status size: 97
+D/TA:  handle_output:292 Handling output ID 16386. Data size: 97
+D/TA:  handle_output:319 Computing payload for connection 14
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 13
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  handle_output:292 Handling output ID 16385. Data size: 2
+D/TA:  handle_output:319 Computing payload for connection 8
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 9
+D/TA:  send_status_info:132 JSON status size: 97
+D/TA:  handle_output:292 Handling output ID 16386. Data size: 97
+D/TA:  handle_output:319 Computing payload for connection 14
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 13
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  handle_output:292 Handling output ID 16385. Data size: 2
+D/TA:  handle_output:319 Computing payload for connection 8
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 9
+D/TA:  send_status_info:132 JSON status size: 97
+D/TA:  handle_output:292 Handling output ID 16386. Data size: 97
+D/TA:  handle_output:319 Computing payload for connection 14
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 13
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  handle_output:292 Handling output ID 16385. Data size: 2
+D/TA:  handle_output:319 Computing payload for connection 8
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 9
+D/TA:  send_status_info:132 JSON status size: 97
+D/TA:  handle_output:292 Handling output ID 16386. Data size: 97
+D/TA:  handle_output:319 Computing payload for connection 14
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 13
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  handle_output:292 Handling output ID 16385. Data size: 2
+D/TA:  handle_output:319 Computing payload for connection 8
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 9
+D/TA:  send_status_info:132 JSON status size: 97
+D/TA:  handle_output:292 Handling output ID 16386. Data size: 97
+D/TA:  handle_output:319 Computing payload for connection 14
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 13
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  handle_output:292 Handling output ID 16385. Data size: 2
+D/TA:  handle_output:319 Computing payload for connection 8
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 9
+D/TA:  send_status_info:132 JSON status size: 97
+D/TA:  handle_output:292 Handling output ID 16386. Data size: 97
+D/TA:  handle_output:319 Computing payload for connection 14
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 13
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  handle_output:292 Handling output ID 16385. Data size: 2
+D/TA:  handle_output:319 Computing payload for connection 8
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 9
+D/TA:  send_status_info:132 JSON status size: 97
+D/TA:  handle_output:292 Handling output ID 16386. Data size: 97
+D/TA:  handle_output:319 Computing payload for connection 14
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 13
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  handle_output:292 Handling output ID 16385. Data size: 2
+D/TA:  handle_output:319 Computing payload for connection 8
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 9
+D/TA:  send_status_info:132 JSON status size: 97
+D/TA:  handle_output:292 Handling output ID 16386. Data size: 97
+D/TA:  handle_output:319 Computing payload for connection 14
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 13
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  handle_output:292 Handling output ID 16385. Data size: 2
+D/TA:  handle_output:319 Computing payload for connection 8
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 9
+D/TA:  send_status_info:132 JSON status size: 97
+D/TA:  handle_output:292 Handling output ID 16386. Data size: 97
+D/TA:  handle_output:319 Computing payload for connection 14
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 13
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  handle_output:292 Handling output ID 16385. Data size: 2
+D/TA:  handle_output:319 Computing payload for connection 8
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 9
+D/TA:  send_status_info:132 JSON status size: 97
+D/TA:  handle_output:292 Handling output ID 16386. Data size: 97
+D/TA:  handle_output:319 Computing payload for connection 14
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 13
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  handle_output:292 Handling output ID 16385. Data size: 2
+D/TA:  handle_output:319 Computing payload for connection 8
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 9
+D/TA:  send_status_info:132 JSON status size: 97
+D/TA:  handle_output:292 Handling output ID 16386. Data size: 97
+D/TA:  handle_output:319 Computing payload for connection 14
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 13
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  handle_output:292 Handling output ID 16385. Data size: 2
+D/TA:  handle_output:319 Computing payload for connection 8
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 9
+D/TA:  send_status_info:132 JSON status size: 97
+D/TA:  handle_output:292 Handling output ID 16386. Data size: 97
+D/TA:  handle_output:319 Computing payload for connection 14
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 13
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  handle_output:292 Handling output ID 16385. Data size: 2
+D/TA:  handle_output:319 Computing payload for connection 8
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 9
+D/TA:  send_status_info:132 JSON status size: 97
+D/TA:  handle_output:292 Handling output ID 16386. Data size: 97
+D/TA:  handle_output:319 Computing payload for connection 14
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 13
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  handle_output:292 Handling output ID 16385. Data size: 2
+D/TA:  handle_output:319 Computing payload for connection 8
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 9
+D/TA:  send_status_info:132 JSON status size: 97
+D/TA:  handle_output:292 Handling output ID 16386. Data size: 97
+D/TA:  handle_output:319 Computing payload for connection 14
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 13
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  handle_output:292 Handling output ID 16385. Data size: 2
+D/TA:  handle_output:319 Computing payload for connection 8
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 9
+D/TA:  send_status_info:132 JSON status size: 97
+D/TA:  handle_output:292 Handling output ID 16386. Data size: 97
+D/TA:  handle_output:319 Computing payload for connection 14
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 13
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  handle_output:292 Handling output ID 16385. Data size: 2
+D/TA:  handle_output:319 Computing payload for connection 8
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 9
+D/TA:  send_status_info:132 JSON status size: 97
+D/TA:  handle_output:292 Handling output ID 16386. Data size: 97
+D/TA:  handle_output:319 Computing payload for connection 14
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 13
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  handle_output:292 Handling output ID 16385. Data size: 2
+D/TA:  handle_output:319 Computing payload for connection 8
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 9
+D/TA:  send_status_info:132 JSON status size: 97
+D/TA:  handle_output:292 Handling output ID 16386. Data size: 97
+D/TA:  handle_output:319 Computing payload for connection 14
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 13
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  handle_output:292 Handling output ID 16385. Data size: 2
+D/TA:  handle_output:319 Computing payload for connection 8
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 9
+D/TA:  send_status_info:132 JSON status size: 97
+D/TA:  handle_output:292 Handling output ID 16386. Data size: 97
+D/TA:  handle_output:319 Computing payload for connection 14
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 13
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  handle_output:292 Handling output ID 16385. Data size: 2
+D/TA:  handle_output:319 Computing payload for connection 8
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 9
+D/TA:  send_status_info:132 JSON status size: 97
+D/TA:  handle_output:292 Handling output ID 16386. Data size: 97
+D/TA:  handle_output:319 Computing payload for connection 14
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 13
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  handle_output:292 Handling output ID 16385. Data size: 2
+D/TA:  handle_output:319 Computing payload for connection 8
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 9
+D/TA:  send_status_info:132 JSON status size: 97
+D/TA:  handle_output:292 Handling output ID 16386. Data size: 97
+D/TA:  handle_output:319 Computing payload for connection 14
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 13
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  handle_output:292 Handling output ID 16385. Data size: 2
+D/TA:  handle_output:319 Computing payload for connection 8
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 9
+D/TA:  send_status_info:132 JSON status size: 97
+D/TA:  handle_output:292 Handling output ID 16386. Data size: 97
+D/TA:  handle_output:319 Computing payload for connection 14
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 13
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  handle_output:292 Handling output ID 16385. Data size: 2
+D/TA:  handle_output:319 Computing payload for connection 8
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 9
+D/TA:  send_status_info:132 JSON status size: 97
+D/TA:  handle_output:292 Handling output ID 16386. Data size: 97
+D/TA:  handle_output:319 Computing payload for connection 14
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 13
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  handle_output:292 Handling output ID 16385. Data size: 2
+D/TA:  handle_output:319 Computing payload for connection 8
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 9
+D/TA:  send_status_info:132 JSON status size: 97
+D/TA:  handle_output:292 Handling output ID 16386. Data size: 97
+D/TA:  handle_output:319 Computing payload for connection 14
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 13
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  handle_output:292 Handling output ID 16385. Data size: 2
+D/TA:  handle_output:319 Computing payload for connection 8
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 9
+D/TA:  send_status_info:132 JSON status size: 97
+D/TA:  handle_output:292 Handling output ID 16386. Data size: 97
+D/TA:  handle_output:319 Computing payload for connection 14
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 13
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  handle_output:292 Handling output ID 16385. Data size: 2
+D/TA:  handle_output:319 Computing payload for connection 8
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 9
+D/TA:  send_status_info:132 JSON status size: 97
+D/TA:  handle_output:292 Handling output ID 16386. Data size: 97
+D/TA:  handle_output:319 Computing payload for connection 14
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 13
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  handle_output:292 Handling output ID 16385. Data size: 2
+D/TA:  handle_output:319 Computing payload for connection 8
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 9
+D/TA:  send_status_info:132 JSON status size: 97
+D/TA:  handle_output:292 Handling output ID 16386. Data size: 97
+D/TA:  handle_output:319 Computing payload for connection 14
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 13
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  handle_output:292 Handling output ID 16385. Data size: 2
+D/TA:  handle_output:319 Computing payload for connection 8
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 9
+D/TA:  send_status_info:132 JSON status size: 97
+D/TA:  handle_output:292 Handling output ID 16386. Data size: 97
+D/TA:  handle_output:319 Computing payload for connection 14
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 13
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  handle_output:292 Handling output ID 16385. Data size: 2
+D/TA:  handle_output:319 Computing payload for connection 8
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 9
+D/TA:  send_status_info:132 JSON status size: 97
+D/TA:  handle_output:292 Handling output ID 16386. Data size: 97
+D/TA:  handle_output:319 Computing payload for connection 14
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 13
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  handle_output:292 Handling output ID 16385. Data size: 2
+D/TA:  handle_output:319 Computing payload for connection 8
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 9
+D/TA:  send_status_info:132 JSON status size: 97
+D/TA:  handle_output:292 Handling output ID 16386. Data size: 97
+D/TA:  handle_output:319 Computing payload for connection 14
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 13
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  handle_output:292 Handling output ID 16385. Data size: 2
+D/TA:  handle_output:319 Computing payload for connection 8
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 9
+D/TA:  send_status_info:132 JSON status size: 97
+D/TA:  handle_output:292 Handling output ID 16386. Data size: 97
+D/TA:  handle_output:319 Computing payload for connection 14
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 13
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  handle_output:292 Handling output ID 16385. Data size: 2
+D/TA:  handle_output:319 Computing payload for connection 8
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 9
+D/TA:  send_status_info:132 JSON status size: 97
+D/TA:  handle_output:292 Handling output ID 16386. Data size: 97
+D/TA:  handle_output:319 Computing payload for connection 14
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 13
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  handle_output:292 Handling output ID 16385. Data size: 2
+D/TA:  handle_output:319 Computing payload for connection 8
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 9
+D/TA:  send_status_info:132 JSON status size: 97
+D/TA:  handle_output:292 Handling output ID 16386. Data size: 97
+D/TA:  handle_output:319 Computing payload for connection 14
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 13
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  handle_output:292 Handling output ID 16385. Data size: 2
+D/TA:  handle_output:319 Computing payload for connection 8
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 9
+D/TA:  send_status_info:132 JSON status size: 97
+D/TA:  handle_output:292 Handling output ID 16386. Data size: 97
+D/TA:  handle_output:319 Computing payload for connection 14
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 13
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  handle_output:292 Handling output ID 16385. Data size: 2
+D/TA:  handle_output:319 Computing payload for connection 8
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 9
+D/TA:  send_status_info:132 JSON status size: 97
+D/TA:  handle_output:292 Handling output ID 16386. Data size: 97
+D/TA:  handle_output:319 Computing payload for connection 14
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 13
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  handle_output:292 Handling output ID 16385. Data size: 2
+D/TA:  handle_output:319 Computing payload for connection 8
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 9
+D/TA:  send_status_info:132 JSON status size: 97
+D/TA:  handle_output:292 Handling output ID 16386. Data size: 97
+D/TA:  handle_output:319 Computing payload for connection 14
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 13
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  handle_output:292 Handling output ID 16385. Data size: 2
+D/TA:  handle_output:319 Computing payload for connection 8
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 9
+D/TA:  send_status_info:132 JSON status size: 97
+D/TA:  handle_output:292 Handling output ID 16386. Data size: 97
+D/TA:  handle_output:319 Computing payload for connection 14
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 13
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  handle_output:292 Handling output ID 16385. Data size: 2
+D/TA:  handle_output:319 Computing payload for connection 8
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 9
+D/TA:  send_status_info:132 JSON status size: 97
+D/TA:  handle_output:292 Handling output ID 16386. Data size: 97
+D/TA:  handle_output:319 Computing payload for connection 14
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 13
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  handle_output:292 Handling output ID 16385. Data size: 2
+D/TA:  handle_output:319 Computing payload for connection 8
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 9
+D/TA:  send_status_info:132 JSON status size: 97
+D/TA:  handle_output:292 Handling output ID 16386. Data size: 97
+D/TA:  handle_output:319 Computing payload for connection 14
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 13
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  handle_output:292 Handling output ID 16385. Data size: 2
+D/TA:  handle_output:319 Computing payload for connection 8
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 9
+D/TA:  send_status_info:132 JSON status size: 97
+D/TA:  handle_output:292 Handling output ID 16386. Data size: 97
+D/TA:  handle_output:319 Computing payload for connection 14
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 13
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  handle_output:292 Handling output ID 16385. Data size: 2
+D/TA:  handle_output:319 Computing payload for connection 8
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 9
+D/TA:  send_status_info:132 JSON status size: 97
+D/TA:  handle_output:292 Handling output ID 16386. Data size: 97
+D/TA:  handle_output:319 Computing payload for connection 14
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 13
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  handle_output:292 Handling output ID 16385. Data size: 2
+D/TA:  handle_output:319 Computing payload for connection 8
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 9
+D/TA:  send_status_info:132 JSON status size: 97
+D/TA:  handle_output:292 Handling output ID 16386. Data size: 97
+D/TA:  handle_output:319 Computing payload for connection 14
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 13
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  handle_output:292 Handling output ID 16385. Data size: 2
+D/TA:  handle_output:319 Computing payload for connection 8
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 9
+D/TA:  send_status_info:132 JSON status size: 97
+D/TA:  handle_output:292 Handling output ID 16386. Data size: 97
+D/TA:  handle_output:319 Computing payload for connection 14
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 13
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  handle_output:292 Handling output ID 16385. Data size: 2
+D/TA:  handle_output:319 Computing payload for connection 8
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 9
+D/TA:  send_status_info:132 JSON status size: 97
+D/TA:  handle_output:292 Handling output ID 16386. Data size: 97
+D/TA:  handle_output:319 Computing payload for connection 14
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 13
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  handle_output:292 Handling output ID 16385. Data size: 2
+D/TA:  handle_output:319 Computing payload for connection 8
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 9
+D/TA:  send_status_info:132 JSON status size: 97
+D/TA:  handle_output:292 Handling output ID 16386. Data size: 97
+D/TA:  handle_output:319 Computing payload for connection 14
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 13
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  handle_output:292 Handling output ID 16385. Data size: 2
+D/TA:  handle_output:319 Computing payload for connection 8
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 9
+D/TA:  send_status_info:132 JSON status size: 97
+D/TA:  handle_output:292 Handling output ID 16386. Data size: 97
+D/TA:  handle_output:319 Computing payload for connection 14
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 13
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  handle_output:292 Handling output ID 16385. Data size: 2
+D/TA:  handle_output:319 Computing payload for connection 8
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 9
+D/TA:  send_status_info:132 JSON status size: 97
+D/TA:  handle_output:292 Handling output ID 16386. Data size: 97
+D/TA:  handle_output:319 Computing payload for connection 14
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 13
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  handle_output:292 Handling output ID 16385. Data size: 2
+D/TA:  handle_output:319 Computing payload for connection 8
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 9
+D/TA:  send_status_info:132 JSON status size: 97
+D/TA:  handle_output:292 Handling output ID 16386. Data size: 97
+D/TA:  handle_output:319 Computing payload for connection 14
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 13
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  handle_output:292 Handling output ID 16385. Data size: 2
+D/TA:  handle_output:319 Computing payload for connection 8
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 9
+D/TA:  send_status_info:132 JSON status size: 97
+D/TA:  handle_output:292 Handling output ID 16386. Data size: 97
+D/TA:  handle_output:319 Computing payload for connection 14
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 13
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  handle_output:292 Handling output ID 16385. Data size: 2
+D/TA:  handle_output:319 Computing payload for connection 8
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 9
+D/TA:  send_status_info:132 JSON status size: 97
+D/TA:  handle_output:292 Handling output ID 16386. Data size: 97
+D/TA:  handle_output:319 Computing payload for connection 14
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 13
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  handle_output:292 Handling output ID 16385. Data size: 2
+D/TA:  handle_output:319 Computing payload for connection 8
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 9
+D/TA:  send_status_info:132 JSON status size: 97
+D/TA:  handle_output:292 Handling output ID 16386. Data size: 97
+D/TA:  handle_output:319 Computing payload for connection 14
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 13
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  handle_output:292 Handling output ID 16385. Data size: 2
+D/TA:  handle_output:319 Computing payload for connection 8
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 9
+D/TA:  send_status_info:132 JSON status size: 97
+D/TA:  handle_output:292 Handling output ID 16386. Data size: 97
+D/TA:  handle_output:319 Computing payload for connection 14
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 13
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  handle_output:292 Handling output ID 16385. Data size: 2
+D/TA:  handle_output:319 Computing payload for connection 8
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 9
+D/TA:  send_status_info:132 JSON status size: 97
+D/TA:  handle_output:292 Handling output ID 16386. Data size: 97
+D/TA:  handle_output:319 Computing payload for connection 14
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 13
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  handle_output:292 Handling output ID 16385. Data size: 2
+D/TA:  handle_output:319 Computing payload for connection 8
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 9
+D/TA:  send_status_info:132 JSON status size: 97
+D/TA:  handle_output:292 Handling output ID 16386. Data size: 97
+D/TA:  handle_output:319 Computing payload for connection 14
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 13
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  handle_output:292 Handling output ID 16385. Data size: 2
+D/TA:  handle_output:319 Computing payload for connection 8
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 9
+D/TA:  send_status_info:132 JSON status size: 97
+D/TA:  handle_output:292 Handling output ID 16386. Data size: 97
+D/TA:  handle_output:319 Computing payload for connection 14
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 13
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  handle_output:292 Handling output ID 16385. Data size: 2
+D/TA:  handle_output:319 Computing payload for connection 8
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 9
+D/TA:  send_status_info:132 JSON status size: 97
+D/TA:  handle_output:292 Handling output ID 16386. Data size: 97
+D/TA:  handle_output:319 Computing payload for connection 14
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 13
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  handle_output:292 Handling output ID 16385. Data size: 2
+D/TA:  handle_output:319 Computing payload for connection 8
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 9
+D/TA:  send_status_info:132 JSON status size: 97
+D/TA:  handle_output:292 Handling output ID 16386. Data size: 97
+D/TA:  handle_output:319 Computing payload for connection 14
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 13
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  handle_output:292 Handling output ID 16385. Data size: 2
+D/TA:  handle_output:319 Computing payload for connection 8
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 9
+D/TA:  send_status_info:132 JSON status size: 97
+D/TA:  handle_output:292 Handling output ID 16386. Data size: 97
+D/TA:  handle_output:319 Computing payload for connection 14
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 13
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  handle_output:292 Handling output ID 16385. Data size: 2
+D/TA:  handle_output:319 Computing payload for connection 8
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 9
+D/TA:  send_status_info:132 JSON status size: 97
+D/TA:  handle_output:292 Handling output ID 16386. Data size: 97
+D/TA:  handle_output:319 Computing payload for connection 14
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 13
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  handle_output:292 Handling output ID 16385. Data size: 2
+D/TA:  handle_output:319 Computing payload for connection 8
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 9
+D/TA:  send_status_info:132 JSON status size: 97
+D/TA:  handle_output:292 Handling output ID 16386. Data size: 97
+D/TA:  handle_output:319 Computing payload for connection 14
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 13
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  handle_output:292 Handling output ID 16385. Data size: 2
+D/TA:  handle_output:319 Computing payload for connection 8
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 9
+D/TA:  send_status_info:132 JSON status size: 97
+D/TA:  handle_output:292 Handling output ID 16386. Data size: 97
+D/TA:  handle_output:319 Computing payload for connection 14
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 13
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  handle_output:292 Handling output ID 16385. Data size: 2
+D/TA:  handle_output:319 Computing payload for connection 8
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 9
+D/TA:  send_status_info:132 JSON status size: 97
+D/TA:  handle_output:292 Handling output ID 16386. Data size: 97
+D/TA:  handle_output:319 Computing payload for connection 14
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 13
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  handle_output:292 Handling output ID 16385. Data size: 2
+D/TA:  handle_output:319 Computing payload for connection 8
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 9
+D/TA:  send_status_info:132 JSON status size: 97
+D/TA:  handle_output:292 Handling output ID 16386. Data size: 97
+D/TA:  handle_output:319 Computing payload for connection 14
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 13
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  handle_output:292 Handling output ID 16385. Data size: 2
+D/TA:  handle_output:319 Computing payload for connection 8
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 9
+D/TA:  send_status_info:132 JSON status size: 97
+D/TA:  handle_output:292 Handling output ID 16386. Data size: 97
+D/TA:  handle_output:319 Computing payload for connection 14
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 13
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  handle_output:292 Handling output ID 16385. Data size: 2
+D/TA:  handle_output:319 Computing payload for connection 8
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 9
+D/TA:  send_status_info:132 JSON status size: 97
+D/TA:  handle_output:292 Handling output ID 16386. Data size: 97
+D/TA:  handle_output:319 Computing payload for connection 14
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 13
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  handle_output:292 Handling output ID 16385. Data size: 2
+D/TA:  handle_output:319 Computing payload for connection 8
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 9
+D/TA:  send_status_info:132 JSON status size: 97
+D/TA:  handle_output:292 Handling output ID 16386. Data size: 97
+D/TA:  handle_output:319 Computing payload for connection 14
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 13
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  handle_output:292 Handling output ID 16385. Data size: 2
+D/TA:  handle_output:319 Computing payload for connection 8
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 9
+D/TA:  send_status_info:132 JSON status size: 97
+D/TA:  handle_output:292 Handling output ID 16386. Data size: 97
+D/TA:  handle_output:319 Computing payload for connection 14
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 13
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  handle_output:292 Handling output ID 16385. Data size: 2
+D/TA:  handle_output:319 Computing payload for connection 8
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 9
+D/TA:  send_status_info:132 JSON status size: 97
+D/TA:  handle_output:292 Handling output ID 16386. Data size: 97
+D/TA:  handle_output:319 Computing payload for connection 14
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 13
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  handle_output:292 Handling output ID 16385. Data size: 2
+D/TA:  handle_output:319 Computing payload for connection 8
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 9
+D/TA:  send_status_info:132 JSON status size: 97
+D/TA:  handle_output:292 Handling output ID 16386. Data size: 97
+D/TA:  handle_output:319 Computing payload for connection 14
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 13
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  handle_output:292 Handling output ID 16385. Data size: 2
+D/TA:  handle_output:319 Computing payload for connection 8
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 9
+D/TA:  send_status_info:132 JSON status size: 97
+D/TA:  handle_output:292 Handling output ID 16386. Data size: 97
+D/TA:  handle_output:319 Computing payload for connection 14
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 13
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  handle_output:292 Handling output ID 16385. Data size: 2
+D/TA:  handle_output:319 Computing payload for connection 8
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 9
+D/TA:  send_status_info:132 JSON status size: 97
+D/TA:  handle_output:292 Handling output ID 16386. Data size: 97
+D/TA:  handle_output:319 Computing payload for connection 14
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 13
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  handle_output:292 Handling output ID 16385. Data size: 2
+D/TA:  handle_output:319 Computing payload for connection 8
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 9
+D/TA:  send_status_info:132 JSON status size: 97
+D/TA:  handle_output:292 Handling output ID 16386. Data size: 97
+D/TA:  handle_output:319 Computing payload for connection 14
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 13
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  handle_output:292 Handling output ID 16385. Data size: 2
+D/TA:  handle_output:319 Computing payload for connection 8
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 9
+D/TA:  send_status_info:132 JSON status size: 97
+D/TA:  handle_output:292 Handling output ID 16386. Data size: 97
+D/TA:  handle_output:319 Computing payload for connection 14
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 13
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  handle_output:292 Handling output ID 16385. Data size: 2
+D/TA:  handle_output:319 Computing payload for connection 8
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 9
+D/TA:  send_status_info:132 JSON status size: 97
+D/TA:  handle_output:292 Handling output ID 16386. Data size: 97
+D/TA:  handle_output:319 Computing payload for connection 14
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 13
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  handle_output:292 Handling output ID 16385. Data size: 2
+D/TA:  handle_output:319 Computing payload for connection 8
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 9
+D/TA:  send_status_info:132 JSON status size: 97
+D/TA:  handle_output:292 Handling output ID 16386. Data size: 97
+D/TA:  handle_output:319 Computing payload for connection 14
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 13
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #38 (syscall_authenc_dec_final)
+D/TA:  handle_output:292 Handling output ID 16385. Data size: 2
+D/TA:  handle_output:319 Computing payload for connection 8
+D/TA:  handle_output:368 handle_output completed
+D/TA:  TA_InvokeCommandEntryPoint:579 Calling handle_input
+D/TA:  handle_input:403 Handling input of connection ID: 9
+D/TA:  send_status_info:132 JSON status size: 97
+D/TA:  handle_output:292 Handling output ID 16386. Data size: 97
+D/TA:  handle_output:319 Computing payload for connection 14
+F/TC:? 0 trace_syscall:151 syscall #34 (syscall_authenc_init)
+F/TC:? 0 trace_syscall:151 syscall #35 (syscall_authenc_update_aad)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #8 (syscall_check_access_rights)
+F/TC:? 0 trace_syscall:151 syscall #37 (syscall_authenc_enc_final)
+D/TA:  handle_output:368 handle_output completed

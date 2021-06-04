@@ -1,0 +1,18 @@
+module FloS1
+on Sensor(reading):
+  if reading >= SATURATED: flooded = 1
+  else:
+    flooded = 0
+    count   = 0
+    Flooded(false)
+on Tick():
+  if flooded: count = count + 1
+  if count > MAX: Flooded(true)
+module FloS2
+# Similar to FloS1
+module FloA
+on Flooded1(true)
+  f1 = true;
+  if f2 = true: Tap(off)
+on Flooded2(true):
+  # Similar to Flooded1

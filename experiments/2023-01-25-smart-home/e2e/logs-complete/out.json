@@ -1,0 +1,14 @@
+{
+    "RTT": 551.2357,
+    "Total Sancus time + TZ exit TA + TZ enter TA + 3 syscalls": 93.32727272727271,
+    "TZ AES encryption": 43.22727272727273,
+    "TZ AES decryption": 37.32727272727273,
+    "TZ SPONGENT encryption": 116.30909090909091,
+    "TZ SPONGENT decryption": 116.97272727272728,
+    "TZ enter TA": 34.70995454545454,
+    "TZ exit TA": 11.528904545454544,
+    "SGX AES encryption": 2.638509090909091,
+    "SGX AES decryption": 11.565654545454544,
+    "SGX enter enclave": 3.9796636363636364,
+    "SGX exit enclave": 2.049081818181818
+}

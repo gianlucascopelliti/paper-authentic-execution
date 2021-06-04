@@ -1,0 +1,18 @@
+module AggS1
+on Sensor(reading):
+  Moisture(reading)
+module AggS2
+# Similar to AggS1
+
+module Agg
+on Moisture1(reading):
+  l1.append(reading)
+  del l1[:-100]
+  MoistChanged(reading - avg)
+  avg = sum(l1) / len(l1)
+on Moisture2(reading):
+  # Similar to Moisture1
+
+module AggD
+on MoistChanged(delta)
+  Display(delta)

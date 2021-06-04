@@ -1,0 +1,10 @@
+{
+    "RTT": 543.5545727272728,
+    "Total Sancus time + TZ exit TA + TZ enter TA + 3 syscalls": 91.88181818181818,
+    "TZ AES encryption": 43.25454545454546,
+    "TZ AES decryption": 37.372727272727275,
+    "TZ SPONGENT encryption": 116.1,
+    "TZ SPONGENT decryption": 116.71818181818182,
+    "TZ enter TA": 34.4523,
+    "TZ exit TA": 11.415681818181818
+}

@@ -1,0 +1,57 @@
+\begin{tikzpicture}
+  \colorlet{cdata}{color3!80}
+  \colorlet{ccode}{color2}
+
+  \tikzstyle{memloc}=[draw, text width=3cm, align=center]
+  \tikzstyle{freemem}=[memloc]
+  \tikzstyle{code}=[memloc, fill=ccode]
+  \tikzstyle{data}=[memloc, fill=cdata]
+
+  \tikzstyle{brace}=[decorate, decoration={brace, amplitude=4pt}]
+  \tikzstyle{lbrace}=[brace, decoration={mirror}]
+  \tikzstyle{rbrace}=[brace]
+  \tikzstyle{bracelbl}=[midway, text width=2cm, font=\small, inner sep=5pt]
+  \tikzstyle{lbracelbl}=[bracelbl, left, align=right]
+  \tikzstyle{rbracelbl}=[bracelbl, right]
+
+  \matrix[matrix of nodes] {
+    |[freemem]             | $\cdots$                             \\
+    |[code] (Start code)   | Standard entry stub                  \\
+    |[code] (Start entries)| \setkey								       			 	\\
+    |[code] (Attest)       | \attest								       			 	\\
+    |[code] (End entries)  | \handleinput   					       		 	\\
+    |[code] (Start funcs)  | \handleoutput  				       		   	\\
+    |[code] (Start eh)     | \code{Sensor}					       		 	  \\
+    |[code] (End eh)       | \code{Tick}					       		 	    \\
+    |[code] (CbTable)      | \cbtab         				       	     	\\
+    |[code] (Start const)  | \code{SATURATED}                     \\
+    |[code] (End const)    | \code{MAX}                           \\
+    |[freemem]             | $\cdots$                             \\
+    |[data] (CompData)     | Standard runtime data (stack,\ldots)	\\
+    |[data] (ConnTable)    | \conntab                             \\
+    |[data] (P1)           | \code{flooded}                       \\
+    |[data] (P2)           | \code{count}                         \\
+    |[freemem]             | $\cdots$                             \\
+  };
+  
+  \draw[lbrace] (Start entries.north west) -- (End entries.south west)
+                node[lbracelbl] {\ref{compiler-input:entries} Entry points};
+  \draw[lbrace] (Start funcs.north west) -- (End eh.south west)
+                node[lbracelbl] {\ref{compiler-input:non-entries} Non-entry functions};
+  \draw[lbrace] (CbTable.north west) -- (End const.south west)
+                node[lbracelbl] {\ref{compiler-input:consts} Constants};
+  \draw[lbrace] (ConnTable.north west) -- (P2.south west)
+                node[lbracelbl] {\ref{compiler-input:vars} Variables};
+  \draw[rbrace] (Start code.north east) -- (Start funcs.south east)
+                node[rbracelbl] {Generated};
+  \draw[rbrace] (Start eh.north east) -- (End eh.south east)
+                node[rbracelbl] {Event handlers};
+  \draw[rbrace] (CbTable.north east) -- (CbTable.south east)
+                node[rbracelbl] {Generated};
+  \draw[rbrace] (Start const.north east) -- (End const.south east)
+                node[rbracelbl] {Constants};
+  \draw[rbrace] (CompData.north east) -- (ConnTable.south east)
+                node[rbracelbl] {Generated};
+  \draw[rbrace] (P1.north east) -- (P2.south east)
+                node[rbracelbl] {Globals};
+\end{tikzpicture}

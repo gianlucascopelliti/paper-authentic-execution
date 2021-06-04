@@ -1,0 +1,195 @@
+\begin{figure*}[ht!]
+  %
+    \includegraphics[height=55mm]{graphics/20210808-scenario.pdf}
+  %
+    \caption{A smart irrigation system as an example for distributed application
+  networks we can support. Light-weight sensing and actuation nodes are deployed
+  in a field. Application \emph{AppA} controls irrigation units (through driver
+  \emph{Drv2}) and water supply (Drv3), based on soil moisture (obtained through
+  \emph{Drv1}). Application \emph{AppB} provides similar functionality but has
+  access to additional data sources, e.g., aerial surveillance and data
+  aggregation on central infrastructure. All application components execute in
+  enclaves (colored) and the actual composition and configuration of components
+  can change dynamically. Directed data flows through untrusted networks
+  (colored arrows) are at least authenticated and integrity protected;
+  attestation precedes the establishment of all data flows, and mutual
+  authentication is established between enclaves. All other software in the
+  scenario is untrusted regarding our security properties, which leads to a very
+  small run-time application \ac{TCB}. Guaranteeing availability properties may
+  require a different compartmentalization strategy. The concept is also
+  applicable across, e.g., the different control units within a car or in an
+  autonomous robot.}
+  %
+    \label{fig:scenario}
+  %
+  \end{figure*}
+
+\input{fig_example}
+
+\section{Running Example, Infrastructure \& Objectives}
+\label{sec:system}
+
+As a running example we discuss an automated irrigation system, as illustrated
+in Figure~\ref{fig:scenario}, which involves a series of light-weight sensors
+and actuators in the field that, e.g., monitor soil moisture and crop growth,
+and control water supply. The system can be connected to edge infrastructure or
+cloud services for centralized configuration and maintenance, to integrate
+reporting and billing, and to minimize water consumption based on weather
+predictions. Naturally, smart farming systems are security critical since
+malicious interactions can potentially lead to huge costs and may destroy a
+crop; they also feature a high level of dynamicity where equipment needs to be
+reconfigured for specific sensing and actuation tasks that depend on the type of
+crop~\cite{raghavan_computational_2016} and, e.g., sustainability
+objectives~\cite{streed_how_2021}, and demand a high level of dependability
+where events must be guaranteed to be processed in a timely manner.
+
+\Cref{fig_model} (source code in \cref{code:examples}) zooms in on the
+light-weight in-field sensing and actuation on the left side in
+\cref{fig:scenario} and details application modules and event flows in an
+agricultural sensor network with two soil moisture sensors. The infrastructure
+can be reused for multiple applications which can be provided by different
+stakeholders. Applications include visualizing soil moisture, targeted
+irrigation, or detection of flooding or leakage. We show two of these
+applications: one (\appvio) that detects flooding or leakage and disconnects the
+water supply in case of emergency, and another (\appavl) that aggregates and
+displays data on soil moisture.
+
+\subsection{The Shared Infrastructure}
+\label{concept:shared-infrastructure}
+\label{concept:nodes}
+%
+The infrastructure is a collection of \emph{nodes} ($\node{i}$), where each node
+consists of a processor, memory, and a number of \emph{I/O devices} (\dev{i}).
+Multiple mutually distrusting stakeholders share the infrastructure to execute
+distributed \emph{applications} ($\app{i}$). For simplicity, we assume
+processors are simple microprocessors, such as the OpenMSP430 used in our
+prototype, to explain the underlying concepts and security guarantees of our
+approach. As we detail in Section \ref{sec:implementation} and thereafter, our
+implementation does support the commercial \acp{TEE} TrustZone and Intel
+\ac{SGX}, and we evaluate our approach on an integrated scenario that involves
+these \acp{TEE}.
+ 
+An I/O device interfaces the processor with the physical world and
+facilitates
+\begin{paraenum}
+  \item sensing physical quantities (e.g., the state of a switch),
+  \item influencing physical quantities (e.g., an LED), and
+  \item notifying the processor of state change (e.g., a key being pressed) by
+  issuing an interrupt.
+\end{paraenum}
+
+In our running example there are 5 nodes. Two of these (\node{S1} and \node{S2})
+are each attached to two input devices (a clock \dev{Ti} and a soil moisture
+sensor \dev{Si}), and are installed in a field, e.g., along a row of crops. Two
+other nodes (\node{A} and \node{D}) are connected to actuator and display
+devices (\dev{A}, \dev{D}) to control the water supply and show application
+output. One node (\node{\textit{Agg}}) is not connected to any I/O device but
+performs general-purpose computations, e.g., aggregate data from sensor nodes.
+
+\input{fig_example_code}
+
+\subsection{Modules \& Applications}
+%
+We use an event-driven application model and \emph{modules} (\module{i}) contain
+input- and output channels. Upon reception of an event on an input channel, the
+corresponding event handler is executed atomically and new events on the
+module's output channels may be produced.
+
+An application, then, is a collection of modules together with a
+\emph{deployment descriptor}. This descriptor specifies on which nodes the
+modules should be installed as well as how the modules' channels should be
+connected. Channels can be connected in two ways. First, one module's output
+channel can be connected to another's input channel, behaving like a buffered
+queue of events. Second, the infrastructure can provide a number of
+\emph{physical} I/O channels which can be connected to a module's I/O channels.
+\label{concept:physical-io-channel}
+The infrastructure must ensure that events on such channels correspond to
+physical events: An event received on a physical input could correspond to a
+button press or, similarly, an event produced on a physical output could turn on
+an LED. An important contribution of this paper is a design to securely connect
+modules to physical I/O channels
+(\cref{concept:protected-drivers,concept:secure-io-sancus}).
+
+In our example applications (\cref{fig_model}), \appvio{} consists of three
+modules: two (\module{\textit{FloS1}} and \module{\textit{FloS2}}) are deployed
+in a field and detect excess moisture (flooding or leakage) and one
+(\module{\textit{FloA}}) actuates a central tap to disconnect water supply if
+needed. The two in-field modules have two inputs that are connected to input
+devices provided by the infrastructure: one that produces events for changes in
+soil moisture (\dev{Si}) and another that sends periodical timer events
+(\dev{Ti}). As the source code (\cref{code:appvio}) shows, these modules first
+wait for changes in critical changes in soil moisture, then wait for a maximum
+number of timer events, and finally produce an output event to indicate an
+emergency. These output events are connected to the inputs of
+\module{\textit{FloA}} which in turn produces output events  and sends them to
+the output actuator \dev{A}. A second application \appavl{} shares access to the
+sensor drivers with \appvio{} to obtain sensor readings that are then aggregated
+and displayed.
+
+\subsection{Attacker Model}
+\label{concept:attacker}
+%
+We consider powerful attackers that can manipulate all the software on the
+nodes. Attackers can deploy their own applications on the infrastructure, but
+they can also tamper with the OS. Attackers can also control the communication
+network that nodes use to communicate with each other. Attackers can sniff the
+network, modify traffic, or mount man-in-the-middle attacks. With respect to the
+cryptographic capabilities of the attacker, we follow the Dolev-Yao
+model~\cite{dolev-yao}.
+
+Attacks against the hardware are out of
+scope. We assume the attacker to not have
+physical access to the nodes, neither can they physically tamper with I/O
+devices. We also do not consider side-channel attacks against our
+implementation. Physical protection and side-channel resistance are important
+but orthogonal and complementary to the protection offered by our approach.
+
+\subsection{Security Objective}
+\label{concept:goals}
+\label{concept:deployer-tcb}
+
+The deployer uses his own (trusted) computing infrastructure to compile the
+application $A$, to deploy the modules to the nodes in the shared
+infrastructure, and to configure connections between modules, and between
+modules and physical I/O channels. At run-time, a sequence of physical input
+events will happen, and the deployer can observe the sequence of physical output
+events that return. We say that this sequence of outputs is \emph{authentic} for
+an application $A$ if it is allowed by $A$'s modules and deployment descriptor
+in response to the actual trace of input events: the source code of $A$ explains
+the physical outputs on the basis of actual physical inputs that have happened.
+\Cref{concept:deployment} will detail this sequence of physical input,
+processing, and lastly physical output further.
+
+Our objective is to design a deployment algorithm such that the deployer can
+easily certify the authenticity of sequences. If the correctness of the
+deployment is verified, then our approach guarantees that any subsequent trace
+of output events observed by the deployer will be authentic.
+%
+This security notion rules out a wide range of attacks, including attacks where
+event transmissions on the network are spoofed or reordered, and attacks where
+malicious software tampers with the execution of modules. Other relevant attacks
+are \emph{not} covered by this security objective. We will explain more nuances
+regarding deployment in \cref{concept:deployment}.
+
+As discussed earlier, there are no general availability guarantees -- e.g., the
+attacker can suppress network communication. However, \ac{TEE} extensions such
+as~\cite{alder_2021_aion} and the use of real-time operating systems can provide
+notions of availability that are relevant to maintain system safety in, e.g.,
+autonomous control systems. There are also no strong confidentiality guarantees:
+Although this is not the focus of our design, our implementation \emph{does}
+provide substantial protection of the confidentiality of application state as
+well as event payloads. Yet, the attacker may still observe the occurrence and
+timing of events in the system, and specifically on the sensing-and-actuation
+side of our systems, this information may very well reveal the state of the
+system. While it is technically possible to close these side channels, e.g.,
+with artificially generated noise, this is infeasible for our light-weight
+\acp{TEE} and under constrained energy consumption (cf.
+\cref{sec:discussion:confidentiality} for details).
+
+Many systems similar to our running example from Figure~\ref{fig:scenario}
+exist, e.g., in the context of the Internet of Things, smart building, supply
+chain management, or intelligent transport systems. These may come with
+different requirements regarding security and privacy, potentially beyond the
+baseline guarantees of our framework. In Section~\ref{eval:intro} we look
+specifically at a smart-home scenario and discuss performance characteristics
+and security guarantees (cf. Section~\ref{sec:discussion}).

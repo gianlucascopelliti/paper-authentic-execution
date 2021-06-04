@@ -1,0 +1,522 @@
+\section{Authentic Execution of Distributed Applications}
+\label{sec:design}
+
+We outline our requirements for the infrastructure wrt. security features,
+and show how these features are used effectively to accomplish our security
+goals.
+
+\subsection{Underlying Architecture: \acp{TEE}}
+\label{design:tee}
+%
+Given the shared nature of the infrastructure assumed in our system model, we
+require the ability to isolate \reactmods{} from other code running on a node.
+Since an important non-functional goal is to minimize the \ac{TCB}, relying on a
+classical omnipotent kernel to provide isolation is ruled out. Therefore, we
+assume the underlying architecture is a \ac{TEE}~\cite{pma}.
+
+\label{concept:isolation} While details vary between \acp{TEE}, isolation
+of software modules is understood as follows: A module must be able to
+specify memory locations containing data that are accessible by the
+module's code only (\emph{data isolation}).  The code of a module must be
+immutable and a module must specify a number of \emph{entry points} through
+which its code can be executed (\emph{code isolation}).  For simplicity we
+further assume that both a module's code and data are located in contiguous
+memory areas called, respectively, its \emph{code section} and its
+\emph{data section}. We expect \acp{TEE} to implement a $W\oplus X$ policy
+so as to prevent code modification and code generation at runtime.
+
+\label{concept:pma-compiler} We also expect the availability of a compiler
+that correctly translates \acfp{SM} to the underlying
+architecture. The input to this compiler is as follows:
+%
+\begin{paraenum}
+%
+  \item \label{compiler-input:entries} a list of entry point functions;
+%
+  \item \label{compiler-input:non-entries} a list of non-entry functions;
+%
+  \item \label{compiler-input:vars} a list of variables that should be
+allocated in the isolated data section; and
+%
+  \item \label{compiler-input:consts} a list of constants that should be
+allocated in the isolated code section.
+%
+\end{paraenum}
+%
+The output of the compiler should be an \protmod{} suitable for isolation on
+the underlying architecture.
+
+\label{concept:attestation}
+%
+Besides isolation, we expect the \ac{TEE} to provide a way to \emph{attest}
+the correct isolation of an \ac{SM}.
+%
+\label{concept:pm-identity}
+%
+Attestation provides proof that an \ac{SM} with a certain identity has been
+isolated on the node, where the \emph{identity} of an \ac{SM}, usually based on a measurement of the deployed binary code, should give
+the deployer assurance that this \ac{SM} will behave as the corresponding
+source code module.
+
+\label{concept:secure-communication}
+%
+After enabling isolation, the \ac{TEE} should be capable of establishing a
+confidential, integrity protected and authenticated communication channel
+between an \ac{SM} and its deployer.  Although the details of how this works may
+differ from one \ac{TEE} to another, for simplicity we assume the \ac{TEE}
+establishes a shared secret between an \ac{SM} and its deployer and provides an
+authenticated encryption primitive.  We refer to this shared secret as the
+\emph{module key}.  The authentication property of the communication channel
+refers to an \ac{SM}'s identity and hence to attestation.  Thus, the \ac{TEE}
+ensures that if a deployer receives a message created with a module key, it can
+only have been created by the corresponding, correctly isolated, \ac{SM}.
+
+\subsection{Mapping \reactmods{} to \protmods{}}
+\label{concept:compilation}
+%
+To map a \reactmod{} to an \protmod, we use the following procedure.  First,
+each of the \reactmod's inputs and outputs is assigned a unique \emph{I/O
+identifier}, and each of the connections between \reactmods{} is assigned a
+unique \emph{connection identifier}. The format of these identifiers is
+unimportant, provided that they uniquely specify a particular input/output or a
+particular connection, respectively. By having a clear distinction between I/O
+identifiers and connection identifiers, many-to-many connections are supported,
+which means that:
+%
+\begin{paraenum}
+  %
+    \item a \reactmod's output can be connected to multiple inputs of
+    other \reactmods{} (e.g., a keyboard that sends key press events to both
+    a key-logger and an LCD screen), and
+  %
+    \item a \reactmod's input can be reached by
+    multiple outputs of other \reactmods{} (e.g., a key-logger that records
+    key presses of two different keyboards).
+  %
+  \end{paraenum}
+
+Second, a table (\conntab) is added to the \protmod's variables that maps
+connection identifiers to a \conn{} data structure, such that every connection
+has one entry associated with it. These entries will be initialized to all zeros
+by the underlying architecture, which is interpreted as an unestablished
+connection. For establishing a connection, an entry point is generated
+(\setkey).  This entry point takes a connection identifier, an I/O identifier
+and a key -- encrypted using the module key -- as input and updates the
+corresponding mapping in \conntab{} (\cref{code:setkey}). Since every connection
+needs to be protected from reordering and replay attacks, the \conn{} structure
+also includes a nonce.
+
+\input{design-pseudocode.tex}
+
+Third, all the module's event handlers are marked as non-entry functions.  A
+callback table (\cbtab) is added to the \protmod's constants, mapping input
+identifiers to the corresponding event handlers.  This table is used by the
+entry point \handleinput, which is called when an event is delivered to the
+\protmod. \handleinput{} takes two arguments: a plain-text connection identifier
+and an encrypted payload.  If \conntab{} has a connection for the given
+identifier, its key is used to decrypt the payload (using the \emph{expected}
+nonce as associated data), which is then passed to the callback function stored
+in \cbtab, retrieved using the I/O identifier stored in the Connection
+structure.  If any of these operations fails, the event is ignored
+(\cref{code:handleinput}).  From a programmer's perspective, an input callback
+will only be called for events generated by entities with access to valid
+connection keys.
+
+\label{concept:output-wrapper}
+%
+Fourth, each call to an output is replaced by a call to a non-entry wrapper
+function \handleoutput{}.  This function takes a connection identifier and a
+payload, encrypts the payload together with the current nonce using the
+corresponding connection key, then publishes the encrypted event (via
+\handlelocalevent, cf.~\ref{concept:event-manager}). If the output is
+unconnected, the output event is dropped (\cref{code:output}).
+
+Fifth, an entry point \attest{} is generated, which will be called by the
+deployer to attest the \protmod{}. This function takes a challenge as input and
+returns an \emph{attestation evidence} as response. The attestation procedure
+and the content of the attestation evidence may vary from one \ac{TEE}
+technology to the other; nonetheless, the input challenge is typically used as a
+freshness parameter to prevent replay attacks. On some \acp{TEE}, the
+attestation process also includes the generation of a shared secret between the
+\protmod{} and the deployer, which will be used as the module key
+(\cref{code:attest}).
+
+To conclude, the following \protmod{} definition is given as input to the
+\ac{TEE} compiler:
+%
+\begin{paraenum}
+%
+  \item \setkey, \attest{} and \handleinput{} as entry points;
+%
+  \item input event handlers and \handleoutput{} as non-entry functions;
+%
+  \item \conntab{} as a global variable; and
+%
+  \item \cbtab{} as a constant.
+%
+\end{paraenum}
+%
+\Cref{flt:compiled-pm} shows the compiled memory layout of one of the
+example modules.
+
+\sclist{0.5}{\maxsizebox{.75\linewidth}{!}{\input{compiled-pm.tex}}}{}{%
+  Memory layout of the compiled version of module \module{FloS1} in application
+  \appvio{} (\cref{code:appvio}). The code- and data sections are shaded in
+  \coloriiname{} and \coloriiiname{}, respectively. The numbers on the left
+  labels correspond to the compiler inputs, while the right labels indicate
+  whether parts are implicitly generated by the compiler or correspond to source
+  code.}{flt:compiled-pm}
+
+\subsection{Untrusted Software on the Nodes}
+%
+\label{concept:untrusted-sw}
+%
+To support the deployment of modules and the exchange of events between modules,
+untrusted (and unprotected) software components need to be installed on each
+node, as outlined below.
+
+\subsubsection{Module Loader.} \label{concept:module-loader}
+%
+The module loader is an untrusted software component running on every node.
+The module loader provides services for external entities to interact with
+modules on a node.  To this end, the module loader listens for two types of
+remote requests: \loadmodule{} and \callentry.  \loadmodule{} takes a
+compiled \protmod{} as input, loads it into the \ac{TEE} and returns the
+module's unique identifier together with all information necessary for
+attestation and module key establishment.  What exactly this information is
+and how the attestation and key establishment is performed is specific to
+the used \ac{TEE}.  \callentry{} takes an \protmod's identifier, the
+identifier of an entry point and potentially some arguments and calls the
+entry point with the given arguments.
+
+\subsubsection{Event Manager.} \label{concept:event-manager}
+%
+The event manager is another untrusted software component running on every
+node that is used to route events from outputs to inputs.  It recognizes
+three types of requests: \addconnection, \handlelocalevent{} and
+\handleremoteevent.  A deployer can invoke \addconnection{} remotely to
+connect the output of a module to the input of another.  How exactly inputs
+and outputs are identified is implementation specific but it will in some
+form involve specifying
+%
+\begin{paraenum}
+%
+  \item a node address (e.g., an IP address);
+%
+  \item an \protmod{} identifier; and
+%
+  \item a connection identifier.
+%
+\end{paraenum}
+%
+As will become clear later, \addconnection{} only needs to be called on the
+event manager of the node where the output \reactmod{} is deployed.
+
+\handlelocalevent{} is used by modules to publish an event; i.e., inside the
+output wrappers. The arguments are the module and connection identifiers and the
+event payload. Based on the identifiers, the event manager looks up the
+destination event manager and invokes its \handleremoteevent{} API, providing
+the identifiers of the input to which the request should be routed.  For a
+\handleremoteevent{} request, the event manager will check if the destination
+module exists and, if so, invoke its \handleinput{} entry point, passing the
+connection identifier and payload as arguments.
+
+\subsubsection{Implementation.}
+%
+Although we introduced the module loader and the event manager as two separate
+software components, in our prototype we merged the functionalities of both in
+the same application, which we simply call the \emph{Event Manager}. This design
+choice was made for the sake of simplicity: the actual implementation of such
+logical components is unimportant as long as each node provides the
+functionalities described above.
+
+\subsection{Physical Input and Output Channels}
+%
+\label{concept:protected-drivers}
+%
+We assume that the infrastructure offers physical input and output channels
+using \emph{protected driver modules} that translate application events into
+physical events and vice versa. Driver modules control these physical events --
+sensing and actuation -- within the boundaries of the processor executing the
+driver. For input channels, these modules generate events that correspond to
+physical events and provide a way for application modules to authenticate the
+generated events. 
+%
+\label{concept:output-attestation}
+%
+For output channels, a driver module (\module{D}) must have exclusive access to
+its I/O device ($D$) and allow an application module (\module{A}) to take
+exclusive access over the driver.  That is, the driver will only accept events
+-- and hence translate them to physical events -- from the application module
+currently connected to it. Below, we put explicit requirements on the implementation of secure I/O and mark them for later reference.
+
+First, we demand that \ioass{ass:phyconfig}{the infrastructure
+  provider configures the physical I/O devices as expected}, i.e., the
+desired peripherals are connected to the right pins and thus mapped to the
+correct \ac{MMIO} addresses in the node. Since misconfiguration in the physical
+world cannot be detected by remote attestation, we need to require that I/O
+devices are set up correctly.
+
+However, \ioass{ass:exclusive}{the infrastructure must provide a
+  way for the deployer of \module{A} to attest that it has exclusive access to
+  the driver module \module{D} and that \module{D} also has exclusive access to
+  its I/O device $D$}.~ The deployer must be able to attest \module{D}
+to ensure that it indeed only accepts events from the module currently having
+exclusive access and that it does not release this exclusive access without
+being asked to do so by the module itself.
+
+We also need to require that, \ioass{ass:startup}{after a
+  microcontroller is turned on, only authenticated driver modules may take
+  control of I/O devices. Once control is taken it is exclusive and never
+  released}. This prevents attackers from taking direct control of
+output devices after a node resets. Driver modules are thus part of the trusted
+computing base and their module keys are only known to the infrastructure
+provider who authorizes exclusive connections to driver modules upon request
+from the deployer and keeps track of the ``ownership'' of the driver modules.
+
+Finally, we demand that \ioass{ass:io}{output driver modules do not produce
+outputs unless requested by the application module, while input driver modules
+only generate outputs to application modules that correspond to physical inputs.}
+
+To summarize, we have modeled physical \emph{output} channels in such a way that:
+%
+\begin{enumerate}
+  %
+    \item  At startup, authenticated output driver modules take
+      ownership over the (correct) output devices. Unauthorized access and
+      connection attempts from other software are forbidden;
+  %
+    \item Application modules can take ownership of an output driver module only
+      if the latter is not already connected to other modules, and only if
+      authorized by the infrastructure provider;
+  %
+    \item After connecting to an output driver module, an application module
+      retains exclusive access to the output device until explicitly released.
+       Thanks to point (1), exclusive access is retained even across
+      resets, although all connections need to be re-established.
+  %
+  \end{enumerate}
+
+ For input modules, exclusive access is not strictly
+required.~ However, exclusive access to input devices can be
+configured in the same way as for outputs, if desired. These conditions lead to
+the following security properties:
+%
+\begin{itemize}
+\item \emph{Assume that for a time interval $T$ the infrastructure provider only
+  ever authorizes application module \module{A} to take control of
+  device $D$ via driver module \module{D}. If the deployer attests within $T$
+  that \module{A} has taken exclusive access over output driver module
+  \module{D}, then from that moment until the end of $T$ every output from $D$
+  can be explained alone by the code semantics of \module{A} and \module{D} in
+  relation to the inputs received by \module{A}, i.e., no other module may cause
+  outputs of $D$.}
+\item \emph{If the deployer attests that \module{A} has taken access over an
+  input driver module \module{D}, then from that moment on until the access is
+  released any output from \module{A} can be explained alone by the code
+  semantics of \module{A} and \module{D} in relation to the physical inputs to
+  $D$ and any other inputs received by \module{A}, i.e., an attacker cannot
+  spoof inputs to $D$ for \module{A}.}
+\end{itemize}
+%
+In practice, I/O devices may produce initialization outputs when a
+driver module takes control of them after a reset. Handling these outputs
+is parts of the specificities of a driver implementation, which we
+ignore where for simplicity.
+
+\subsection{Deployment} \label{concept:deployment}
+%
+Deployment is the act of installing application modules on their nodes and
+setting up connections between outputs and inputs. As a requirement for
+deployment, \dplass{ass:deploychan}{the channel between deployer and
+infrastructure provider is assumed to be secure}, whereas communication with
+modules is performed over an untrusted network.
+
+In phase 1, the deployer requests access to the driver modules connected to
+physical I/O devices from the infrastructure provider who provides these
+modules. For output devices, the deployer requests \emph{exclusive} access,
+while for input devices the deployer can choose between exclusive or shared
+access.  Before granting such access, \dplass{ass:attest}{the infrastructure
+provider needs to ensure the authenticity of the driver module controlling the
+I/O device}, e.g., via attestation.  If, for any reason, the infrastructure
+provider cannot give access to some I/O devices (e.g., because an output device
+is already taken by someone else), the deployment is aborted.  Otherwise, the
+deployer receives connection keys from the infrastructure provider (one for each
+I/O device), along with the guarantee that driver modules have correctly taken
+control of the physical I/O devices (\cref{concept:protected-drivers}).
+
+Phase 2 consists of deploying the application on the infrastructure. First, the
+deployer starts by compiling each source module into a loadable image.  Second,
+the deployment descriptor is used to find the node on which the module should be
+deployed and sends its module loader a \loadmodule{} request. The deployer then
+performs the \ac{TEE}-specific method of attestation calling the \attest{} entry
+point of each \protmod, eventually setting up the module key. At the end of this
+step, the deployer has a secure communication channel with each of its deployed
+\reactmods. Finally, the deployer sets up the connections between modules, as
+well as the connections to the driver modules. Regarding the former, the
+deployer generates a unique connection key and sends it to both endpoints of the
+connection; for each endpoint, such key is encrypted using the module key and
+passed to the \setkey{} entry point using the \callentry{} API. Concerning the
+latter, instead, connections are established via a similar interface, using the
+keys obtained in phase 1.
+
+\paragraph{Security Discussion}
+\label{concept:security-discussion}
+%
+During phase 1, the infrastructure provider plays an important role as a trusted
+party, providing exclusive access to driver
+modules. \dplass{ass:driverkeys}{It is required that the provider
+  does not leak the driver module keys and that exclusive access to a device is
+  reserved for the deployer until they request to release it or a time T has
+  passed (to which both the deployer and the provider have agreed
+  upon)}.~ In other words, no one else can acquire credentials to
+connect to the driver module during that time.
+
+If a reset on a node N occurs, then all driver modules belonging to that node
+need to be re-initialized, and exclusive access re-configured (if previously
+set). Concerning the latter, \dplass{ass:driverreplay}{the infrastructure must
+provide replay protection for messages exchanged in the protocol to establish
+exclusive driver access}, otherwise replay attacks might cause exclusive access
+to be unintentionally set up for modules that formerly had access, but should
+not have it anymore.
+
+Concerning application modules instead, a reset on node N would cause all
+modules of that node to be re-deployed, re-attested, and connections for them to
+be re-established. Here, an attacker could technically mount a sophisticated
+replay attack to restore a previous configuration of an application; however, if
+replay protections for driver modules are correctly in place (as discussed
+above), the attacker would not be able to trigger any illicit or stale outputs. 
+
+Note that the strong requirements on physical output drivers do not apply for
+virtual outputs to software endpoints, such as secure databases or nodes
+belonging to a trusted party like the deployer. Such receivers can verify the
+authenticity and freshness of outputs via cryptographic means and reject
+replayed messages automatically, which is not possible for physical outputs to
+the real world.
+
+\subsection{Security Argument}
+%
+Our goal is to ensure that all physical output events can be explained by the
+application's source code and the observed physical input events. More
+precisely:
+%
+\label{concept:security-property} %
+%
+\emph{ Consider a time frame starting at the end of phase 1 of deployment
+  (\cref{concept:deployment}), and ending at a point where the deployer releases
+  exclusive access to any of the output devices they control. Assume the
+  deployer has observed a specific sequence of physical output events on one of
+  these devices \dev{O} in the considered time frame, then there have been
+  contiguous sequences of physical input events on the input devices connected
+  to the application such that the observed outputs follow from these inputs
+  according to the application source code semantics.}
+
+As an example, consider \appvio{} (\cref{code:appvio}). If, after the
+application has been deployed, the water supply is turned off, then there must
+have been physical input events that caused the field to flood.
+
+Output events can only be produced by the application's \acp{SM}; the assumption
+of a correct compiler and the successful attestation then lead to the desired
+property.
+%
+ Due to requirements \ref{ass:phyconfig}-\ref{ass:io},
+%
+\begin{paraenum}
+%
+  \item a physical output event can only be produced by the corresponding
+device (\dev{O});
+%
+  \item output drivers have exclusive access to their device; and
+%
+  \item an \ac{SM} (\module{O}) has exclusive access to the driver;
+%
+\end{paraenum}
+%
+thus only \module{O} can initiate physical outputs on \dev{O}.  Even if
+exclusive access is lost, e.g., due to a reset of the corresponding node
+triggered by an attacker, the infrastructure prevents that any other module can
+take control of \dev{O} and produce rogue outputs, thanks to requirements
+\ref{ass:deploychan}-\ref{ass:driverreplay}.
+%
+The construction of \acp{SM} ensures that a module can only be invoked through
+its two entry points.  Of these, only \handleinput{} can result in output events
+(\cref{code:setkey,code:handleinput}).  Since \handleinput{} authenticates its
+input, output events are always the result of correct input events. Finally, as
+our deployment scheme only allows for two types of correct input events,
+physical input events and outputs from other modules, our security property
+follows.
+
+\subsection{Software Updates and Re-Deployment}
+\label{concept:updates}
+
+In \cref{concept:deployment}, we described a \emph{static} deployment where the
+whole application is deployed at once; however, it is also possible to deploy
+application modules dynamically. Specifically in scenarios where the the
+configuration of an application may change during its lifetime due to the
+reconfiguration, addition, or removal of sensors or processing nodes, or the
+deployment of additional applications on existing infrastructure, software
+updates become essential. In our smart irrigation system from
+Figure~\ref{fig:scenario}, this may, e.g., happen with changing environmental
+conditions or when plots are re-allocated for different crops.
+
+Two common scenarios that may occur at runtime are software updates and
+re-deployments. The former consists of deploying an updated version of an
+\acp{SM} that, e.g., provides new functionality or fixes some bugs; the latter
+does not necessarily require code changes but may be needed when an \ac{SM}
+crashes or needs to be migrated to another node. 
+%
+Our design for software updates and re-deployments consists of three steps:
+
+\begin{enumerate}
+  \item \emph{Deployment of the new \ac{SM}.} In the first step, the new \ac{SM}
+  is compiled, deployed on the infrastructure alongside the already running
+  \acp{SM}, and finally attested. If any of these operations fails, the update
+  is aborted. Note that the new \ac{SM} will not process any events until
+  connections are configured through its \setkey{} entry point (step 3).
+  \item \emph{Deactivation of the old \ac{SM}.} In this step, the old \ac{SM} is
+  removed from the infrastructure. This is the point in time from which the
+  application will start suffering from connectivity loss, until the new \ac{SM}
+  will be completely configured. Optionally, state may be transferred to the new
+  \ac{SM} before taking down the old one.
+  \item \emph{Re-establishment of connections.} Here, all the connections
+  associated to the old \ac{SM} must be re-configured in order to point to the
+  new \ac{SM}. This process involves calling the \setkey{} and \addconnection{}
+  entry points on the involved \acp{SM} and event managers, as for a static
+  deployment (\cref{concept:deployment}); each connection retains its connection
+  identifier, but keys are rotated for security reasons. Similarly, connections
+  between the \ac{SM} and I/O devices must be re-configured as well, if any
+  (\cref{concept:protected-drivers}). At the end of this step, the update will
+  be completed.
+\end{enumerate}
+
+We evaluate the impact of software updates in Section~\ref{eval:microb-update}.
+Note that actions 2 and 3 can also be executed in reverse order, if desired.
+Re-establishing the connections before disabling the old \ac{SM} would result in
+a smaller availability disruption, but it may also cause inconsistent state if
+events are generated during the update. For example, some events might be
+processed by the old \ac{SM} and some other events by the new \ac{SM}, causing
+undefined behavior. As our framework mainly focuses on integrity rather than
+availability, we should prevent such inconsistencies from occurring, for example
+by implementing a sort of synchronization mechanism between old and new \acp{SM}
+during the update. However, this would increase the complexity of our framework
+without providing substantial benefits compared to our original update strategy.
+Hence, we decided not to investigate this option further.
+
+Transferring the state from the old to the new \ac{SM} may be done in several
+ways. For instance, the \emph{sealing} feature of certain \acp{TEE} (such as
+Intel \ac{SGX}) allows an \ac{SM} to securely store data persistently on disk,
+although it requires the new \ac{SM} to be deployed on the same node as the old
+one. Our design already provides some basic support for state transfer by
+creating a \emph{temporary connection} between the two \acp{SM}. In particular,
+a \emph{transfer} output in the old \ac{SM} may be connected to a \emph{restore}
+input in the new \ac{SM}, then the state migration can be triggered by calling a
+\emph{save} entry point in the old \ac{SM} that generates the \emph{transfer}
+event. This would allow state to be securely transferred between the two
+modules, even in different nodes. Of course, the deployer still needs to
+manually implement the \emph{save} and \emph{restore} functions in order to
+specify what data needs to be migrated. This protocol, however, requires the old
+\ac{SM} to be up and running at the time of the update, and therefore cannot be
+applied if the module was disabled before, e.g., due to a crash or a reset on
+the node.
+
+

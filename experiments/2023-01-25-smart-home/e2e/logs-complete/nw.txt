@@ -1,0 +1,1088 @@
+root
+^Creboot
+
+# reboot
+# Stopping IIO Server Daemon
+[  476.486340] ffs_data_put(): freeing
+[  476.530531] unloading
+pid file not found... is wpa_supplicant running?
+Stopping network: OK
+Stopping tee-supplicant: FAIL
+Saving random seed: OK
+Stopping klogd: OK
+Stopping syslogd: OK
+umount: devtmpfs busy - remounted read-only
+[  478.068013] EXT4-fs (mmcblk3p1): re-mounted. Opts: (null). Quota mode: none.
+The system is going down NOW!
+Sent SIGTERM to all processes
+Sent SIGKILL to all processes
+Requesting system reboot
+[  480.171257] ci_hdrc ci_hdrc.1: remove, state 4
+[  480.177038] usb usb1: USB disconnect, device number 1
+[  480.182581] usb 1-1: USB disconnect, device number 2
+[  480.249836] ci_hdrc ci_hdrc.1: USB bus 1 deregistered
+[  480.370635] reboot: Restarting system
+[    0.000000] Booting Linux on physical CPU 0x0
+[    0.000000] Linux version 5.13.0 (gianluca@sgx-nuc-1) (arm-none-linux-gnueabihf-gcc (GNU Toolchain for the A-profile Architecture 10.2-2020.11 (arm-10.16)) 10.2.1 20201103, GNU ld (GNU Toolchain for the A-profile Architecture 10.2-2020.11 (arm-10.16)) 2.35.1.20201028) #1 SMP Mon Jan 9 16:37:43 CET 2023
+[    0.000000] CPU: ARMv7 Processor [412fc09a] revision 10 (ARMv7), cr=10c5787d
+[    0.000000] CPU: PIPT / VIPT nonaliasing data cache, VIPT aliasing instruction cache
+[    0.000000] OF: fdt: Machine model: Freescale i.MX6 Quad SABRE Lite Board
+[    0.000000] Memory policy: Data cache writealloc
+[    0.000000] cma: Reserved 256 MiB at 0x3e000000
+[    0.000000] Zone ranges:
+[    0.000000]   Normal   [mem 0x0000000010000000-0x00000000367fffff]
+[    0.000000]   HighMem  [mem 0x0000000036800000-0x000000004fffffff]
+[    0.000000] Movable zone start for each node
+[    0.000000] Early memory node ranges
+[    0.000000]   node   0: [mem 0x0000000010000000-0x000000004dffffff]
+[    0.000000]   node   0: [mem 0x000000004e000000-0x000000004fffffff]
+[    0.000000] Initmem setup node 0 [mem 0x0000000010000000-0x000000004fffffff]
+[    0.000000] psci: probing for conduit method from DT.
+[    0.000000] psci: PSCIv1.0 detected in firmware.
+[    0.000000] psci: Using standard PSCI v0.2 function IDs
+[    0.000000] psci: MIGRATE_INFO_TYPE not supported.
+[    0.000000] psci: SMC Calling Convention v1.1
+[    0.000000] percpu: Embedded 20 pages/cpu s52268 r8192 d21460 u81920
+[    0.000000] Built 1 zonelists, mobility grouping on.  Total pages: 260912
+[    0.000000] Kernel command line:  console=ttymxc0,115200 vmalloc=400M cma=256M consoleblank=0 root=PARTUUID=00000000-01 rootwait rw
+[    0.000000] Dentry cache hash table entries: 131072 (order: 7, 524288 bytes, linear)
+[    0.000000] Inode-cache hash table entries: 65536 (order: 6, 262144 bytes, linear)
+[    0.000000] mem auto-init: stack:off, heap alloc:off, heap free:off
+[    0.000000] Memory: 713980K/1048576K available (14336K kernel code, 2039K rwdata, 4976K rodata, 1024K init, 6628K bss, 72452K reserved, 262144K cma-reserved, 122880K highmem)
+[    0.000000] SLUB: HWalign=64, Order=0-3, MinObjects=0, CPUs=4, Nodes=1
+[    0.000000] trace event string verifier disabled
+[    0.000000] Running RCU self tests
+[    0.000000] rcu: Hierarchical RCU implementation.
+[    0.000000] rcu: 	RCU event tracing is enabled.
+[    0.000000] rcu: 	RCU lockdep checking is enabled.
+[    0.000000] rcu: RCU calculated value of scheduler-enlistment delay is 10 jiffies.
+[    0.000000] NR_IRQS: 16, nr_irqs: 16, preallocated irqs: 16
+[    0.000000] L2C-310 errata 752271 769419 enabled
+[    0.000000] L2C-310 cache controller enabled, 16 ways, 1024 kB
+[    0.000000] L2C-310: CACHE_ID 0x410000c7, AUX_CTRL 0x7e470001
+[    0.000000] random: get_random_bytes called from start_kernel+0x370/0x598 with crng_init=0
+[    0.000000] Switching to timer-based delay loop, resolution 333ns
+[    0.000002] sched_clock: 32 bits at 3000kHz, resolution 333ns, wraps every 715827882841ns
+[    0.000046] clocksource: mxc_timer1: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 637086815595 ns
+[    0.002547] Console: colour dummy device 80x30
+[    0.002652] Lock dependency validator: Copyright (c) 2006 Red Hat, Inc., Ingo Molnar
+[    0.002689] ... MAX_LOCKDEP_SUBCLASSES:  8
+[    0.002719] ... MAX_LOCK_DEPTH:          48
+[    0.002748] ... MAX_LOCKDEP_KEYS:        8192
+[    0.002775] ... CLASSHASH_SIZE:          4096
+[    0.002802] ... MAX_LOCKDEP_ENTRIES:     32768
+[    0.002826] ... MAX_LOCKDEP_CHAINS:      65536
+[    0.002852] ... CHAINHASH_SIZE:          32768
+[    0.002878]  memory used by lock dependency info: 4061 kB
+[    0.002905]  memory used for stack traces: 2112 kB
+[    0.002930]  per task-struct memory footprint: 1536 bytes
+[    0.003143] Calibrating delay loop (skipped), value calculated using timer frequency.. 6.00 BogoMIPS (lpj=30000)
+[    0.003220] pid_max: default: 32768 minimum: 301
+[    0.003705] Mount-cache hash table entries: 2048 (order: 1, 8192 bytes, linear)
+[    0.003809] Mountpoint-cache hash table entries: 2048 (order: 1, 8192 bytes, linear)
+[    0.010464] CPU: Testing write buffer coherency: ok
+[    0.010698] CPU0: Spectre v2: using BPIALL workaround
+[    0.012630] CPU0: thread -1, cpu 0, socket 0, mpidr 80000000
+[    0.018657] Setting up static identity map for 0x10100000 - 0x10100078
+[    0.020234] rcu: Hierarchical SRCU implementation.
+[    0.025481] smp: Bringing up secondary CPUs ...
+[    0.039896] CPU1: thread -1, cpu 1, socket 0, mpidr 80000001
+[    0.039932] CPU1: Spectre v2: using BPIALL workaround
+[    0.054826] CPU2: thread -1, cpu 2, socket 0, mpidr 80000002
+[    0.054863] CPU2: Spectre v2: using BPIALL workaround
+[    0.068850] CPU3: thread -1, cpu 3, socket 0, mpidr 80000003
+[    0.068886] CPU3: Spectre v2: using BPIALL workaround
+[    0.069885] smp: Brought up 1 node, 4 CPUs
+[    0.069968] SMP: Total of 4 processors activated (24.00 BogoMIPS).
+[    0.070018] CPU: All CPU(s) started in SVC mode.
+[    0.074460] devtmpfs: initialized
+[    0.144251] VFP support v0.3: implementor 41 architecture 3 part 30 variant 9 rev 4
+[    0.149004] clocksource: jiffies: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 19112604462750000 ns
+[    0.149153] futex hash table entries: 1024 (order: 4, 65536 bytes, linear)
+[    0.184953] pinctrl core: initialized pinctrl subsystem
+[    0.195986] NET: Registered protocol family 16
+[    0.236259] DMA: preallocated 256 KiB pool for atomic coherent allocations
+[    0.245904] thermal_sys: Registered thermal governor 'step_wise'
+[    0.246864] cpuidle: using governor menu
+[    0.247248] CPU identified as i.MX6Q, silicon rev 1.2
+[    0.333715] vdd1p1: supplied by regulator-dummy
+[    0.338586] vdd3p0: supplied by regulator-dummy
+[    0.342214] vdd2p5: supplied by regulator-dummy
+[    0.345886] vddarm: supplied by regulator-dummy
+[    0.351013] vddpu: supplied by regulator-dummy
+[    0.353608] vddsoc: supplied by regulator-dummy
+[    0.418621] platform 21dc000.mipi: Fixing up cyclic dependency with 20e0000.iomuxc-gpr:ipu2_csi1_mux
+[    0.419555] platform 21dc000.mipi: Fixing up cyclic dependency with 20e0000.iomuxc-gpr:ipu1_csi0_mux
+[    0.425778] platform 2400000.ipu: Fixing up cyclic dependency with ldb
+[    0.426344] platform 2400000.ipu: Fixing up cyclic dependency with 120000.hdmi
+[    0.426939] platform 2400000.ipu: Fixing up cyclic dependency with 21dc000.mipi
+[    0.427527] platform 2400000.ipu: Fixing up cyclic dependency with 20e0000.iomuxc-gpr:ipu1_csi0_mux
+[    0.437222] platform 2800000.ipu: Fixing up cyclic dependency with ldb
+[    0.437787] platform 2800000.ipu: Fixing up cyclic dependency with 120000.hdmi
+[    0.438342] platform 2800000.ipu: Fixing up cyclic dependency with 20e0000.iomuxc-gpr:ipu2_csi1_mux
+[    0.438925] platform 2800000.ipu: Fixing up cyclic dependency with 21dc000.mipi
+[    0.469175] platform disp0: Fixing up cyclic dependency with 2400000.ipu
+[    0.472087] platform panel-lcd: Fixing up cyclic dependency with disp0
+[    0.474055] platform panel-lvds0: Fixing up cyclic dependency with ldb
+[    0.478724] No ATAGs?
+[    0.479933] hw-breakpoint: found 5 (+1 reserved) breakpoint and 1 watchpoint registers.
+[    0.480124] hw-breakpoint: maximum watchpoint size is 4 bytes.
+[    0.485710] debugfs: Directory 'dummy-iomuxc-gpr@20e0000' with parent 'regmap' already present!
+[    0.488077] imx6q-pinctrl 20e0000.pinctrl: initialized IMX pinctrl driver
+[    0.690339] mxs-dma 110000.dma-apbh: initialized
+[    0.716018] vgaarb: loaded
+[    0.720580] SCSI subsystem initialized
+[    0.723890] usbcore: registered new interface driver usbfs
+[    0.724485] usbcore: registered new interface driver hub
+[    0.724832] usbcore: registered new device driver usb
+[    0.725575] usb_phy_generic usbphynop1: supply vcc not found, using dummy regulator
+[    0.727615] usb_phy_generic usbphynop2: supply vcc not found, using dummy regulator
+[    0.738239] i2c i2c-0: IMX I2C adapter registered
+[    0.749516] i2c 1-0040: Fixing up cyclic dependency with 21dc000.mipi
+[    0.753997] i2c i2c-1: IMX I2C adapter registered
+[    0.760878] i2c i2c-2: IMX I2C adapter registered
+[    0.761648] mc: Linux media interface: v0.10
+[    0.761946] videodev: Linux video capture interface: v2.00
+[    0.763592] pps_core: LinuxPPS API ver. 1 registered
+[    0.763656] pps_core: Software ver. 5.3.6 - Copyright 2005-2007 Rodolfo Giometti <giometti@linux.it>
+[    0.763797] PTP clock support registered
+[    0.767681] Advanced Linux Sound Architecture Driver Initialized.
+[    0.777288] Bluetooth: Core ver 2.22
+[    0.777587] NET: Registered protocol family 31
+[    0.777645] Bluetooth: HCI device and connection manager initialized
+[    0.777964] Bluetooth: HCI socket layer initialized
+[    0.778060] Bluetooth: L2CAP socket layer initialized
+[    0.778484] Bluetooth: SCO socket layer initialized
+[    0.785848] clocksource: Switched to clocksource mxc_timer1
+[    1.459169] VFS: Disk quotas dquot_6.6.0
+[    1.459516] VFS: Dquot-cache hash table entries: 1024 (order 0, 4096 bytes)
+[    1.534440] NET: Registered protocol family 2
+[    1.535466] IP idents hash table entries: 16384 (order: 5, 131072 bytes, linear)
+[    1.540415] tcp_listen_portaddr_hash hash table entries: 512 (order: 2, 22528 bytes, linear)
+[    1.540665] TCP established hash table entries: 8192 (order: 3, 32768 bytes, linear)
+[    1.541891] TCP bind hash table entries: 8192 (order: 6, 327680 bytes, linear)
+[    1.543148] TCP: Hash tables configured (established 8192 bind 8192)
+[    1.544513] UDP hash table entries: 512 (order: 3, 49152 bytes, linear)
+[    1.544806] UDP-Lite hash table entries: 512 (order: 3, 49152 bytes, linear)
+[    1.546186] NET: Registered protocol family 1
+[    1.551555] RPC: Registered named UNIX socket transport module.
+[    1.551733] RPC: Registered udp transport module.
+[    1.551783] RPC: Registered tcp transport module.
+[    1.551825] RPC: Registered tcp NFSv4.1 backchannel transport module.
+[    1.554667] PCI: CLS 0 bytes, default 64
+[    1.557138] armv7-pmu pmu: hw perfevents: no interrupt-affinity property, guessing.
+[    2.650659] hw perfevents: enabled with armv7_cortex_a9 PMU driver, 7 counters available
+[    2.661076] Initialise system trusted keyrings
+[    2.662931] workingset: timestamp_bits=30 max_order=18 bucket_order=0
+[    2.702357] NFS: Registering the id_resolver key type
+[    2.702770] Key type id_resolver registered
+[    2.702945] Key type id_legacy registered
+[    2.703504] nfs4filelayout_init: NFSv4 File Layout Driver Registering...
+[    2.703800] nfs4flexfilelayout_init: NFSv4 Flexfile Layout Driver Registering...
+[    2.704244] jffs2: version 2.2. (NAND) © 2001-2006 Red Hat, Inc.
+[    2.707846] fuse: init (API version 7.33)
+[    2.808799] Key type asymmetric registered
+[    2.809147] Asymmetric key parser 'x509' registered
+[    2.809647] bounce: pool size: 64 pages
+[    2.810158] io scheduler mq-deadline registered
+[    2.810233] io scheduler kyber registered
+[    2.827110] imx6q-pcie 1ffc000.pcie: host bridge /soc/pcie@1ffc000 ranges:
+[    2.827583] imx6q-pcie 1ffc000.pcie:       IO 0x0001f80000..0x0001f8ffff -> 0x0000000000
+[    2.828174] imx6q-pcie 1ffc000.pcie:      MEM 0x0001000000..0x0001efffff -> 0x0001000000
+[    2.830136] imx6q-pcie 1ffc000.pcie: iATU unroll: disabled
+[    2.830222] imx6q-pcie 1ffc000.pcie: Detected iATU regions: 4 outbound, 4 inbound
+[    2.869957] imx-sdma 20ec000.sdma: Direct firmware load for imx/sdma/sdma-imx6q.bin failed with error -2
+[    2.870164] imx-sdma 20ec000.sdma: Falling back to sysfs fallback for: imx/sdma/sdma-imx6q.bin
+[    2.897476] 2020000.serial: ttymxc0 at MMIO 0x2020000 (irq = 34, base_baud = 5000000) is a IMX
+[    3.831879] imx6q-pcie 1ffc000.pcie: Phy link never came up
+[    3.836194] printk: console [ttymxc0] enabled
+[    3.843277] imx6q-pcie: probe of 1ffc000.pcie failed with error -110
+[    3.876121] dwhdmi-imx 120000.hdmi: Detected HDMI TX controller v1.30a with HDCP (DWC HDMI 3D TX PHY)
+[    3.993656] panel-simple panel-lcd: supply power not found, using dummy regulator
+[    4.002511] panel-simple panel-lcd: Specify missing connector_type
+[    4.010798] panel-simple panel-lvds0: supply power not found, using dummy regulator
+[    4.051289] etnaviv etnaviv: bound 130000.gpu (ops gpu_ops)
+[    4.059041] etnaviv etnaviv: bound 134000.gpu (ops gpu_ops)
+[    4.066517] etnaviv etnaviv: bound 2204000.gpu (ops gpu_ops)
+[    4.072316] etnaviv-gpu 130000.gpu: model: GC2000, revision: 5108
+[    4.080851] etnaviv-gpu 134000.gpu: model: GC320, revision: 5007
+[    4.087423] etnaviv-gpu 2204000.gpu: model: GC355, revision: 1215
+[    4.093596] etnaviv-gpu 2204000.gpu: Ignoring GPU with VG and FE2.0
+[    4.105876] [drm] Initialized etnaviv 1.3.0 20151214 for etnaviv on minor 0
+[    4.122968] imx-ipuv3 2400000.ipu: IPUv3H probed
+[    4.139282] imx-ipuv3 2800000.ipu: IPUv3H probed
+[    4.221623] brd: module loaded
+[    4.304141] loop: module loaded
+[    4.312276] ahci-imx 2200000.sata: fsl,transmit-level-mV not specified, using 00000024
+[    4.320515] ahci-imx 2200000.sata: fsl,transmit-boost-mdB not specified, using 00000480
+[    4.328732] ahci-imx 2200000.sata: fsl,transmit-atten-16ths not specified, using 00002000
+[    4.337117] ahci-imx 2200000.sata: fsl,receive-eq-mdB not specified, using 05000000
+[    4.345881] ahci-imx 2200000.sata: supply ahci not found, using dummy regulator
+[    4.354370] ahci-imx 2200000.sata: supply phy not found, using dummy regulator
+[    4.362501] ahci-imx 2200000.sata: supply target not found, using dummy regulator
+[    4.374702] ahci-imx 2200000.sata: SSS flag set, parallel bus scan disabled
+[    4.381959] ahci-imx 2200000.sata: AHCI 0001.0300 32 slots 1 ports 3 Gbps 0x1 impl platform mode
+[    4.390957] ahci-imx 2200000.sata: flags: ncq sntf stag pm led clo only pmp pio slum part ccc apst 
+[    4.408460] scsi host0: ahci-imx
+[    4.415066] ata1: SATA max UDMA/133 mmio [mem 0x02200000-0x02203fff] port 0x100 irq 83
+[    4.446941] spi-nor spi0.0: found gd25q16, expected sst25vf016b
+[    4.455262] spi-nor spi0.0: gd25q16 (2048 Kbytes)
+[    4.489619] libphy: Fixed MDIO Bus: probed
+[    4.497263] CAN device driver interface
+[    4.518674] pps pps0: new PPS source ptp0
+[    4.542826] libphy: fec_enet_mii_bus: probed
+[    4.549954] fec 2188000.ethernet eth0: registered PHC device 0
+[    4.559922] usbcore: registered new interface driver r8152
+[    4.565935] usbcore: registered new interface driver lan78xx
+[    4.571959] usbcore: registered new interface driver asix
+[    4.577793] usbcore: registered new interface driver ax88179_178a
+[    4.584166] usbcore: registered new interface driver cdc_ether
+[    4.590508] usbcore: registered new interface driver smsc95xx
+[    4.596659] usbcore: registered new interface driver net1080
+[    4.602611] usbcore: registered new interface driver cdc_subset
+[    4.608929] usbcore: registered new interface driver zaurus
+[    4.614777] usbcore: registered new interface driver MOSCHIP usb-ethernet driver
+[    4.622674] usbcore: registered new interface driver cdc_ncm
+[    4.628500] ehci_hcd: USB 2.0 'Enhanced' Host Controller (EHCI) Driver
+[    4.635082] ehci-pci: EHCI PCI platform driver
+[    4.640283] usbcore: registered new interface driver usb-storage
+[    4.684219] snvs_rtc 20cc000.snvs:snvs-rtc-lp: registered as rtc0
+[    4.690712] snvs_rtc 20cc000.snvs:snvs-rtc-lp: setting system clock to 1970-01-02T22:35:12 UTC (167712)
+[    4.701179] i2c /dev entries driver
+[    4.731405] Bluetooth: HCI UART driver ver 2.3
+[    4.736110] Bluetooth: HCI UART protocol H4 registered
+[    4.741492] Bluetooth: HCI UART protocol LL registered
+[    4.752862] sdhci: Secure Digital Host Controller Interface driver
+[    4.759300] sdhci: Copyright(c) Pierre Ossman
+[    4.760605] ata1: SATA link down (SStatus 0 SControl 300)
+[    4.763709] sdhci-pltfm: SDHCI platform and OF driver helper
+[    4.769830] ahci-imx 2200000.sata: no device found, disabling link.
+[    4.780079] sdhci-esdhc-imx 2198000.mmc: Got CD GPIO
+[    4.781459] ahci-imx 2200000.sata: pass ahci_imx..hotplug=1 to enable hotplug
+[    4.782206] caam 2100000.crypto: Entropy delay = 3200
+[    4.786953] sdhci-esdhc-imx 2198000.mmc: Got WP GPIO
+[    4.796713] sdhci-esdhc-imx 219c000.mmc: Got CD GPIO
+[    4.815197] caam 2100000.crypto: failed to acquire DECO 0
+[    4.820807] caam 2100000.crypto: failed to instantiate RNG
+[    4.835127] usbcore: registered new interface driver usbhid
+[    4.840998] usbhid: USB HID core driver
+[    4.853676] imx-ipuv3-csi imx-ipuv3-csi.0: Registered ipu1_csi0 capture as /dev/video0
+[    4.865980] imx-ipuv3 2400000.ipu: Registered ipu1_ic_prpenc capture as /dev/video1
+[    4.872096] mmc3: SDHCI controller on 219c000.mmc [219c000.mmc] using ADMA
+[    4.872344] mmc2: SDHCI controller on 2198000.mmc [2198000.mmc] using ADMA
+[    4.876350] imx-ipuv3 2400000.ipu: Registered ipu1_ic_prpvf capture as /dev/video2
+[    4.897936] imx-ipuv3-csi imx-ipuv3-csi.1: Registered ipu1_csi1 capture as /dev/video3
+[    4.908108] imx-ipuv3-csi imx-ipuv3-csi.4: Registered ipu2_csi0 capture as /dev/video4
+[    4.917901] imx-ipuv3 2800000.ipu: Registered ipu2_ic_prpenc capture as /dev/video5
+[    4.921985] mmc3: host does not support reading read-only switch, assuming write-enable
+[    4.927179] imx-ipuv3 2800000.ipu: Registered ipu2_ic_prpvf capture as /dev/video6
+[    4.936635] mmc3: new high speed SDHC card at address 59b4
+[    4.943898] imx-ipuv3-csi imx-ipuv3-csi.5: Registered ipu2_csi1 capture as /dev/video7
+[    4.954048] mmcblk3: mmc3:59b4 SD    14.7 GiB 
+[    4.975365]  mmcblk3: p1
+[    4.977659] optee: probing for conduit method.
+[    4.982738] optee: revision 3.14
+[    5.001491] optee: Asynchronous notifications enabled
+[    5.010493] optee: dynamic shared memory is enabled
+[    5.053463] optee: initialized driver
+[    5.078568] sgtl5000 0-000a: sgtl5000 revision 0x11
+[    5.607917] sgtl5000 0-000a: Using internal LDO instead of VDDD: check ER1 erratum
+[    5.674604] random: fast init done
+[    5.694761] fsl-ssi-dai 2028000.ssi: No cache defaults, reading back from HW
+[    5.787657] NET: Registered protocol family 10
+[    5.801938] Segment Routing with IPv6
+[    5.806076] sit: IPv6, IPv4 and MPLS over IPv4 tunneling driver
+[    5.817624] NET: Registered protocol family 17
+[    5.822214] can: controller area network core
+[    5.827318] NET: Registered protocol family 29
+[    5.831840] can: raw protocol
+[    5.835280] can: broadcast manager protocol
+[    5.839780] can: netlink gateway - max_hops=1
+[    5.845048] Key type dns_resolver registered
+[    5.877665] Registering SWP/SWPB emulation handler
+[    5.883842] Loading compiled-in X.509 certificates
+[    6.128259] imx-drm display-subsystem: bound imx-ipuv3-crtc.2 (ops ipu_crtc_ops)
+[    6.136955] imx-drm display-subsystem: bound imx-ipuv3-crtc.3 (ops ipu_crtc_ops)
+[    6.145405] imx-drm display-subsystem: bound imx-ipuv3-crtc.6 (ops ipu_crtc_ops)
+[    6.155594] imx-drm display-subsystem: bound imx-ipuv3-crtc.7 (ops ipu_crtc_ops)
+[    6.164622] imx-drm display-subsystem: bound disp0 (ops imx_pd_ops)
+[    6.172535] imx-drm display-subsystem: bound 120000.hdmi (ops dw_hdmi_imx_ops)
+[    6.180725] imx-drm display-subsystem: bound ldb (ops imx_ldb_ops)
+[    6.195924] [drm] Initialized imx-drm 1.0.0 20120507 for display-subsystem on minor 1
+[    6.408321] Console: switching to colour frame buffer device 100x30
+[    6.428591] imx-drm display-subsystem: [drm] fb0: imx-drmdrmfb frame buffer device
+[    6.471231] imx_usb 2184200.usb: No over current polarity defined
+[    6.484715] ci_hdrc ci_hdrc.1: EHCI Host Controller
+[    6.490737] ci_hdrc ci_hdrc.1: new USB bus registered, assigned bus number 1
+[    6.526723] ci_hdrc ci_hdrc.1: USB 2.0 started, EHCI 1.00
+[    6.541070] usb usb1: New USB device found, idVendor=1d6b, idProduct=0002, bcdDevice= 5.13
+[    6.550545] usb usb1: New USB device strings: Mfr=3, Product=2, SerialNumber=1
+[    6.558289] usb usb1: Product: EHCI Host Controller
+[    6.563281] usb usb1: Manufacturer: Linux 5.13.0 ehci_hcd
+[    6.569145] usb usb1: SerialNumber: ci_hdrc.1
+[    6.583917] hub 1-0:1.0: USB hub found
+[    6.588892] hub 1-0:1.0: 1 port detected
+[    6.608318] video-mux: probe of 20e0000.iomuxc-gpr:ipu2_csi1_mux failed with error -107
+[    6.624922] imx_thermal 20c8000.anatop:tempmon: Automotive CPU temperature grade - max:125C critical:120C passive:115C
+[    6.653865] input: gpio-keys as /devices/platform/gpio-keys/input/input0
+[    6.672135] cfg80211: Loading compiled-in X.509 certificates for regulatory database
+[    6.689327] cfg80211: Loaded X.509 cert 'sforshee: 00b28ddf47aef9cea7'
+[    6.698309] platform regulatory.0: Direct firmware load for regulatory.db failed with error -2
+[    6.707291] platform regulatory.0: Falling back to sysfs fallback for: regulatory.db
+[    6.713786] ALSA device list:
+[    6.718681]   #0: imx6q-sabrelite-sgtl5000
+[    6.782949] EXT4-fs (mmcblk3p1): mounted filesystem with ordered data mode. Opts: (null). Quota mode: none.
+[    6.793700] VFS: Mounted root (ext4 filesystem) on device 179:1.
+[    6.804626] devtmpfs: mounted
+[    6.810051] Freeing unused kernel memory: 1024K
+[    6.836979] Run /sbin/init as init process
+[    6.916227] usb 1-1: new high-speed USB device number 2 using ci_hdrc
+[    7.113498] EXT4-fs (mmcblk3p1): re-mounted. Opts: (null). Quota mode: none.
+[    7.128400] usb 1-1: New USB device found, idVendor=0424, idProduct=2513, bcdDevice= b.b3
+[    7.137624] usb 1-1: New USB device strings: Mfr=0, Product=0, SerialNumber=0
+[    7.155258] hub 1-1:1.0: USB hub found
+[    7.162261] hub 1-1:1.0: 3 ports detected
+Starting syslogd: OK
+Starting klogd: OK
+Running sysctl: OK
+Populating /dev using udev: [    7.927721] udevd[156]: starting version 3.2.10
+[    7.974860] random: udevd: uninitialized urandom read (16 bytes read)
+[    7.987118] random: udevd: uninitialized urandom read (16 bytes read)
+[    7.993915] random: udevd: uninitialized urandom read (16 bytes read)
+[    8.093837] udevd[157]: starting eudev-3.2.10
+[    9.258568] urandom_read: 1 callbacks suppressed
+[    9.258606] random: udevd: uninitialized urandom read (16 bytes read)
+[    9.908613] coda 2040000.vpu: Firmware code revision: 46076
+[    9.914397] coda 2040000.vpu: Initialized CODA960.
+[    9.919678] coda 2040000.vpu: Firmware version: 3.1.1
+[    9.950115] coda 2040000.vpu: coda-jpeg-encoder registered as video8
+[    9.962721] coda 2040000.vpu: coda-jpeg-decoder registered as video9
+[    9.990738] coda 2040000.vpu: coda-video-encoder registered as video10
+[   10.001009] coda 2040000.vpu: coda-video-decoder registered as video11
+[   10.302770] ov5640 1-0040: ov5640_init_slave_id: failed with -6
+done
+Initializing random number generator: OK
+Saving random seed: [   11.454651] random: dd: uninitialized urandom read (512 bytes read)
+OK
+Starting tee-supplicant: OK
+Starting network: [   12.059630] Micrel KSZ9021 Gigabit PHY 2188000.ethernet-1:07: attached PHY driver (mii_bus:phy_addr=2188000.ethernet-1:07, irq=POLL)
+OK
+Starting wpa_supplicant: [FAIL]
+--- Interface 'wlan0' not found ---
+[   12.405030] file system registered
+Starting IIO Server Daemon
+install_listener('tcp:5037','*smartsocket*')
+[   12.558865] read descriptors
+[   12.562592] read strings
+[   12.571196] g_ffs gadget: g_ffs ready
+
+Welcome to Buildroot
+buildroot login: root
+# ^C
+# date -s @1675332191
+Thu Feb  2 10:03:11 UTC 2023
+# ^Ce
+r 9000
+# optee_event_manager 9000
+INFO: Listening to 0.0.0.0:9000
+[   15.202010] fec 2188000.ethernet eth0: Link is Up - 1Gbps/Full - flow control off
+[   15.212708] IPv6: ADDRCONF(NETDEV_CHANGE): eth0: link becomes ready
+INFO: Received new module
+INFO: Received entrypoint call
+INFO: tz_call_entrypoint_before_dispatch: 1675332210365233 us
+INFO: tz_call_entrypoint_after_dispatch: 1675332210721493 us
+[   36.961979] usb_otg_vbus: disabling
+[   36.966803] CAN XCVR: disabling
+INFO: Received add connection
+INFO: Received entrypoint call
+INFO: tz_call_entrypoint_before_dispatch: 1675332215291622 us
+INFO: tz_call_entrypoint_after_dispatch: 1675332215331535 us
+INFO: Received entrypoint call
+INFO: tz_call_entrypoint_before_dispatch: 1675332215377145 us
+INFO: tz_call_entrypoint_after_dispatch: 1675332215417007 us
+INFO: Received entrypoint call
+INFO: tz_call_entrypoint_before_dispatch: 1675332215628412 us
+INFO: tz_call_entrypoint_after_dispatch: 1675332215667511 us
+INFO: Received entrypoint call
+INFO: tz_call_entrypoint_before_dispatch: 1675332215739189 us
+INFO: tz_call_entrypoint_after_dispatch: 1675332215778575 us
+INFO: Received add connection
+INFO: Received entrypoint call
+INFO: tz_call_entrypoint_before_dispatch: 1675332215824814 us
+INFO: tz_call_entrypoint_after_dispatch: 1675332215865608 us
+INFO: Received entrypoint call
+INFO: tz_call_entrypoint_before_dispatch: 1675332215894745 us
+INFO: tz_call_entrypoint_after_dispatch: 1675332216076387 us
+INFO: Received entrypoint call
+INFO: tz_call_entrypoint_before_dispatch: 1675332216085209 us
+INFO: tz_call_entrypoint_after_dispatch: 1675332216268589 us
+INFO: Received entrypoint call
+INFO: tz_call_entrypoint_before_dispatch: 1675332216277495 us
+INFO: tz_call_entrypoint_after_dispatch: 1675332216457629 us
+INFO: Received entrypoint call
+INFO: tz_call_entrypoint_before_dispatch: 1675332216462666 us
+INFO: tz_call_entrypoint_after_dispatch: 1675332216642336 us
+INFO: Received add connection
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332224018957 us
+INFO: tz_remote_output_after_dispatch: 1675332224266057 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332224293418 us
+INFO: tz_remote_output_after_dispatch: 1675332224547989 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332226214534 us
+INFO: tz_remote_output_after_dispatch: 1675332226457169 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332226481496 us
+INFO: tz_remote_output_after_dispatch: 1675332226733518 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332228495218 us
+INFO: tz_remote_output_after_dispatch: 1675332228736112 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332228765710 us
+INFO: tz_remote_output_after_dispatch: 1675332229020516 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332230695296 us
+INFO: tz_remote_output_after_dispatch: 1675332230938549 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332230971521 us
+INFO: tz_remote_output_after_dispatch: 1675332231223700 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332232911171 us
+INFO: tz_remote_output_after_dispatch: 1675332233148363 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332233175586 us
+INFO: tz_remote_output_after_dispatch: 1675332233425602 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332235119700 us
+INFO: tz_remote_output_after_dispatch: 1675332235358721 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332235397697 us
+INFO: tz_remote_output_after_dispatch: 1675332235648835 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332237299304 us
+INFO: tz_remote_output_after_dispatch: 1675332237542294 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332237571092 us
+INFO: tz_remote_output_after_dispatch: 1675332237824300 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332239517280 us
+INFO: tz_remote_output_after_dispatch: 1675332239760529 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332239792215 us
+INFO: tz_remote_output_after_dispatch: 1675332240039803 us
+[   64.483631] imx-sdma 20ec000.sdma: external firmware not found, using ROM firmware
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332241711209 us
+INFO: tz_remote_output_after_dispatch: 1675332241954825 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332241981340 us
+INFO: tz_remote_output_after_dispatch: 1675332242232593 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332243914498 us
+INFO: tz_remote_output_after_dispatch: 1675332244158041 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332244186675 us
+INFO: tz_remote_output_after_dispatch: 1675332244438518 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332246111444 us
+[   69.599401] cfg80211: failed to load regulatory.db
+INFO: tz_remote_output_after_dispatch: 1675332246356996 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332246391046 us
+INFO: tz_remote_output_after_dispatch: 1675332246639416 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332248363780 us
+INFO: tz_remote_output_after_dispatch: 1675332248607118 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332248643738 us
+INFO: tz_remote_output_after_dispatch: 1675332248896369 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332250579294 us
+INFO: tz_remote_output_after_dispatch: 1675332250822678 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332250848507 us
+INFO: tz_remote_output_after_dispatch: 1675332251094170 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332252767305 us
+INFO: tz_remote_output_after_dispatch: 1675332253010968 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332253038083 us
+INFO: tz_remote_output_after_dispatch: 1675332253287245 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332254967538 us
+INFO: tz_remote_output_after_dispatch: 1675332255210523 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332255242868 us
+INFO: tz_remote_output_after_dispatch: 1675332255493673 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332257175195 us
+INFO: tz_remote_output_after_dispatch: 1675332257417684 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332257447440 us
+INFO: tz_remote_output_after_dispatch: 1675332257697178 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332259383266 us
+INFO: tz_remote_output_after_dispatch: 1675332259626659 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332259652696 us
+INFO: tz_remote_output_after_dispatch: 1675332259904767 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332261597671 us
+INFO: tz_remote_output_after_dispatch: 1675332261840643 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332261873804 us
+INFO: tz_remote_output_after_dispatch: 1675332262125616 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332263863867 us
+INFO: tz_remote_output_after_dispatch: 1675332264107026 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332264143153 us
+INFO: tz_remote_output_after_dispatch: 1675332264391944 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332266102870 us
+INFO: tz_remote_output_after_dispatch: 1675332266345939 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332266380441 us
+INFO: tz_remote_output_after_dispatch: 1675332266633759 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332268371383 us
+INFO: tz_remote_output_after_dispatch: 1675332268614815 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332268648849 us
+INFO: tz_remote_output_after_dispatch: 1675332268900478 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332270572866 us
+INFO: tz_remote_output_after_dispatch: 1675332270816672 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332270854046 us
+INFO: tz_remote_output_after_dispatch: 1675332271106589 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332272755489 us
+INFO: tz_remote_output_after_dispatch: 1675332272997209 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332273027149 us
+INFO: tz_remote_output_after_dispatch: 1675332273276993 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332274961848 us
+INFO: tz_remote_output_after_dispatch: 1675332275196560 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332275232694 us
+INFO: tz_remote_output_after_dispatch: 1675332275484884 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332277159376 us
+INFO: tz_remote_output_after_dispatch: 1675332277399718 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332277437451 us
+INFO: tz_remote_output_after_dispatch: 1675332277689412 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332279363416 us
+INFO: tz_remote_output_after_dispatch: 1675332279606621 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332279642975 us
+INFO: tz_remote_output_after_dispatch: 1675332279892648 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332281575429 us
+INFO: tz_remote_output_after_dispatch: 1675332281818958 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332281848589 us
+INFO: tz_remote_output_after_dispatch: 1675332282099283 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332283787298 us
+INFO: tz_remote_output_after_dispatch: 1675332284030407 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332284069025 us
+INFO: tz_remote_output_after_dispatch: 1675332284323345 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332286049300 us
+INFO: tz_remote_output_after_dispatch: 1675332286291828 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332286322253 us
+INFO: tz_remote_output_after_dispatch: 1675332286573575 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332288295067 us
+INFO: tz_remote_output_after_dispatch: 1675332288538450 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332288574726 us
+INFO: tz_remote_output_after_dispatch: 1675332288832933 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332290515154 us
+INFO: tz_remote_output_after_dispatch: 1675332290766532 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332290796203 us
+INFO: tz_remote_output_after_dispatch: 1675332291058544 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332292707376 us
+INFO: tz_remote_output_after_dispatch: 1675332292959692 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332292985566 us
+INFO: tz_remote_output_after_dispatch: 1675332293243042 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332294991143 us
+INFO: tz_remote_output_after_dispatch: 1675332295242236 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332295270526 us
+INFO: tz_remote_output_after_dispatch: 1675332295529101 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332297216159 us
+INFO: tz_remote_output_after_dispatch: 1675332297468883 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332297492662 us
+INFO: tz_remote_output_after_dispatch: 1675332297756669 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332299416491 us
+INFO: tz_remote_output_after_dispatch: 1675332299668196 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332299696751 us
+INFO: tz_remote_output_after_dispatch: 1675332299956352 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332301608511 us
+INFO: tz_remote_output_after_dispatch: 1675332301858799 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332301885946 us
+INFO: tz_remote_output_after_dispatch: 1675332302143072 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332303811893 us
+INFO: tz_remote_output_after_dispatch: 1675332304063547 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332304090696 us
+INFO: tz_remote_output_after_dispatch: 1675332304343894 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332306060247 us
+INFO: tz_remote_output_after_dispatch: 1675332306311925 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332306344548 us
+INFO: tz_remote_output_after_dispatch: 1675332306599817 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332308278745 us
+INFO: tz_remote_output_after_dispatch: 1675332308521533 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332308549383 us
+INFO: tz_remote_output_after_dispatch: 1675332308801148 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332310484519 us
+INFO: tz_remote_output_after_dispatch: 1675332310727315 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332310754198 us
+INFO: tz_remote_output_after_dispatch: 1675332311005980 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332312677700 us
+INFO: tz_remote_output_after_dispatch: 1675332312923072 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332312960282 us
+INFO: tz_remote_output_after_dispatch: 1675332313213726 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332314928841 us
+INFO: tz_remote_output_after_dispatch: 1675332315171927 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332315195597 us
+INFO: tz_remote_output_after_dispatch: 1675332315441665 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332317124107 us
+INFO: tz_remote_output_after_dispatch: 1675332317366658 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332317400858 us
+INFO: tz_remote_output_after_dispatch: 1675332317654156 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332319356261 us
+INFO: tz_remote_output_after_dispatch: 1675332319599402 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332319622600 us
+INFO: tz_remote_output_after_dispatch: 1675332319874349 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332321564140 us
+INFO: tz_remote_output_after_dispatch: 1675332321807537 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332321843960 us
+INFO: tz_remote_output_after_dispatch: 1675332322089744 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332323774461 us
+INFO: tz_remote_output_after_dispatch: 1675332324017928 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332324050060 us
+INFO: tz_remote_output_after_dispatch: 1675332324301834 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332325987408 us
+INFO: tz_remote_output_after_dispatch: 1675332326229855 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332326254244 us
+INFO: tz_remote_output_after_dispatch: 1675332326506787 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332328192446 us
+INFO: tz_remote_output_after_dispatch: 1675332328433380 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332328459424 us
+INFO: tz_remote_output_after_dispatch: 1675332328705283 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332330407514 us
+INFO: tz_remote_output_after_dispatch: 1675332330650481 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332330680752 us
+INFO: tz_remote_output_after_dispatch: 1675332330935115 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332332674313 us
+INFO: tz_remote_output_after_dispatch: 1675332332915528 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332332948794 us
+INFO: tz_remote_output_after_dispatch: 1675332333202627 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332334891999 us
+INFO: tz_remote_output_after_dispatch: 1675332335135665 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332335170620 us
+INFO: tz_remote_output_after_dispatch: 1675332335420471 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332337098976 us
+INFO: tz_remote_output_after_dispatch: 1675332337339705 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332337375257 us
+INFO: tz_remote_output_after_dispatch: 1675332337626474 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332339299261 us
+INFO: tz_remote_output_after_dispatch: 1675332339539404 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332339567005 us
+INFO: tz_remote_output_after_dispatch: 1675332339819272 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332341575316 us
+INFO: tz_remote_output_after_dispatch: 1675332341818593 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332341850232 us
+INFO: tz_remote_output_after_dispatch: 1675332342101512 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332343791699 us
+INFO: tz_remote_output_after_dispatch: 1675332344032492 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332344054589 us
+INFO: tz_remote_output_after_dispatch: 1675332344300203 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332345995705 us
+INFO: tz_remote_output_after_dispatch: 1675332346237178 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332346259452 us
+INFO: tz_remote_output_after_dispatch: 1675332346504910 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332348205451 us
+INFO: tz_remote_output_after_dispatch: 1675332348448795 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332348481069 us
+INFO: tz_remote_output_after_dispatch: 1675332348733003 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332350403458 us
+INFO: tz_remote_output_after_dispatch: 1675332350646698 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332350669663 us
+INFO: tz_remote_output_after_dispatch: 1675332350914979 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332352646826 us
+INFO: tz_remote_output_after_dispatch: 1675332352889985 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332352922443 us
+INFO: tz_remote_output_after_dispatch: 1675332353174121 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332354916184 us
+INFO: tz_remote_output_after_dispatch: 1675332355157085 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332355191598 us
+INFO: tz_remote_output_after_dispatch: 1675332355444644 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332357123554 us
+INFO: tz_remote_output_after_dispatch: 1675332357366367 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332357396601 us
+INFO: tz_remote_output_after_dispatch: 1675332357649388 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332359331508 us
+INFO: tz_remote_output_after_dispatch: 1675332359574254 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332359602355 us
+INFO: tz_remote_output_after_dispatch: 1675332359853958 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332361539138 us
+INFO: tz_remote_output_after_dispatch: 1675332361781583 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332361807583 us
+INFO: tz_remote_output_after_dispatch: 1675332362059526 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332363746569 us
+INFO: tz_remote_output_after_dispatch: 1675332363991693 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332364027537 us
+INFO: tz_remote_output_after_dispatch: 1675332364279726 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332365955798 us
+INFO: tz_remote_output_after_dispatch: 1675332366199075 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332366232668 us
+INFO: tz_remote_output_after_dispatch: 1675332366481155 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332368167381 us
+INFO: tz_remote_output_after_dispatch: 1675332368410745 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332368438934 us
+INFO: tz_remote_output_after_dispatch: 1675332368694406 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332370372882 us
+INFO: tz_remote_output_after_dispatch: 1675332370616372 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332370643500 us
+INFO: tz_remote_output_after_dispatch: 1675332370894570 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332372584550 us
+INFO: tz_remote_output_after_dispatch: 1675332372828126 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332372863978 us
+INFO: tz_remote_output_after_dispatch: 1675332373115953 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332374794751 us
+INFO: tz_remote_output_after_dispatch: 1675332375036948 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332375068749 us
+INFO: tz_remote_output_after_dispatch: 1675332375319853 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332376995630 us
+INFO: tz_remote_output_after_dispatch: 1675332377236598 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332377274224 us
+INFO: tz_remote_output_after_dispatch: 1675332377523143 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332379187434 us
+INFO: tz_remote_output_after_dispatch: 1675332379430499 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332379463197 us
+INFO: tz_remote_output_after_dispatch: 1675332379715352 us
+[  204.469079] random: crng init done
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332381392952 us
+INFO: tz_remote_output_after_dispatch: 1675332381636698 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332381667224 us
+INFO: tz_remote_output_after_dispatch: 1675332381923033 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332383608309 us
+INFO: tz_remote_output_after_dispatch: 1675332383851389 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332383889159 us
+INFO: tz_remote_output_after_dispatch: 1675332384139706 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332385867216 us
+INFO: tz_remote_output_after_dispatch: 1675332386110265 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332386142360 us
+INFO: tz_remote_output_after_dispatch: 1675332386393639 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332388068479 us
+INFO: tz_remote_output_after_dispatch: 1675332388311082 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332388347252 us
+INFO: tz_remote_output_after_dispatch: 1675332388597084 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332390275123 us
+INFO: tz_remote_output_after_dispatch: 1675332390518723 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332390552018 us
+INFO: tz_remote_output_after_dispatch: 1675332390799318 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332392538681 us
+INFO: tz_remote_output_after_dispatch: 1675332392781125 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332392806343 us
+INFO: tz_remote_output_after_dispatch: 1675332393060757 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332394755019 us
+INFO: tz_remote_output_after_dispatch: 1675332394996691 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332395026891 us
+INFO: tz_remote_output_after_dispatch: 1675332395278661 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332397030968 us
+INFO: tz_remote_output_after_dispatch: 1675332397274359 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332397312045 us
+INFO: tz_remote_output_after_dispatch: 1675332397562292 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332399239775 us
+INFO: tz_remote_output_after_dispatch: 1675332399482931 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332399517261 us
+INFO: tz_remote_output_after_dispatch: 1675332399766809 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332401495580 us
+INFO: tz_remote_output_after_dispatch: 1675332401738944 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332401770399 us
+INFO: tz_remote_output_after_dispatch: 1675332402021952 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332403739694 us
+INFO: tz_remote_output_after_dispatch: 1675332403979677 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332404009101 us
+INFO: tz_remote_output_after_dispatch: 1675332404269636 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332405950391 us
+INFO: tz_remote_output_after_dispatch: 1675332406197366 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332406228169 us
+INFO: tz_remote_output_after_dispatch: 1675332406477086 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332408158558 us
+INFO: tz_remote_output_after_dispatch: 1675332408401894 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332408433059 us
+INFO: tz_remote_output_after_dispatch: 1675332408686504 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332410366943 us
+INFO: tz_remote_output_after_dispatch: 1675332410609744 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332410638784 us
+INFO: tz_remote_output_after_dispatch: 1675332410899728 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332412560061 us
+INFO: tz_remote_output_after_dispatch: 1675332412809111 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332412843034 us
+INFO: tz_remote_output_after_dispatch: 1675332413100587 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332414768722 us
+INFO: tz_remote_output_after_dispatch: 1675332415011642 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332415046906 us
+INFO: tz_remote_output_after_dispatch: 1675332415300776 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332417024134 us
+INFO: tz_remote_output_after_dispatch: 1675332417267640 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332417301220 us
+INFO: tz_remote_output_after_dispatch: 1675332417551713 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332419271787 us
+INFO: tz_remote_output_after_dispatch: 1675332419512908 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332419538827 us
+INFO: tz_remote_output_after_dispatch: 1675332419790019 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332421479019 us
+INFO: tz_remote_output_after_dispatch: 1675332421722266 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332421759663 us
+INFO: tz_remote_output_after_dispatch: 1675332422010927 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332423711593 us
+INFO: tz_remote_output_after_dispatch: 1675332423955274 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332423980741 us
+INFO: tz_remote_output_after_dispatch: 1675332424234507 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332425911570 us
+INFO: tz_remote_output_after_dispatch: 1675332426151281 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332426185465 us
+INFO: tz_remote_output_after_dispatch: 1675332426438916 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332428171701 us
+INFO: tz_remote_output_after_dispatch: 1675332428415199 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332428438378 us
+INFO: tz_remote_output_after_dispatch: 1675332428684080 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332430383433 us
+INFO: tz_remote_output_after_dispatch: 1675332430627096 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332430660257 us
+INFO: tz_remote_output_after_dispatch: 1675332430914481 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332432580190 us
+INFO: tz_remote_output_after_dispatch: 1675332432823433 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332432847706 us
+INFO: tz_remote_output_after_dispatch: 1675332433094756 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332434795364 us
+INFO: tz_remote_output_after_dispatch: 1675332435037239 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332435069987 us
+INFO: tz_remote_output_after_dispatch: 1675332435324128 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332437027606 us
+INFO: tz_remote_output_after_dispatch: 1675332437271057 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332437306270 us
+INFO: tz_remote_output_after_dispatch: 1675332437558395 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332439231907 us
+INFO: tz_remote_output_after_dispatch: 1675332439472809 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332439495354 us
+INFO: tz_remote_output_after_dispatch: 1675332439741055 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332441442641 us
+INFO: tz_remote_output_after_dispatch: 1675332441685883 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332441716127 us
+INFO: tz_remote_output_after_dispatch: 1675332441971156 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332443678815 us
+INFO: tz_remote_output_after_dispatch: 1675332443921708 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332443953221 us
+INFO: tz_remote_output_after_dispatch: 1675332444206424 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332445880185 us
+INFO: tz_remote_output_after_dispatch: 1675332446123702 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332446158950 us
+INFO: tz_remote_output_after_dispatch: 1675332446410674 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332448145636 us
+INFO: tz_remote_output_after_dispatch: 1675332448389384 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332448412289 us
+INFO: tz_remote_output_after_dispatch: 1675332448664830 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332450343636 us
+INFO: tz_remote_output_after_dispatch: 1675332450586864 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332450617191 us
+INFO: tz_remote_output_after_dispatch: 1675332450870339 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332452531869 us
+INFO: tz_remote_output_after_dispatch: 1675332452772884 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332452806278 us
+INFO: tz_remote_output_after_dispatch: 1675332453057923 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332454791712 us
+INFO: tz_remote_output_after_dispatch: 1675332455030620 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332455059960 us
+INFO: tz_remote_output_after_dispatch: 1675332455309774 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332457063652 us
+INFO: tz_remote_output_after_dispatch: 1675332457306604 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332457344633 us
+INFO: tz_remote_output_after_dispatch: 1675332457597435 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332459258836 us
+INFO: tz_remote_output_after_dispatch: 1675332459501404 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332459532787 us
+INFO: tz_remote_output_after_dispatch: 1675332459785347 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332461523689 us
+INFO: tz_remote_output_after_dispatch: 1675332461766463 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332461801881 us
+INFO: tz_remote_output_after_dispatch: 1675332462057205 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332463759251 us
+INFO: tz_remote_output_after_dispatch: 1675332463999666 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332464038926 us
+INFO: tz_remote_output_after_dispatch: 1675332464292462 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332465955401 us
+INFO: tz_remote_output_after_dispatch: 1675332466198831 us
+INFO: Received remote output
+INFO: tz_remote_output_before_dispatch: 1675332466227641 us
+INFO: tz_remote_output_after_dispatch: 1675332466476796 us

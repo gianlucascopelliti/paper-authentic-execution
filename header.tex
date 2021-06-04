@@ -1,0 +1,119 @@
+\usepackage{mathtools}
+\usepackage{listings}
+\usepackage{listings-rust}
+\usepackage{listings-yaml}
+\usepackage{endnotes}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{microtype}
+\usepackage{amsmath}
+\usepackage{bold-extra}
+\usepackage{xstring}
+\usepackage{color, colortbl}
+\usepackage{booktabs}
+\usepackage{adjustbox}
+\usepackage[english=american,babel=false]{csquotes}
+\usepackage{array}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{hyperref}
+\usepackage{xspace}
+\usepackage{paralist}
+\usepackage{longtable}
+
+\usepackage[capitalize]{cleveref}
+\crefname{figure}{Fig.}{Figs.}
+\Crefname{figure}{Fig.}{Figs.}
+\crefname{table}{Tab.}{Tabs.}
+\Crefname{table}{Tab.}{Tabs.}
+\crefname{section}{Sect.}{Sects.}
+\Crefname{section}{Sect.}{Sects.}
+
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{
+    width=5cm, 
+    legend style={
+        font=\footnotesize,
+        %rounded corners=2pt
+    },
+    compat=newest
+}
+\usepackage[utf8]{inputenc}
+\DeclareUnicodeCharacter{2212}{−}
+\usepgfplotslibrary{groupplots,dateplot}
+\usetikzlibrary{calligraphy, calc, arrows.meta, decorations.pathreplacing, matrix, positioning, fit, backgrounds, patterns,shapes.arrows, shapes.symbols}
+
+\usepackage{acronym}
+
+% colour scheme for colour blind people
+\definecolor{color1}{RGB}{254,97,0}
+\newcommand{\coloriname}{orange}
+\definecolor{color2}{RGB}{255,176,0}
+\newcommand{\coloriiname}{yellow}
+\definecolor{color3}{RGB}{100,143,255}
+\newcommand{\coloriiiname}{blue}
+\definecolor{color4}{RGB}{120,94,240}
+\newcommand{\colorivname}{purple}
+\definecolor{color5}{RGB}{220,38,127}
+\newcommand{\colorvname}{red}
+
+\newcommand{\colorsgx}{color3}
+\newcommand{\colorsancus}{color2}
+\newcommand{\colortz}{color5}
+\newcommand{\colornative}{color4}
+
+\usepackage{enumitem}
+\newlist{paraenum}{enumerate*}{1}
+\setlist[paraenum]{label=\emph{(\arabic*)}}
+
+%% setting up side captions
+\usepackage[rightcaption]{sidecap}
+\makeatletter
+\@ifdefinable\SC@listings@vpos{\def\SC@listings@vpos{b}}
+\newenvironment{SClisting}{\SC@float[\SC@listings@vpos]{mylisting}}{\endSC@float}
+\newenvironment{SClisting*}{\SC@dblfloat[\SC@listings@vpos]{mylisting}}{\endSC@dblfloat}
+%% `sidecap` and `float` access the name of the new float differently.
+%% You can't rely on `float` to pass `sidecap` the correct name.  So,
+%% here we manually feed the correct name for the new float in a manner 
+%% pleasing to `sidecap`.
+\@namedef{mylistingname}{Listing}
+\makeatother
+
+%% creating figure command
+\newcommand{\fig}[4]{%
+  \begin{SCfigure}
+    \centering
+      \includegraphics[width=\textwidth]{#1}
+    \caption[#2]{#3}
+    \label{fig:#4}
+  \end{SCfigure}%
+}
+
+\renewcommand\sidecaptionsep{5mm}
+\sidecaptionvpos{figure}{t}
+
+\newcommand{\sclist}[5]{%
+  \begin{SCfigure}[.9]
+    \centering
+    {\begin{minipage}{#1\textwidth}
+      {#2}
+    \end{minipage}}
+    \caption[#3]{%\protect\rule{0ex}{5ex}
+     #4}
+    \label{#5}
+    \vspace{-3mm}
+  \end{SCfigure}%
+}
+
+\newcounter{inlasscnt}
+\renewcommand{\theinlasscnt}{{\bf A\arabic{inlasscnt}}}
+\newcommand{\inlass}[2]{\refstepcounter{inlasscnt}\theinlasscnt\label{#1}:~{\it #2}}
+
+\newcounter{ioasscnt}
+\renewcommand{\theioasscnt}{{\bf IO\arabic{ioasscnt}}}
+\newcommand{\ioass}[2]{\refstepcounter{ioasscnt}\theioasscnt\label{#1}:~{\it #2}}
+
+\newcounter{dplasscnt}
+\renewcommand{\thedplasscnt}{{\bf D\arabic{dplasscnt}}}
+\newcommand{\dplass}[2]{\refstepcounter{dplasscnt}\thedplasscnt\label{#1}:~{\it #2}}

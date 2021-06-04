@@ -1,0 +1,123 @@
+\newcommand{\debianfootnote}{\textsuperscript{a}}
+\newcommand{\debianfootnotetext}{We use Debian 11 (bullseye) as reference \cite{debian-stats}}
+\newcommand{\opteefootnote}{\textsuperscript{b}}
+\newcommand{\opteefootnotetext}{As of 2016, according to the official documentation}
+
+\begin{table}
+  \small
+  \begin{subtable}{0.32\textwidth}
+    \resizebox{\textwidth}{!}{
+    \begin{tabular}{lrr}
+      \toprule
+      Component				           & Src (LOC)         & Bin (B)            \\
+      \midrule
+      \rowcolor{gray!10}
+      RIOT OS                    & 9713              &                    \\
+      \rowcolor{gray!10}
+      Event Manager              & 1312              &                    \\
+      \hline
+      \rowcolor{gray!30}
+      \textbf{Total untrusted}   & \textbf{11025}    & \textbf{35638}     \\
+      \midrule
+      \rowcolor{color1!60}
+      Stub code and libraries    & 797               &                    \\
+      \rowcolor{color1!60}
+      \thermostat                & 10                & 9001               \\
+      \rowcolor{color1!60}
+      \tempsensor                & 21                & 9423               \\
+      \rowcolor{color1!60}
+      \light                     & 10                & 9079               \\
+      \hline
+      \rowcolor{color1!80}
+      \textbf{Total trusted}     & \textbf{838}      & \textbf{27503}     \\
+      \midrule
+      \rowcolor{color1!80}
+      \textbf{TCB reduction (\%)}& \textbf{92.9}     & \textbf{56.4}      \\
+      \rowcolor{color1!80}
+      \textbf{Dev. effort (\%)}  & \textbf{4.9}      &                    \\
+      \bottomrule
+    \end{tabular}}
+    \caption{Sancus}
+  \end{subtable}
+  \begin{subtable}{0.32\textwidth}
+    \resizebox{\textwidth}{!}{
+    \begin{tabular}{lrr}
+      \toprule
+      Component				           & Src (LOC)         & Bin (B)            \\
+      \midrule
+      \rowcolor{gray!10}
+      Host OS\debianfootnote     & >700M             & 314.3M             \\
+      \rowcolor{gray!10}
+      Event Manager              & 623               & 1.2M               \\
+      \hline
+      \rowcolor{gray!20}
+      \textbf{Total untrusted}   & \textbf{>700M}    & \textbf{315.5M}    \\
+      \midrule
+      \rowcolor{color1!60}
+      Fortanix EDP               & >20K              &                    \\
+      \rowcolor{color1!60}
+      Stub code                  & 3412              &                    \\
+      \rowcolor{color1!60}
+      3rd party libraries        & $\sim$20K         &                    \\
+      \rowcolor{color1!60}
+      \web                       & 372               & 4.2M               \\
+      \hline
+      \rowcolor{color1!80}
+      \textbf{Total trusted}     & \textbf{>43K}     & \textbf{4.2M}      \\
+      \midrule
+      \rowcolor{color1!80}
+      \textbf{TCB reduction (\%)}& \textbf{99.9}     & \textbf{98.7}      \\
+      \rowcolor{color1!80}
+      \textbf{Dev. effort (\%)}  & \textbf{9.8}      &                    \\
+      \bottomrule
+    \end{tabular}}
+    \caption{Intel \ac{SGX}}
+  \end{subtable}
+  \begin{subtable}{0.32\textwidth}
+    \resizebox{\textwidth}{!}{
+    \begin{tabular}{lrr}
+      \toprule
+      Component				           & Src (LOC)         & Bin (B)            \\
+      \midrule
+      \rowcolor{gray!10}
+      Host OS\debianfootnote     & >700M             & 314.3M             \\
+      \rowcolor{gray!10}
+      Event Manager              & 1448              & 17.3K              \\
+      \hline
+      \rowcolor{gray!20}
+      \textbf{Total untrusted}   & \textbf{>700M}    & \textbf{314.3M}    \\
+      \midrule
+      \rowcolor{color1!60}
+      OP-TEE OS                  & 286K              & 244K\opteefootnote \\
+      \rowcolor{color1!60}
+      Stub code                  & 1432              &                    \\
+      \rowcolor{color1!60}
+      \gateway                   & 101               & 111.3K             \\
+      \hline
+      \rowcolor{color1!80}
+      \textbf{Total trusted}     & \textbf{287K}     & \textbf{355.3K}    \\
+      \midrule
+      \rowcolor{color1!80}
+      \textbf{TCB reduction (\%)}& \textbf{99.9}     & \textbf{99.9}      \\
+      \rowcolor{color1!80}
+      \textbf{Dev. effort (\%)}  & \textbf{6.6}      &                    \\
+      \bottomrule
+    \end{tabular}}
+    \caption{TrustZone}
+  \end{subtable}
+  \caption{ Size (\enquote{Src}: source code, \enquote{Bin}: binary size) of the
+    software for running the evaluation scenario. Shaded components are part of
+    the run-time software \ac{TCB}. For a fair comparison, we only consider
+    source code (e.g., C/C++, Rust files), and not build scripts or other
+    similar files. Besides, our evaluation does not include compilers, standard
+    libraries, and other software layers such as hypervisors. TCB reduction is
+    calculated as untrusted code over total code, while developer's effort as
+    application logic (e.g., \emph{gateway}) over total trusted code, which
+    includes stub code but excludes third party libraries. Module binaries have
+    been built in debug mode.
+    \emph{Footnotes --- } 
+    \debianfootnote{}: \debianfootnotetext;
+    \opteefootnote{}: \opteefootnotetext.}
+  \vspace{-0.9cm}
+  \label{tbl:scenario_tcb}
+\end{table}

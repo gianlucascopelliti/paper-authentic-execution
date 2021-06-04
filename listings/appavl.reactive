@@ -1,0 +1,19 @@
+module AvlP1
+on Button(pressed):
+  CarMoved(entered)
+module AvlP2
+# Similar to AvlP1
+
+module Agg
+on CarMoved1(entered):
+  p1 = entered
+  num_avl = NUM_PARKINGS
+  if (p1): num_avl = num_avl - 1
+  if (p2): num_avl = num_avl - 1
+  AvlChanged(num_avl)
+on CarMoved2(entered):
+  # Similar to CarMoved1
+
+module AvlD
+on AvlChanged(num_avl)
+  Display(num_avl)

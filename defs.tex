@@ -1,0 +1,113 @@
+\newcommand{\fio}[3]{F_{#1, \text{#3}_#2}}
+\newcommand{\fin}[2]{\fio{#1}{#2}{in}}
+\newcommand{\fout}[2]{\fio{#1}{#2}{out}}
+\newcommand{\function}[3]{(\fin{#1}{#2}, \fout{#1}{#2})}
+\newcommand{\confreg}{\ensuremath{R_C}}
+\newcommand{\eventstream}{\ensuremath{S_E}}
+
+\newcommand{\node}[1]{\ensuremath{N_\textit{#1}}}
+\newcommand{\dev}[1]{\ensuremath{D_\textit{#1}}}
+\newcommand{\app}[1]{\ensuremath{A_\textit{#1}}}
+\newcommand{\module}[1]{\ensuremath{M_\textit{#1}}}
+
+\newcommand{\appvio}{\app{\textit{Flo}}}
+\newcommand{\appavl}{\app{\textit{Agg}}}
+
+\lstdefinelanguage{RL}{
+  keywords={on, if, then, else, outputs},
+  ndkeywords={},
+  sensitive=false,
+  comment=[l]{//},
+  columns=fullflexible
+}
+
+\lstdefinelanguage{Sancus-C}[]{C}{
+    morekeywords={SM_ENTRY,SM_FUNC,SM_DATA,SM_INPUT,SM_OUTPUT},
+}
+
+\lstdefinelanguage{Reactive}{
+  morekeywords={module, on, if, else},
+  morecomment=[l]{\#}
+}
+
+\lstset{
+  inputpath=listings,
+  frame=lines,
+  basicstyle=\ttfamily\tiny,
+  keywordstyle=\bfseries\ttfamily,
+  ndkeywordstyle=\bfseries\ttfamily,
+  commentstyle=\itshape\ttfamily,
+  stringstyle=\ttfamily,
+  numberbychapter=false,
+  showlines=true
+}
+
+\newcommand{\reactmod}{source module}
+\newcommand{\reactmods}{\reactmod s}
+
+\newcommand{\protmod}{\ac{SM}}
+\newcommand{\protmods}{\acp{SM}}
+
+\newcommand{\cmd}[1]{\texttt{#1}}
+\newcommand{\api}[1]{\texttt{#1}}
+\newcommand{\code}[1]{\texttt{#1}}
+\newcommand{\keytab}{\api{KeyTable}}
+\newcommand{\cbtab}{\api{CbTable}}
+\newcommand{\conntab}{\api{ConnectionTable}}
+\newcommand{\noncetab}{\api{NonceTable}}
+\newcommand{\setkey}{\api{SetKey}}
+\newcommand{\handleinput}{\api{HandleInput}}
+\newcommand{\handleoutput}{\api{HandleOutput}}
+\newcommand{\attest}{\api{Attest}}
+\newcommand{\loadmodule}{\api{LoadModule}}
+\newcommand{\callentry}{\api{CallEntry}}
+\newcommand{\addconnection}{\api{AddConnection}}
+\newcommand{\handlelocalevent}{\api{HandleLocalEvent}}
+\newcommand{\handleremoteevent}{\api{HandleRemoteEvent}}
+\newcommand{\smentry}{\api{SM\_ENTRY}}
+\newcommand{\smfunc}{\api{SM\_FUNC}}
+\newcommand{\smdata}{\api{SM\_DATA}}
+\newcommand{\sminput}{\api{SM\_INPUT}}
+\newcommand{\smoutput}{\api{SM\_OUTPUT}}
+\newcommand{\wrap}{\api{Encrypt}}
+\newcommand{\unwrap}{\api{Decrypt}}
+\newcommand{\genattevid}{\api{GenAttestationEvidence}}
+\newcommand{\callerid}{\api{CallerId}}
+\newcommand{\conn}{\api{Connection}}
+\newcommand{\registercb}{\api{RegisterInputCb}}
+\newcommand{\acquire}{\api{AcquireOutput}}
+
+\newcommand{\aes}{\textsc{aes}}
+\newcommand{\aesgcm}{\textsc{aes-gcm}}
+\newcommand{\spongent}{\textsc{spongent}}
+\newcommand{\spongewrap}{\textsc{SpongeWrap}}
+
+\newcommand{\rustsgxgen}{\textsc{rust-sgx-gen}}
+\newcommand{\reactools}{\cmd{reactive-tools}}
+\newcommand{\db}{\emph{db}}
+\newcommand{\webserver}{\emph{webserver}}
+
+\newcommand{\web}{\emph{web}}
+\newcommand{\gateway}{\emph{gateway}}
+\newcommand{\tempsensor}{\emph{temp\_sensor}}
+\newcommand{\thermostat}{\emph{thermostat}}
+\newcommand{\light}{\emph{light\_switch}}
+
+\newcommand{\modname}[1]{\texttt{mod-#1}}
+
+\newcommand{\LOOKUP}{\mathrm{lookup}}
+\newcommand{\EVENT}{\mathit{ev}}
+\newcommand{\OUTPUT}{\mathit{out}}
+
+\newcommand{\trans}{\rightarrow}
+\newcommand{\longtrans}{\longrightarrow}
+
+\newcommand{\silenttrans}{\overset{\cdot}{\trans}}
+\newcommand{\argtrans}[1]{\overset{#1}{\trans}}
+\newcommand{\longargtrans}[1]{\overset{#1}{\longtrans}}
+
+\newcommand{\compiled}[1]{\lfloor #1 \rfloor}
+\newcommand{\uncompiled}[1]{\lceil #1 \rceil}
+%\newcommand{\qed}{\hfill$\square$}
+
+

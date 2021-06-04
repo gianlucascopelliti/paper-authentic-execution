@@ -1,0 +1,17 @@
+\begin{figure}
+  \begin{centering}
+  \resizebox{0.70\linewidth}{!}{\input{example.tex}}
+  \end{centering}
+  \vspace{-3mm}
+  \caption{%
+    Our running example with two applications, \appavl{} (\coloriiiname{}) and
+\appvio{} (\colorvname{}). Hardware ($N_{*}$ and $D_{*}$) is trusted; the OS and
+the network are untrusted. E.g., the \appvio{} deployer creates the three
+\colorvname{} \acp{SM} (cf. \cref{code:appvio}) with a trusted compiler, attests
+the shared sensor-, clock- and display drivers and sets-up connections between
+the \acp{SM}. Remote attestation assures authentic execution of \appavl{} and
+\appvio{}. } %
+  \label{fig_model}
+  \vspace{-3mm}
+\end{figure}
+

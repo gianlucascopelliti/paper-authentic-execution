@@ -1,0 +1,21 @@
+\section{Summary \& Conclusions} \label{sec:conclusions}
+
+In this article, we present a software architecture to securely execute
+distributed applications on shared, heterogeneous \ac{TEE}-infrastructures. We
+have extended Sancus, a light-weight embedded \ac{TEE} with support for secure
+I/O, interfaced it with the commercial of-the-shelf \acp{TEE} ARM TrustZone and
+Intel SGX, and implemented and evaluated a software development framework which
+enables the execution of reactive (event-driven) distributed applications on a
+shared infrastructure with strong authenticity guarantees and in the presence of
+capable attackers, while relying on a very small TCB. We have implemented (and
+foresee many more) compelling use cases in IoT and control systems.  While much
+of our work is focused on small embedded microprocessors, we demonstrate that
+our solution to be generally applicable to, e.g., build secure distributed
+applications that integrate IoT sensing and actuation with cloud-based data
+processing or aggregation.  Yet, implementing secure I/O is more challenging on
+non-embedded architectures.  Extensions to our work would be to strengthen
+security guarantees while maintaining a small TCB, fully integrating a notion of
+availability based on~\cite{alder_2021_aion}, and to formalize the security
+argument using recently proposed logics (e.g., \cite{warinschi}) for reasoning
+about \acp{TEE}.
+
